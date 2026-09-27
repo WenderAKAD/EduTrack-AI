@@ -20,7 +20,7 @@ a) Print do VS Code com a pasta do projeto aberta no Explorer:
 
 b) Print do terminal interno do VS Code mostrando:
    - node --version → v22.23.3
-   - npm --version → 10.9.3
+   - npm --version → 10.9.9
 
 ------------------------------------------------------------------------
 
@@ -32,7 +32,7 @@ b) Print do terminal interno do VS Code mostrando:
     painel Explorer.
 
 [✅] Node.js (LTS) instalado e versão verificada no terminal.
-    Confirmação: node v22.23.3 / npm 10.9.3 (versão LTS).
+    Confirmação: node v22.23.3 / npm 10.9.9 (versão LTS).
 
 [⚠️] Extensão Gemini Code Assist instalada e autenticada com e-mail
      @aluno.faculdadeimpacta.edu.br.
