@@ -4,6 +4,14 @@ Projeto da disciplina Innovation Lab – Faculdade Impacta
 Aluno: Wender Araújo Santos
 Data Início: 2026
 
+## Tecnologias Utilizadas
+
+- Git & GitHub
+- VS Code
+- Node.js
+- OpenSpec
+- Xano
+
 Tarefa 02 – Instalação do VS Code, Node.js e Configuração de IA
 
 Aluno: Wender Araujo Santos
@@ -134,7 +142,7 @@ Confirmação: Commit realizado com mensagem padronizada e publicado no reposit�
 Data de entrega: 28 de setembro de 2026
 Aluno: Wender Araujo Santos
 
-------------------------------------------------------------------------
+---
 
 Tarefa 04 – Primeiro Pull/Push com XanoScript
 
@@ -142,43 +150,45 @@ Aluno: Wender Araujo Santos
 E-mail institucional: wender.araujo@aluno.impacta.edu.br
 Disciplina: Innovation Lab: Desenvolvimento Avançado No/Low Code
 
-------------------------------------------------------------------------
+---
 
 1. ENTREGÁVEIS ANEXADOS
 
 a) Print do VS Code com os arquivos .xs baixados:
-   - Explorer exibindo a árvore de arquivos baixados (apis, functions, addons)
-   - Arquivo 3823228_auth_login_POST.xs aberto exibindo comentário de teste
+
+- Explorer exibindo a árvore de arquivos baixados (apis, functions, addons)
+- Arquivo 3823228_auth_login_POST.xs aberto exibindo comentário de teste
 
 b) Print do terminal interno do VS Code mostrando:
-   - git push origin main concluído com sucesso
+
+- git push origin main concluído com sucesso
 
 c) Link do repositório GitHub atualizado:
-   - https://github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est
 
-------------------------------------------------------------------------
+- https://github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est
+
+---
 
 2. CRITÉRIOS DE AVALIAÇÃO
 
 [✅] Workspace Xano criado e Token gerado.
-    Confirmação: Conexão autenticada via extensão XanoScript no VS Code.
+Confirmação: Conexão autenticada via extensão XanoScript no VS Code.
 
 [✅] Conexão bem-sucedida via extensão XanoScript no VS Code.
-    Confirmação: Login no workspace e branch 'v1 Live branch' reconhecida.
+Confirmação: Login no workspace e branch 'v1 Live branch' reconhecida.
 
 [✅] Arquivos .xs visíveis no repositório local.
-    Confirmação: Executado 'Pull latest changes from Xano' trazendo os grupos
-    de API, funções e tabelas para o projeto.
+Confirmação: Executado 'Pull latest changes from Xano' trazendo os grupos
+de API, funções e tabelas para o projeto.
 
 [✅] Push e sincronização com o Xano.
-    Confirmação: Comentário inserido em arquivo .xs e sincronizado via 'Push Stage Changes'.
+Confirmação: Comentário inserido em arquivo .xs e sincronizado via 'Push Stage Changes'.
 
 [✅] Commit e Push realizados no GitHub incluindo a pasta do Xano.
-    Confirmação: Commit 'feat: conexão com Xano e pull inicial do XanoScript'
-    publicado na branch main com 196 arquivos versionados.
+Confirmação: Commit 'feat: conexão com Xano e pull inicial do XanoScript'
+publicado na branch main com 196 arquivos versionados.
 
-------------------------------------------------------------------------
+---
 
 Data de entrega: 28 de setembro de 2026
 Aluno: Wender Araujo Santos
-
