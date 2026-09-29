@@ -249,5 +249,21 @@ facilitando a leitura do histórico do projeto.
 
 ---
 
+3. OBSERVAÇÕES TÉCNICAS
+
+- Fluxo adotado: criar branch → alterar arquivo → git add → git commit →
+  git push → abrir PR → merge na main. É o fluxo profissional com
+  branches, Pull Requests e merge.
+- O vínculo entre a branch local e a remota (upstream) foi configurado com
+  'git push -u origin <branch>', permitindo que os envios seguintes usem
+  apenas 'git push'.
+- As mensagens de commit seguem o padrão Conventional Commits (docs:, feat:),
+  mantendo o histórico do projeto consistente.
+- Antes de cada envio, o diff foi revisado com 'git diff' e o estado com
+  'git status', evitando commitar arquivos indevidos (ex.: .DS_Store, já
+  ignorado pelo .gitignore).
+
+---
+
 Data de entrega: 28 de setembro de 2026
 Aluno: Wender Araujo Santos
