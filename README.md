@@ -229,7 +229,7 @@ Disciplina: Innovation Lab: Desenvolvimento Avançado No/Low Code
 
 a) Print do VS Code com os arquivos .xs baixados:
 
-- Explorer exibindo a árvore de arquivos baixados (apis, functions, addons)
+- Explorer exibindo a árvore de arquivos baixados (apis, functions, addons, agents, tools)
 - Arquivo 3823228_auth_login_POST.xs aberto exibindo comentário de teste
 
 b) Print do terminal interno do VS Code mostrando:
@@ -245,21 +245,38 @@ c) Link do repositório GitHub atualizado:
 2. CRITÉRIOS DE AVALIAÇÃO
 
 [✅] Workspace Xano criado e Token gerado.
-Confirmação: Conexão autenticada via extensão XanoScript no VS Code.
+Confirmação: Workspace 'edutrack-ai' criado no Xano e Access Token 'VS Code'
+gerado (Metadata API & MCP Server) com escopos de Database, API Groups,
+Functions e Content.
 
 [✅] Conexão bem-sucedida via extensão XanoScript no VS Code.
-Confirmação: Login no workspace e branch 'v1 Live branch' reconhecida.
+Confirmação: Login via 'XanoScript: Login to Xano' e workspace selecionado
+com 'XanoScript: Select workspace'; branch 'v1 Live branch' reconhecida.
 
 [✅] Arquivos .xs visíveis no repositório local.
-Confirmação: Executado 'Pull latest changes from Xano' trazendo os grupos
-de API, funções e tabelas para o projeto.
-
-[✅] Push e sincronização com o Xano.
-Confirmação: Comentário inserido em arquivo .xs e sincronizado via 'Push Stage Changes'.
+Confirmação: 'XanoScript: Pull latest changes from Xano' trouxe as pastas
+apis/ (186 .xs), functions/ (5), addons/ (1), agents/ (1) e tools/ (1),
+além da configuração oculta em .xano/.
 
 [✅] Commit e Push realizados no GitHub incluindo a pasta do Xano.
 Confirmação: Commit 'feat: conexão com Xano e pull inicial do XanoScript'
-publicado na branch main com 196 arquivos versionados.
+(29e673a) publicado na branch main, totalizando 196 arquivos versionados.
+
+---
+
+3. OBSERVAÇÕES TÉCNICAS
+
+- Para validar o fluxo nos dois sentidos (pull e push), foi adicionado o
+  comentário "// Meu primeiro comentário via VS Code" no topo de
+  apis/authentication/3823228_auth_login_POST.xs e enviado ao Xano com
+  'XanoScript: Push Stage Changes to Xano'.
+- Conforme a etapa 4.1 da tarefa, não há tabelas padrão versionadas: a pasta
+  tables/ está vazia e não aparece no GitHub, pois o Git não rastreia pastas
+  vazias. A tabela de autenticação padrão (user) está representada como
+  addon em addons/109599_user.xs.
+- A pasta oculta .xano/ armazena a configuração da conexão
+  (.xano/config.json e .xano/branches/v1/objects.json) e foi versionada
+  junto com o projeto.
 
 ---
 
