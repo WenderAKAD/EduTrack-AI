@@ -192,3 +192,78 @@ publicado na branch main com 196 arquivos versionados.
 
 Data de entrega: 28 de setembro de 2026
 Aluno: Wender Araujo Santos
+
+---
+
+Tarefa 05 – Exercícios Básicos de Git
+
+Aluno: Wender Araujo Santos
+E-mail institucional: wender.araujo@aluno.impacta.edu.br
+Disciplina: Innovation Lab: Desenvolvimento Avançado No/Low Code
+
+---
+
+1. ENTREGÁVEIS ANEXADOS
+
+a) Print do terminal interno do VS Code mostrando o fluxo completo de Git:
+
+- Criação da branch de trabalho: git switch -c feat/melhoria-readme
+- Commit das alterações no README.md
+- Publicação da branch com vínculo remoto:
+  git push -u origin feat/melhoria-readme
+- Confirmação do rastreamento: git branch -vv
+  → feat/melhoria-readme [origin/feat/melhoria-readme]
+
+b) Print da página do Pull Request no GitHub:
+
+- PR comparando a branch feat/melhoria-readme com a main
+- Aba "Files changed" exibindo o diff do README.md
+
+c) Print do Pull Request já integrado:
+
+- PR com o selo "Merged" e o commit de merge publicado na main
+
+d) Link do repositório GitHub:
+
+- https://github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est
+
+---
+
+2. CRITÉRIOS DE AVALIAÇÃO
+
+[✅] Branch criada e publicada no repositório remoto.
+Confirmação: Branch 'feat/melhoria-readme' enviada ao GitHub e configurada
+para rastrear a branch remota (upstream) via 'git push -u'.
+
+[✅] Pull Request aberto com as mudanças descritas.
+Confirmação: PR aberto comparando 'feat/melhoria-readme' com a 'main',
+com o diff do README.md visível na aba "Files changed".
+
+[✅] Pull Request mesclado (merge) na branch principal.
+Confirmação: Merge realizado na 'main' através do commit de merge do PR,
+integrando as alterações e preservando o histórico das branches.
+
+[✅] Histórico de commits padronizado.
+Confirmação: Mensagens no padrão Conventional Commits (docs:, feat:),
+facilitando a leitura do histórico do projeto.
+
+---
+
+3. OBSERVAÇÕES TÉCNICAS
+
+- Fluxo adotado: criar branch → alterar arquivo → git add → git commit →
+  git push → abrir PR → merge na main. É o fluxo profissional com
+  branches, Pull Requests e merge.
+- O vínculo entre a branch local e a remota (upstream) foi configurado com
+  'git push -u origin <branch>', permitindo que os envios seguintes usem
+  apenas 'git push'.
+- As mensagens de commit seguem o padrão Conventional Commits (docs:, feat:),
+  mantendo o histórico do projeto consistente.
+- Antes de cada envio, o diff foi revisado com 'git diff' e o estado com
+  'git status', evitando commitar arquivos indevidos (ex.: .DS_Store, já
+  ignorado pelo .gitignore).
+
+---
+
+Data de entrega: 28 de setembro de 2026
+Aluno: Wender Araujo Santos
