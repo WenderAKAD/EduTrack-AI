@@ -44,10 +44,12 @@ painel Explorer.
 [✅] Node.js (LTS) instalado e versão verificada no terminal.
 Confirmação: node v22.23.3 / npm 10.9.9 (versão LTS).
 
-[⚠️] Extensão Gemini Code Assist instalada e autenticada com e-mail
-@aluno.faculdadeimpacta.edu.br.
-Observação: O login direto da extensão Gemini Code Assist no VS
-Code não concluiu a autenticação no meu ambiente (macOS Ventura
+[⚠️] Extensão Gemini Code Assist instalada e autenticada com o e-mail
+institucional.
+Observação: A rubrica da disciplina cita o domínio
+@aluno.faculdadeimpacta.edu.br, porém a conta institucional ativa é
+wender.araujo@aluno.impacta.edu.br. O login direto da extensão Gemini Code
+Assist no VS Code não concluiu a autenticação no meu ambiente (macOS Ventura
 13.7.8, Intel, Homebrew com conflitos recorrentes).
 
     Conforme orientação do professor, a IA foi configurada e
@@ -79,9 +81,9 @@ Confirmação: XanoScript v0.5.12 instalada no VS Code.
 1. Print: VS Code com pasta EduTrack-IA-Wender-Est no Explorer
    - terminal mostrando node --version v22.23.3.
 
-1. Print: Extensão XanoScript instalada no VS Code.
+2. Print: Extensão XanoScript instalada no VS Code.
 
-1. Print: Chat do Antigravity respondendo (evidência de IA
+3. Print: Chat do Antigravity respondendo (evidência de IA
    autenticada).
 
 ---
