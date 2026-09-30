@@ -1,18 +1,92 @@
 # EduTrack AI
 
-Projeto da disciplina Innovation Lab – Faculdade Impacta  
-Aluno: Wender Araújo Santos
-Data Início: 2026
+**Projeto:** EduTrack AI – assistente educacional para rastrear disciplinas, tarefas e progresso acadêmico.
+
+| Informação | Valor |
+|---|---|
+| **Disciplina** | Innovation Lab: Desenvolvimento Avançado No/Low Code |
+| **Aluno** | Wender Araújo Santos |
+| **E-mail institucional** | wender.araujo@aluno.impacta.edu.br |
+| **Instituição** | Faculdade Impacta |
+| **Data de Início** | 2026 |
+| **Repositório** | [EduTrack-IA-Wender-Est](https://github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est) |
 
 ## Tecnologias Utilizadas
 
 - Git & GitHub
 - VS Code
-- Node.js
+- Node.js / npm
 - OpenSpec
-- Xano
+- Xano / XanoScript
+- Antigravity (IA)
 
-Tarefa 02 – Instalação do VS Code, Node.js e Configuração de IA
+## Índice das Tarefas
+
+- [Tarefa 01 – Primeiro Contato com Git e GitHub](#tarefa-01--primeiro-contato-com-git-e-github)
+- [Tarefa 02 – Instalação do VS Code, Node.js e Configuração de IA](#tarefa-02--instalação-do-vs-code-nodejs-e-configuração-de-ia)
+- [Tarefa 03 – Instalação e Inicialização do OpenSpec](#tarefa-03--instalação-e-inicialização-do-openspec)
+- [Tarefa 04 – Primeiro Pull/Push com XanoScript](#tarefa-04--primeiro-pullpush-com-xanoscript)
+- [Tarefa 05 – Exercícios Básicos de Git](#tarefa-05--exercícios-básicos-de-git)
+
+---
+
+## Tarefa 01 – Primeiro Contato com Git e GitHub
+
+Aluno: Wender Araujo Santos
+E-mail institucional: wender.araujo@aluno.impacta.edu.br
+Disciplina: Innovation Lab: Desenvolvimento Avançado No/Low Code
+
+---
+
+1. ENTREGÁVEIS ANEXADOS
+
+a) Link do repositório GitHub:
+
+- https://github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est
+
+b) Print do terminal mostrando a versão do Git instalada:
+
+- git --version → git version 2.39.2 (Apple Git-143)
+
+c) Print do histórico de commits no GitHub:
+
+- Primeiro commit: "Create README.md" (b431262)
+
+---
+
+2. CRITÉRIOS DE AVALIAÇÃO
+
+[✅] Git instalado e versão verificada.
+Confirmação: git version 2.39.2 (Apple Git-143).
+
+[✅] Conta GitHub criada com o e-mail institucional.
+Confirmação: wender.araujo@aluno.impacta.edu.br.
+
+[✅] Repositório criado, clonado e com README.md.
+Confirmação: Repositório "EduTrack-IA-Wender-Est" criado no GitHub, clonado
+localmente e com README.md na raiz.
+
+[✅] Commit e push realizados com sucesso.
+Confirmação: Commit inicial "Create README.md" publicado na branch main.
+
+---
+
+3. OBSERVAÇÕES TÉCNICAS
+
+- Git instalado no macOS Ventura 13.7.8 (Apple Git-143).
+- Nome e e-mail configurados globalmente:
+  git config --global user.name / user.email.
+- O repositório foi nomeado "EduTrack-IA-Wender-Est" (a tarefa sugeria
+  "edutrack-ai" ou "edutrack-ai-seunome").
+
+---
+
+Data de entrega: 24 de setembro de 2026
+Aluno: Wender Araujo Santos
+
+---
+
+## Tarefa 02 – Instalação do VS Code, Node.js e Configuração de IA
 
 Aluno: Wender Araujo Santos
 E-mail institucional: wender.araujo@aluno.impacta.edu.br
@@ -32,14 +106,17 @@ b) Print do terminal interno do VS Code mostrando:
 - node --version → v22.23.3
 - npm --version → 10.9.9
 
+c) Print da extensão XanoScript instalada no VS Code.
+
+d) Print do chat do Antigravity respondendo (evidência de IA autenticada).
+
 ---
 
 2. CRITÉRIOS DE AVALIAÇÃO
 
 [✅] VS Code instalado e abrindo a pasta do projeto.
-Confirmação: Pasta "EduTrack-IA-Wender-Est" (repositório clonado
-na Tarefa 01) está aberta no VS Code com o README.md visível no
-painel Explorer.
+Confirmação: Pasta "EduTrack-IA-Wender-Est" (repositório clonado na Tarefa 01)
+está aberta no VS Code com o README.md visível no painel Explorer.
 
 [✅] Node.js (LTS) instalado e versão verificada no terminal.
 Confirmação: node v22.23.3 / npm 10.9.9 (versão LTS).
@@ -76,21 +153,12 @@ Confirmação: XanoScript v0.5.12 instalada no VS Code.
 
 ---
 
-4. ENTREGÁVEIS VISUAIS
-
-1. Print: VS Code com pasta EduTrack-IA-Wender-Est no Explorer
-   - terminal mostrando node --version v22.23.3.
-
-2. Print: Extensão XanoScript instalada no VS Code.
-
-3. Print: Chat do Antigravity respondendo (evidência de IA
-   autenticada).
+Data de entrega: 28 de setembro de 2026
+Aluno: Wender Araujo Santos
 
 ---
 
----
-
-Tarefa 03 – Instalação e Inicialização do OpenSpec
+## Tarefa 03 – Instalação e Inicialização do OpenSpec
 
 Aluno: Wender Araujo Santos
 E-mail institucional: wender.araujo@aluno.impacta.edu.br
@@ -146,7 +214,7 @@ Aluno: Wender Araujo Santos
 
 ---
 
-Tarefa 04 – Primeiro Pull/Push com XanoScript
+## Tarefa 04 – Primeiro Pull/Push com XanoScript
 
 Aluno: Wender Araujo Santos
 E-mail institucional: wender.araujo@aluno.impacta.edu.br
@@ -197,7 +265,7 @@ Aluno: Wender Araujo Santos
 
 ---
 
-Tarefa 05 – Exercícios Básicos de Git
+## Tarefa 05 – Exercícios Básicos de Git
 
 Aluno: Wender Araujo Santos
 E-mail institucional: wender.araujo@aluno.impacta.edu.br
