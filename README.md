@@ -26,7 +26,7 @@
 - [Tarefa 02 – Instalação do VS Code, Node.js e Configuração de IA](#tarefa-02--instalação-do-vs-code-nodejs-e-configuração-de-ia)
 - [Tarefa 03 – Instalação e Inicialização do OpenSpec](#tarefa-03--instalação-e-inicialização-do-openspec)
 - [Tarefa 04 – Primeiro Pull/Push com XanoScript](#tarefa-04--primeiro-pullpush-com-xanoscript)
-- [Tarefa 05 – Exercícios Básicos de Git](#tarefa-05--exercícios-básicos-de-git)
+- [Tarefa 05 – Exercícios Básicos de Git (Branches e Pull Requests)](#tarefa-05--exercícios-básicos-de-git-branches-e-pull-requests)
 
 ---
 
@@ -285,7 +285,7 @@ Aluno: Wender Araujo Santos
 
 ---
 
-## Tarefa 05 – Exercícios Básicos de Git
+## Tarefa 05 – Exercícios Básicos de Git (Branches e Pull Requests)
 
 Aluno: Wender Araujo Santos
 E-mail institucional: wender.araujo@aluno.impacta.edu.br
@@ -295,65 +295,74 @@ Disciplina: Innovation Lab: Desenvolvimento Avançado No/Low Code
 
 1. ENTREGÁVEIS ANEXADOS
 
-a) Print do terminal interno do VS Code mostrando o fluxo completo de Git:
+a) Link do Pull Request fechado (Merged) no GitHub:
 
-- Criação da branch de trabalho: git switch -c feat/melhoria-readme
-- Commit das alterações no README.md
-- Publicação da branch com vínculo remoto:
-  git push -u origin feat/melhoria-readme
-- Confirmação do rastreamento: git branch -vv
-  → feat/melhoria-readme [origin/feat/melhoria-readme]
+- PR #1: https://github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est/pull/1
+  (branch feat/melhoria-readme → main, status "Merged")
 
-b) Print da página do Pull Request no GitHub:
+b) Print do histórico de commits da branch main no GitHub:
 
-- PR comparando a branch feat/melhoria-readme com a main
-- Aba "Files changed" exibindo o diff do README.md
+- Commit de merge exibido no histórico: "Merge pull request #1 from
+  wenderaraujo-creator/feat/melhoria-readme" (9cb5d79)
 
-c) Print do Pull Request já integrado:
+c) Print do README.md atualizado:
 
-- PR com o selo "Merged" e o commit de merge publicado na main
-
-d) Link do repositório GitHub:
-
-- https://github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est
+- Seção "## Tecnologias Utilizadas" com as 5 ferramentas: Git & GitHub,
+  VS Code, Node.js, OpenSpec e Xano.
 
 ---
 
 2. CRITÉRIOS DE AVALIAÇÃO
 
-[✅] Branch criada e publicada no repositório remoto.
-Confirmação: Branch 'feat/melhoria-readme' enviada ao GitHub e configurada
-para rastrear a branch remota (upstream) via 'git push -u'.
+[✅] Branch criada com nomenclatura correta (feat/...).
+Confirmação: Branch 'feat/melhoria-readme' criada a partir da main.
 
-[✅] Pull Request aberto com as mudanças descritas.
-Confirmação: PR aberto comparando 'feat/melhoria-readme' com a 'main',
-com o diff do README.md visível na aba "Files changed".
+[✅] Commit message segue o padrão.
+Confirmação: Commit 'docs: adiciona seção de tecnologias no README'
+(4bde5a9), no padrão Conventional Commits.
 
-[✅] Pull Request mesclado (merge) na branch principal.
-Confirmação: Merge realizado na 'main' através do commit de merge do PR,
-integrando as alterações e preservando o histórico das branches.
+[✅] Alterações realizadas e commitadas apenas na branch secundária (não na main).
+Confirmação: A seção "Tecnologias Utilizadas" foi adicionada e commitada
+somente na branch 'feat/melhoria-readme' e integrada à main via Pull Request.
 
-[✅] Histórico de commits padronizado.
-Confirmação: Mensagens no padrão Conventional Commits (docs:, feat:),
-facilitando a leitura do histórico do projeto.
+[✅] README.md foi alterado com a seção "Tecnologias Utilizadas" incluindo as 5 ferramentas.
+Confirmação: Seção criada com Git & GitHub, VS Code, Node.js, OpenSpec e Xano.
+
+[✅] Pull Request aberto no GitHub com título e descrição adequados.
+Confirmação: PR #1 aberto comparando 'feat/melhoria-readme' com a 'main',
+com título proveniente da mensagem de commit e descrição do escopo.
+
+[✅] Pull Request foi mergeado com sucesso (status "Merged").
+Confirmação: PR #1 mergeado; commit de merge 9cb5d79 na main
+("Merge pull request #1 from wenderaraujo-creator/feat/melhoria-readme").
+
+[✅] Branch local foi deletada após o merge (git branch -d feat/melhoria-readme).
+Confirmação: branch local 'feat/melhoria-readme' deletada após o merge; a
+branch remota e o Pull Request permanecem disponíveis no GitHub.
+
+[✅] Branch main local foi atualizada após o merge (git pull origin main).
+Confirmação: executados 'git checkout main' e 'git pull origin main' após o
+merge; a main local está sincronizada com origin/main.
 
 ---
 
 3. OBSERVAÇÕES TÉCNICAS
 
 - Fluxo adotado: criar branch → alterar arquivo → git add → git commit →
-  git push → abrir PR → merge na main. É o fluxo profissional com
-  branches, Pull Requests e merge.
-- O vínculo entre a branch local e a remota (upstream) foi configurado com
-  'git push -u origin <branch>', permitindo que os envios seguintes usem
-  apenas 'git push'.
+  git push → abrir PR → merge na main. É o fluxo profissional com branches,
+  Pull Requests e merge.
+- A branch foi publicada com vínculo remoto (upstream) via
+  'git push -u origin feat/melhoria-readme', permitindo que os envios
+  seguintes usem apenas 'git push'.
 - As mensagens de commit seguem o padrão Conventional Commits (docs:, feat:),
   mantendo o histórico do projeto consistente.
-- Antes de cada envio, o diff foi revisado com 'git diff' e o estado com
-  'git status', evitando commitar arquivos indevidos (ex.: .DS_Store, já
-  ignorado pelo .gitignore).
+- O repositório registrou dois Pull Requests: o PR #1 (seção Tecnologias
+  Utilizadas) e um PR #2 posterior de documentação da própria Tarefa 05;
+  ambos constam como "Merged" na main.
 
 ---
 
 Data de entrega: 28 de setembro de 2026
 Aluno: Wender Araujo Santos
+
+---
