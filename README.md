@@ -82,7 +82,7 @@ Confirmação: Commit inicial "Create README.md" publicado na branch main.
 
 ---
 
-Data de entrega: 24 de setembro de 2026
+Data de entrega: 6 de outubro de 2026
 Aluno: Wender Araujo Santos
 
 ---
@@ -154,7 +154,7 @@ Confirmação: XanoScript v0.5.12 instalada no VS Code.
 
 ---
 
-Data de entrega: 28 de setembro de 2026
+Data de entrega: 6 de outubro de 2026
 Aluno: Wender Araujo Santos
 
 ---
@@ -213,7 +213,7 @@ changes/archive/.gitkeep.
 
 ---
 
-Data de entrega: 28 de setembro de 2026
+Data de entrega: 6 de outubro de 2026
 Aluno: Wender Araujo Santos
 
 ---
@@ -281,7 +281,7 @@ Confirmação: Commit 'feat: conexão com Xano e pull inicial do XanoScript'
 
 ---
 
-Data de entrega: 28 de setembro de 2026
+Data de entrega: 6 de outubro de 2026
 Aluno: Wender Araujo Santos
 
 ---
@@ -363,7 +363,7 @@ merge; a main local está sincronizada com origin/main.
 
 ---
 
-Data de entrega: 28 de setembro de 2026
+Data de entrega: 6 de outubro de 2026
 Aluno: Wender Araujo Santos
 
 ---
@@ -427,7 +427,7 @@ no EduTrack AI.
 
 ---
 
-Data de entrega: 2 de outubro de 2026
+Data de entrega: 6 de outubro de 2026
 Aluno: Wender Araujo Santos
 
 ---
