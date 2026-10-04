@@ -4,7 +4,7 @@
 **Aluno:** Wender Araujo Santos
 **E-mail:** wender.araujo@aluno.impacta.edu.br
 **Disciplina:** Innovation Lab: Desenvolvimento Avançado No/Low Code
-**Data:** 2 de outubro de 2026
+**Data:** 6 de outubro de 2026
 
 Pesquisa de referências gratuitas no **Figma Community** e no **Xano Marketplace**
 para orientar o design e a estrutura do EduTrack AI. O objetivo é fazer
