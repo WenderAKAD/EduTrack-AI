@@ -18,8 +18,8 @@
 
 ## 3. Hand over to subjects
 
-- [ ] 3.1 Mark every task above as completed with `- [x]` and verify no `- [ ]` checkbox remains in `tasks.md`
-- [ ] 3.2 Run `openspec validate create-user-table` and verify it reports no errors
+- [x] 3.1 Mark every task above as completed with `- [x]` and verify no `- [ ]` checkbox remains in `tasks.md`
+- [x] 3.2 Run `openspec validate create-user-table` and verify it reports no errors — ran before archiving, reported no errors. After archiving the change no longer resolves by name (`openspec validate create-user-table` returns `Unknown item`); the archived state is verified by `openspec validate --specs --strict`
 - [x] 3.3 Run `xano workspace push --include "tables/subjects.xs" --dry-run` and verify the `user_id` relationship no longer appears under Unresolved References
-- [ ] 3.4 Run `openspec archive create-user-table` and verify the change moved into `openspec/changes/archive/` and `openspec/specs/user/spec.md` was created from the delta
+- [x] 3.4 Run `openspec archive create-user-table` and verify the change moved into `openspec/changes/archive/` and `openspec/specs/user/spec.md` was created from the delta
 - [x] 3.5 Update the `AGENTS.md` rule about the authentication table to state that `user` is created by this project, and verify the rule no longer claims the table ships with Xano
