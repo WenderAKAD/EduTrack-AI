@@ -14,7 +14,7 @@
 - [x] 2.1 Run `xano workspace push --include "tables/user.xs" --dry-run` and verify the preview lists exactly one change, `CREATE table user`, with no other object
 - [x] 2.2 Run `xano workspace push --include "tables/user.xs"` and verify it completes with no error output
 - [x] 2.3 Verify the preview reported no unresolved reference for `table user`; if the table was pushed inside a larger push, report it and stop, because `tables/user.xs` sorts after `tables/subjects.xs`
-- [ ] 2.4 Open the Xano dashboard and verify the `user` table exists with exactly the seven specified fields and that it is marked as the authentication table
+- [x] 2.4 Open the Xano dashboard and verify the `user` table exists with exactly the seven specified fields and that it is marked as the authentication table
 
 ## 3. Hand over to subjects
 
@@ -22,4 +22,4 @@
 - [ ] 3.2 Run `openspec validate create-user-table` and verify it reports no errors
 - [x] 3.3 Run `xano workspace push --include "tables/subjects.xs" --dry-run` and verify the `user_id` relationship no longer appears under Unresolved References
 - [ ] 3.4 Run `openspec archive create-user-table` and verify the change moved into `openspec/changes/archive/` and `openspec/specs/user/spec.md` was created from the delta
-- [ ] 3.5 Update the `AGENTS.md` rule about the authentication table to state that `user` is created by this project, and verify the rule no longer claims the table ships with Xano
+- [x] 3.5 Update the `AGENTS.md` rule about the authentication table to state that `user` is created by this project, and verify the rule no longer claims the table ships with Xano
