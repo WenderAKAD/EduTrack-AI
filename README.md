@@ -460,31 +460,43 @@ backend Xano e com o Design System definido.
 
 2. ENTREGÁVEIS
 
-- [ ] Screenshot da tela inicial do projeto no FlutterFlow.
-- [ ] Screenshot da configuração do "API Group" com a URL do Xano.
-- [ ] Link do repositório GitHub com o README atualizado (este arquivo).
+- [x] Screenshot da tela inicial do projeto no FlutterFlow.
+      Arquivo: DMAtividades/7ATIVIDADE/flutterflow-projeto.png
+- [x] Screenshot da configuração do "API Group" com a URL do Xano.
+      Arquivo: DMAtividades/7ATIVIDADE/ApiXanoFlutterflow.png
+- [x] Link do repositório GitHub com o README atualizado (este arquivo).
+      https://github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est
+      (Pull Request #4 mergeado: chore/flutterflow-setup -> main)
 
 ---
 
 3. CRITÉRIOS DE AVALIAÇÃO
 
-[ ] Projeto criado com nome correto no FlutterFlow.
-Confirmação: projeto "EduTrack AI" criado a partir de Blank Project. Print
-em DMAtividades/7ATIVIDADE/flutterflow-projeto.png.
+[✅] Projeto criado com nome correto no FlutterFlow.
+Confirmação: projeto "EduTrack AI" criado a partir de Blank Project, com a
+configuração inicial de Firebase pulada conforme o enunciado. Print em
+DMAtividades/7ATIVIDADE/flutterflow-projeto.png.
 
-[ ] Cores e fontes personalizadas no Theme Settings.
+[✅] Cores e fontes personalizadas no Theme Settings.
 Confirmação: paleta vermelha em duas variantes (claro e dark + neon) e
-tipografia Inter + JetBrains Mono definidas em
-flutterflow/REGISTRO-CONFIGURACAO.md, com mockup de referência em
-flutterflow/img/tema-referencia-vermelho.png.
+tipografia Inter + JetBrains Mono aplicadas no Theme Settings. Prints em
+DMAtividades/7ATIVIDADE/TemaCoresFlutterflow.png e
+DMAtividades/7ATIVIDADE/TemaFonteFlutterflow.png. Mockup de referência
+versionado em flutterflow/img/tema-referencia-vermelho.png e ficha completa
+em flutterflow/REGISTRO-CONFIGURACAO.md.
 
-[ ] Grupo de API configurado com a URL correta do Xano.
-Confirmação: API Group "Xano Backend" com a Base URL da instância
-x8ki-letl-twmt. Print em DMAtividades/7ATIVIDADE/flutterflow-api-group.png.
+[✅] Grupo de API configurado com a URL correta do Xano.
+Confirmação: API Group "Xano Backend" no FlutterFlow apontando para
+https://x8ki-letl-twmt.n7.xano.io/api:JBdUmIAC. Print em
+DMAtividades/7ATIVIDADE/ApiXanoFlutterflow.png. A API foi criada no Xano como
+AutenticacaoEduTrackIAEst, com o endpoint GET /status validado em HTTP 200
+(ver apis/autenticacao_edutrack_ia_est/).
 
-[ ] Registro do progresso realizado no README do projeto via Git.
-Confirmação: branch 'chore/flutterflow-setup' criada, alteração commitada e
-enviada, Pull Request aberto e mergeado na main.
+[✅] Registro do progresso realizado no README do projeto via Git.
+Confirmação: branch 'chore/flutterflow-setup' criada, 5 commits pushados e
+Pull Request #4 aberto e mergeado na main (merge a5b05a5). A seção desta
+tarefa está no README da branch main, junto de flutterflow/ e da API do
+Xano.
 
 ---
 
