@@ -24,7 +24,7 @@ Este é o projeto **EduTrack AI**, um app de gestão acadêmica.
 
 ### Conhecimento do Schema
 
-1. **Tabela Existente:** a tabela de autenticação padrão (`user` ou `users`) já existe no Xano.
+1. **Tabela de Autenticação:** a tabela `user` é criada pelo projeto em `tables/user.xs` (change `create-user-table`). Ela **não** vem pronta no Xano. Qualquer tabela que referencie o usuário logado depende dela existir antes — por isso `user` precisa ser enviado ao Xano em um push separado, antes das tabelas que a referenciam.
 
 2. **Relacionamentos:** Sempre use `user_id` para vincular dados ao usuário logado.
 
