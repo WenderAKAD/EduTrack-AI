@@ -43,4 +43,5 @@ table user {
     {type: "primary", field: [{name: "id"}]}
     {type: "btree|unique", field: [{name: "email"}]}
   ]
+  guid = "iNX97zLMLm2ztY8ujiFLj4erX-E"
 }
