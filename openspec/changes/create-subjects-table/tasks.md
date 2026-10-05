@@ -2,10 +2,10 @@
 
 ## 1. Table definition
 
-- [ ] 1.1 Create `tables/subjects.xs` declaring `id` (auto), `name` (text), `teacher` (text), `hours` (int) and `user_id`, and verify the file follows the XanoScript conventions used by `apis/autenticacao_edutrack_ia_est/`
-- [ ] 1.2 Declare `user_id` as a required relationship to the authentication table, and verify the relationship is defined in the file rather than left to application code
-- [ ] 1.3 Add the validation chosen in `design.md` — required on the four non-key fields, positive-integer filter on `hours`, and `trim` on `name` — and verify each rule is present in the `.xs` definition
-- [ ] 1.4 Verify `tables/subjects.xs` is the only table added and that `git status` lists it as a new tracked file
+- [x] 1.1 Create `tables/subjects.xs` declaring `id` (auto), `name` (text), `teacher` (text), `hours` (int) and `user_id`, and verify the file follows the XanoScript conventions used by `apis/autenticacao_edutrack_ia_est/`
+- [x] 1.2 Declare `user_id` as a required relationship to the authentication table, and verify the relationship is defined in the file rather than left to application code
+- [x] 1.3 Add the validation chosen in `design.md` — required on the four non-key fields, positive-integer filter on `hours`, and `trim` on `name` — and verify each rule is present in the `.xs` definition
+- [x] 1.4 Verify `tables/subjects.xs` is the only table added and that `git status` lists it as a new tracked file
 
 ## 2. Apply to Xano
 
