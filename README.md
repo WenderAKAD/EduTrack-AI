@@ -505,7 +505,7 @@ enviada, Pull Request aberto e mergeado na main.
   montar os componentes manualmente com Column, Row e Container.
 - Base URL da API: no Xano, abrir a API criada na Tarefa 04 e copiar a Base URL
   exibida no topo do editor. O formato é
-  https://x8ki-letl-twmt.n7.xano.io/api:<API_ID>.
+  https://x8ki-letl-twmt.n7.xano.io/api:JBdUmIAC.
 
 ---
 
