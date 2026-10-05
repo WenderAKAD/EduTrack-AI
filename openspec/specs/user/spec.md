@@ -1,12 +1,11 @@
-# Spec Delta
+# user Specification
 
 ## Purpose
-
 Defines the `user` authentication table — the foundation every other EduTrack AI
 table depends on for ownership — and the constraints that make an account
 usable: a unique email, a hashed password and an active flag.
 
-## ADDED Requirements
+## Requirements
 
 ### Requirement: User table structure
 
@@ -22,11 +21,12 @@ workspace treats it as the authentication table.
 | `is_active` | bool | optional, defaults to `true` |
 | `created_at` | timestamp | optional, defaults to `now` |
 | `updated_at` | timestamp | optional |
+| `user_id` | int | optional, self-reference; created manually in the Xano dashboard and not used by the application |
 
 #### Scenario: Table exists in the Xano workspace
 
 - **WHEN** the `tables/user.xs` definition is pushed to the Xano workspace
-- **THEN** a `user` table exists with the seven fields listed above
+- **THEN** a `user` table exists with the eight fields listed above
 
 #### Scenario: Primary key is auto-generated
 
@@ -37,6 +37,24 @@ workspace treats it as the authentication table.
 
 - **WHEN** the table is inspected in the Xano dashboard
 - **THEN** it is marked as the authentication table for the workspace
+
+### Requirement: Unused self-reference field
+
+The `user` table SHALL retain a `user_id` self-reference field created manually
+in the Xano dashboard. The application SHALL NOT read or write this field. It is
+declared in `tables/user.xs` so that the CLI never proposes removing it from the
+server.
+
+#### Scenario: Field is never dropped by a sync
+
+- **WHEN** a dry-run push is executed for `tables/user.xs`
+- **THEN** the output contains no `DROP_FIELD` operation for `user_id`
+
+#### Scenario: Field is not part of the application contract
+
+- **WHEN** an authentication endpoint is written for this table
+- **THEN** it does not read or set `user_id`, because the app is single-account
+  with no teams or multi-tenancy
 
 ### Requirement: Credential storage
 

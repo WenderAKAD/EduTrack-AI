@@ -599,6 +599,25 @@ pela Xano. O fluxo atual usa o **Xano CLI**:
 A extensão antiga foi mantida instalada apenas para não quebrar o
 versionamento anterior, mas novos pushes devem usar o CLI.
 
+### 5. `tables/user.xs` não é byte-idêntico ao servidor
+
+A tabela `user` tem 8 campos no Xano. O `user_id` foi criado manualmente no
+dashboard e é uma self-reference que o EduTrack AI não usa (o app é de conta
+única, sem times nem multi-tenant).
+
+O campo está declarado em `tables/user.xs`, mas **sem o atributo `methods`**
+(ação referencial), que a documentação da Xano não descreve e que só existe no
+servidor. Consequência: um dry-run sempre reporta `UPDATE_FIELD` em
+`tables/user.xs`.
+
+**Decisão:** manter o `user_id` declarado localmente e **não dar push nessa
+tabela** novamente. Declarar o campo é o que impede o CLI de propor
+`DROP_FIELD user_id`, que removeria o campo do servidor. O `UPDATE_FIELD`
+restante é não destrutivo e a tabela está vazia.
+
+Para eliminar a diferença seria preciso ler o valor de "On Delete" do campo no
+dashboard e declará-lo localmente.
+
 ---
 
 Data de entrega: 6 de outubro de 2026

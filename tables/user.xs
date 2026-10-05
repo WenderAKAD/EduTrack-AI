@@ -37,6 +37,13 @@ table user {
 
     // Preenchido quando a conta for alterada
     timestamp updated_at?
+
+    // Self-reference criada manualmente no dashboard do Xano. Não é usada
+    // pelo EduTrack AI (o app é de conta única, sem times nem multi-tenant)
+    // e é mantida aqui para que o CLI não a trate como campo a remover.
+    int user_id? {
+      table = "user"
+    }
   }
 
   index = [
