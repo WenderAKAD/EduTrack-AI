@@ -2,87 +2,88 @@
 
 ## Context
 
-See `proposal.md` — *Why* for motivation and `specs/subjects/spec.md` for the
-requirements. Only the constraints that shape the approach are described here.
+See `proposal.md` — Why, for the motivation. The shape of this change: the
+workspace `148813` (branch `v1`) currently holds no domain tables at all. This
+is the first one.
 
-- `tables/` in this repository is empty and untracked, so `tables/subjects.xs`
-  will be the first versioned table and there is no in-repo precedent to copy.
-  The closest reference is the versioned API Group at
-  `apis/autenticacao_edutrack_ia_est/`.
-- The workspace *Wender's Workspace* (id `148813`, branch `v1`) has **no tables
-  at all** — confirmed against the CLI object cache: 194 objects, none of type
-  `table`. The `addons/109599_user.xs` file references `$db.user` but is itself
-  broken (`table = ""`, `db.query ""`), so it is not evidence of an existing
-  table. There is no `user` table to link to yet.
-- `user_id` therefore depends on the `create-user-table` change landing first.
-  The CLI sends documents in alphabetical path order, and `tables/subjects.xs`
-  sorts before `tables/user.xs`, so a single combined push would leave the
-  relationship unresolved. The two tables must be pushed separately, `user`
-  first.
-- Per `AGENTS.md`, the agent generates and reviews files; the push to Xano is
-  performed manually by the developer.
+Two constraints come from the platform, not from preference:
+
+- The `user` table must exist before this one is pushed, because a relationship
+  to a table that does not exist yet is stored as an unresolved reference.
+- The Xano CLI orders documents by path, and `tables/subjects.xs` sorts before
+  `tables/user.xs`. A combined push would send `subjects` first.
+
+The XanoScript dialect is narrow: `text` has no length limit, `int` is the only
+integer type, and validation is expressed through `filters` rather than through
+endpoint code.
 
 ## Goals / Non-Goals
 
 **Goals:**
 
-- Define the field-level XanoScript representation that satisfies the spec.
-- Decide how `user_id` is declared so the ownership rule is enforced by the
-  database rather than only by application code.
-- Keep the change reversible and reviewable in a single commit.
+- Express ownership and validation as schema constraints, so they hold for any
+  endpoint that later touches the table.
+- Keep the field list at exactly what the specification declares.
+- Make the table safe to push in any order relative to `user`.
 
 **Non-Goals:**
 
-- Endpoints, queries, tests, or FlutterFlow screens.
-- Any change to the existing API Group or to `GET /status`.
-- Any change to the authentication schema — that is a separate change with its
-  own proposal, if it turns out to be needed.
+- No API endpoints. Those belong to Tarefa 09.
+- No `created_at` / `updated_at`. The specification fixes five fields; timestamps
+  are a separate change.
+- No foreign key to anything other than `user`.
 
 ## Decisions
 
-**`user_id` as a required relationship, not a loose integer.**
-The spec requires that every subject has exactly one owner and that reads are
-scoped to that owner. A relationship makes the database enforce both: the
-foreign key rejects orphans, and the join enables `WHERE user_id = :current`.
-A bare integer column would rely entirely on application code to populate and
-filter it, which is exactly the rule that gets forgotten.
-*Alternative considered:* plain `int` + application-level filtering. Rejected —
-it moves an integrity guarantee out of the database.
+**`user_id` is a required relationship, not a loose integer.**
+A relationship makes the database reject a row that points at no account.
+A loose `int` would allow orphans, and the isolation requirement would then rest
+on every endpoint remembering to filter.
+*Alternative considered:* nullable `int` with ownership assigned at the
+endpoint. Rejected — it makes unowned rows representable.
 
-**`hours` as `int` with a positive-integer filter.**
-Weekly contact hours are whole numbers in every subject model; storing them as
-`int` avoids float formatting and lets the database reject `0` and negatives.
-*Alternative considered:* `numeric` to allow half-hours. Rejected for now — it
-would loosen validation for a case the spec does not require.
+**`hours` is `int` with `filters=min:1`, not `numeric`.**
+The domain counts whole hours per week. `numeric` would admit 2.5 without a
+business rule to justify the fraction.
+*Alternative considered:* `numeric` for half-hour subjects. Rejected as
+speculative — the specification says integer.
 
-**`name` and `teacher` as plain `text` with `trim`.**
-No length cap and no enum: subject and teacher names vary too much across
-institutions to constrain safely at this stage.
-*Alternative considered:* `varchar(255)`. Rejected — an arbitrary cap would be
-a decision to revisit, and Xano's `text` has no practical limit at this scale.
+**`name` and `teacher` are `text`, not `varchar(255)`.**
+XanoScript's `text` has no length limit. A 255 cap would be an arbitrary
+constraint invented here, and `filters=trim` already handles the real need.
+*Alternative considered:* `varchar(255)`. Rejected as an invented limit.
 
-**Filename `tables/subjects.xs`.**
-Follows the project convention of one XanoScript file per table, named after
-the table.
+**Validation lives in `filters`, not in the endpoint.**
+`filters=trim` and `filters=min:1` apply to every writer, including a future
+admin script. Endpoint-level validation would only cover endpoints that
+remembered to call it.
+*Alternative considered:* validate in Tarefa 09's endpoints. Rejected as
+insufficient coverage.
+
+**A btree index on `user_id`.**
+Every read filters by `user_id` — that is the isolation rule. Without the index
+each list degrades to a full table scan.
+*Alternative considered:* no index, add it when the data grows. Rejected: the
+access pattern is known now and is fixed by the spec, not by volume.
+
+**No `created_at`.**
+The specification lists five fields. Adding timestamps would make the delivered
+table diverge from the spec it claims to implement, and the difference is not
+observable behavior anyone depends on yet.
 
 ## Risks / Trade-offs
 
-- **The `user_id` relationship cannot resolve in the same push** — `user` does
-  not exist yet and sorts after `subjects` alphabetically → *Mitigation:* land
-  `create-user-table` first and push `user` on its own. Task 2.1–2.2 of this
-  change assume that push already happened; if it did not, the relationship
-  imports as a placeholder and must be reported, not worked around.
-- **`trim` behaviour differs between Xano and a future non-Xano backend** → the
-  rule lives in the spec, not only in the `.xs` file, so it survives a backend
-  change.
-- **First table sets the convention** — later tables will copy whatever is done
-  here → *Mitigation:* the field-level decisions above are written down so the
-  convention is explicit rather than accidental.
+**Relationship unresolved if `user` is missing at push time** → Push
+`tables/user.xs` in a separate command before this table, and confirm the
+dry-run no longer warns about the FK. Recorded as a task in `tasks.md`.
 
-## Migration Plan
+**The CLI sorts by path, so ordering cannot be forced with one command** →
+Accept the two-command sequence as the documented deployment procedure. The
+alternative (`--sync --delete`) rewrites the whole workspace and is destructive.
 
-1. Add `tables/subjects.xs` and commit it.
-2. Developer pushes with `XanoScript: Push Stage Changes to Xano`.
-3. Verify `subjects` exists in the Xano dashboard with the five fields.
-4. Rollback: the table holds no data yet, so reverting means dropping it in the
-   Xano dashboard and reverting the commit. No data migration is involved.
+**`hours = min:1` rejects zero silently at the schema level** → Accept. A
+subject with no weekly hours is not a state the domain has, and rejecting it at
+write time is the point.
+
+**The five-field list will need to change** → Accept as a future change. The
+spec is the contract; extending it is a new proposal, not an edit here.

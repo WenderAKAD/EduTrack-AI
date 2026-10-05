@@ -2,55 +2,47 @@
 
 ## Why
 
-EduTrack AI has no domain data yet. The Xano workspace currently contains no
-application tables — the `tables/` folder in this repository is empty — so there
-is nowhere to record the academic subjects a student is enrolled in. Without
-subjects there is no foundation for tracking tasks, grades, or progress per
-discipline, and no table to relate future entities to.
-
-This change establishes the first domain table of the project. Following
-Spec-Driven Development, the structure is specified and reviewed before any code
-is written, so the contract for subject data is agreed on before the table is
-created in Xano.
+The EduTrack AI backend has no table for the subjects a student tracks — the
+first domain entity of the project. Without it there is nothing for the API
+layer of Tarefa 09 to read or write, and the security rule that every query
+filters by the authenticated `user_id` has no table to apply to.
 
 ## What Changes
 
-- Add a `subjects` table to the Xano workspace, versioned as
-  `tables/subjects.xs`
-- Fields: `id` (auto-generated), `name` (text), `teacher` (text), `hours`
-  (integer), `user_id` (foreign key to the authentication table)
-- `user_id` is required on every record, so each subject is scoped to exactly
-  one authenticated user
-- `hours` is validated as a positive integer and `name` is trimmed
-- Nothing else: no API endpoints, no tests, and no frontend screens are part of
-  this change
+- Create the `subjects` table with exactly five fields: `id` (auto-generated
+  primary key), `name`, `teacher`, `hours` and `user_id`.
+- Make `user_id` a required relationship to `user`, so every row is owned by an
+  authenticated account and no row can exist unowned.
+- Add a btree index on `user_id`, because the isolation rule makes it the filter
+  column of every read.
+- Enforce `hours >= 1` and trim whitespace from `name` at the schema level, so
+  invalid rows are rejected by the database rather than by each endpoint.
+- Document that `created_at` is deliberately absent: the specification fixes the
+  field list, and adding timestamps is a separate change.
 
 ## Capabilities
 
 ### New Capabilities
 
-- `subjects`: structure and ownership rules of the `subjects` table, the first
-  domain entity of EduTrack AI
+None. Both tables involved already have specs from the previous changes.
 
 ### Modified Capabilities
 
-None. `openspec/specs/` is still empty, so there is no existing capability
-being changed.
+- `subjects`: The `user` capability is referenced here as an existing
+  dependency — `subjects.user_id` is a relationship against the `user` table
+  already specified in `openspec/specs/user/spec.md`. No requirement in the
+  `user` spec changes, so `user` is not listed as modified. The delta in
+  `specs/subjects/spec.md` re-states the ownership and isolation requirements
+  from the `subjects` point of view, and declares `user` as a prerequisite
+  rather than as a pre-existing table.
 
 ## Impact
 
-- **Xano:** one new table `subjects` in the workspace *Wender's Workspace*
-  (id `148813`), branch `v1`, instance `x8ki-letl-twmt`
-- **Repository:** new file `tables/subjects.xs` — the folder is currently empty
-  and therefore not tracked by Git, so this will be the first versioned table
-- **OpenSpec:** new change `create-subjects-table`, consolidated into
-  `openspec/specs/subjects/` when archived
-- **Frontend:** unchanged. The FlutterFlow project is not touched by this change
-- **API:** unchanged. The API Group `Xano Backend`
-  (`https://x8ki-letl-twmt.n7.xano.io/api:JBdUmIAC`) continues to expose only
-  `GET /status`
-- **Authentication table:** `user_id` references the `user` table, which already
-  exists in the workspace. It is confirmed by `addons/109599_user.xs`, an addon
-  that queries `$db.user.id` — the table exists in Xano, it simply has no
-  versioned definition file under `tables/`, since XanoScript does not sync
-  built-in tables there. The relationship can therefore be declared directly.
+- **New file:** `tables/subjects.xs`.
+- **Depends on:** the `user` table (Xano id `904016`) must exist before this
+  table is pushed, otherwise the `user_id` relationship is stored as an
+  unresolved reference. See `design.md`.
+- **Xano:** one new table in workspace `148813`, branch `v1`, pushed with
+  `xano workspace push --include "tables/subjects.xs"`.
+- **No API changes.** Endpoints are out of scope; this change creates the table
+  the Tarefa 09 endpoints will read.

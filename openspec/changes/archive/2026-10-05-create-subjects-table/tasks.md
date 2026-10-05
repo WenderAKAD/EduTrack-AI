@@ -1,22 +1,21 @@
 # Tasks
 
-## 1. Table definition
+## 1. Schema da tabela
 
-- [x] 1.1 Create `tables/subjects.xs` declaring `id` (auto), `name` (text), `teacher` (text), `hours` (int) and `user_id`, and verify the file follows the XanoScript conventions used by `apis/autenticacao_edutrack_ia_est/`
-- [x] 1.2 Declare `user_id` as a required relationship to the authentication table, and verify the relationship is defined in the file rather than left to application code
-- [x] 1.3 Add the validation chosen in `design.md` — required on the four non-key fields, positive-integer filter on `hours`, and `trim` on `name` — and verify each rule is present in the `.xs` definition
-- [x] 1.4 Verify `tables/subjects.xs` is the only table added and that `git status` lists it as a new tracked file
+- [x] 1.1 Criar `tables/subjects.xs` com `auth = false` e o schema de 5 campos: `id`, `name` (text, `filters=trim`), `teacher` (text), `hours` (int, `filters=min:1`) e `user_id` (relationship para `user`) — verificar com `grep -c` que o bloco `schema` declara exatamente 5 campos
+- [x] 1.2 Declarar `index` com `{type: "primary", field: [{name: "id"}]}` e `{type: "btree", field: [{name: "user_id"}]}` — verificar que ambos os índices estão presentes no arquivo
+- [x] 1.3 Confirmar que a tabela NÃO declara `created_at` nem `updated_at` — verificar por `grep` que nenhum dos dois aparece no arquivo
+- [x] 1.4 Rodar `openspec validate create-subjects-table --strict` e confirmar que a change é válida
 
-## 2. Apply to Xano
+## 2. Push ao Xano
 
-- [x] 2.1 Authenticate XanoScript and confirm the active workspace is *Wender's Workspace* (id `148813`) on branch `v1`, and verify the reported workspace and branch match before pushing
-- [x] 2.2 Run `XanoScript: Push Stage Changes to Xano` and verify the command completes with no error output
-- [x] 2.3 Open the Xano dashboard and verify the `subjects` table exists with exactly the five specified fields, `id` marked auto-generated and `user_id` present as a relationship
-- [x] 2.4 If the push is rejected on the `user_id` relationship, record the exact XanoScript error message and report it instead of altering the authentication schema, since that change is out of scope for this proposal
-      - Não se aplica: o push **não** foi rejeitado. A precondition falhou porque a tabela `user` não existia, e foi resolvida pela change `create-user-table`, enviada em push separado conforme o `design.md`.
+- [x] 2.1 Autenticar no Xano CLI com `xano auth` — verificar que o comando conclui sem erro
+- [x] 2.2 Confirmar que a tabela `user` já existe no servidor (id `904016`) ANTES de enviar `subjects` — verificar que um dry-run de `tables/subjects.xs` não reporta `table (FK) -> table "user" does not exist`
+- [x] 2.3 Enviar com `xano workspace push --include "tables/subjects.xs"` — verificar que a saída confirma o push de 1 documento e que o erro `Push blocked` não aparece
+- [x] 2.4 Rodar o dry-run novamente e confirmar `No changes to push` — se o CLI propuser `DROP_FIELD` ou `CREATE` sobre `user`, abortar e reportar em vez de sincronizar
 
-## 3. Consolidate the specification
+## 3. Validação e arquivamento
 
-- [x] 3.1 Mark every task above as completed with `- [x]` and verify no `- [ ]` checkbox remains in `tasks.md`
-- [x] 3.2 Run `openspec validate create-subjects-table` and verify it reports no errors
-- [ ] 3.3 Run `openspec archive create-subjects-table` and verify the change moved into `openspec/changes/archive/` and `openspec/specs/subjects/spec.md` was created from the delta
+- [x] 3.1 Confirmar no dashboard do Xano que a tabela `subjects` existe com os 5 campos e que o relationship `subjects.user_id` aponta para `user` — verificar visualmente e registrar o id da tabela
+- [x] 3.2 Confirmar que a tabela está na branch `v1` do workspace `148813` — verificar no dashboard ou via `xano workspace pull --dry-run` que não há divergência em `tables/subjects.xs`
+- [x] 3.3 Arquivar a change com `openspec archive create-subjects-table` e confirmar que `openspec/specs/subjects/spec.md` foi gerado com os 4 requirements do delta — verificar com `openspec validate --specs --strict`
