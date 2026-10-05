@@ -1,8 +1,14 @@
 // Health check do backend do EduTrack AI.
-// Serve para validar a Base URL: abrir no navegador e no FlutterFlow (API Call
-// do tipo GET) deve devolver 200 com o JSON abaixo.
+//
+// No Xano o "Name" do endpoint é o PATH e o "Verb" é o método HTTP.
+// Este endpoint fica em:
+//   https://x8ki-letl-twmt.n7.xano.io/api:edutrack-auth/status
+//
+// Serve para validar a Base URL: abrir no navegador e no FlutterFlow
+// deve devolver 200 com o JSON abaixo.
 query "status" verb=GET {
   api_group = "AutenticacaoEduTrackIAEst"
+  description = "Health check do backend do EduTrack AI."
 
   input {
   }
