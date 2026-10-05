@@ -89,11 +89,34 @@ acompanhamento acadêmico.
 | Token | Access Token **VS Code** — Metadata API & MCP Server |
 | Escopos | Database, API Groups, Functions, Content |
 
-**Como obter a Base URL:** no Xano, abrir a API criada na Tarefa 04 e copiar a
-*Base URL* exibida no topo do editor.
+**Como obter a Base URL:** no Xano, abrir a API **AutenticacaoEduTrackIAEst**
+(criada para o EduTrack AI) e copiar a *Base URL* exibida no topo do editor.
+A pasta versionada correspondente é `apis/autenticacao_edutrack_ia_est/`.
 
-**Teste de conexão:** abrir a URL no navegador. A resposta esperada é um erro
-JSON — isso confirma que a conexão está funcionando.
+**Teste de conexão:** usar a URL completa do endpoint `status`:
+
+```
+https://x8ki-letl-twmt.n7.xano.io/api:<API_ID>/status
+```
+
+Esperado — resposta `200`:
+
+```json
+{
+  "status": "ok",
+  "app": "EduTrack AI",
+  "modulo": "1 - Introducao ao Spec-Driven Development",
+  "ambiente": "producao",
+  "instance": "x8ki-letl-twmt"
+}
+```
+
+> **Nota:** a Tarefa 04 apenas fez *pull* dos 10 API groups padrão que já
+> vinham no workspace do Xano. Nenhuma tabela (`tables/`) foi criada até aqui —
+> a tabela `user` existe apenas como *addon*. Por isso o endpoint `status` foi
+> escrito sem depender de banco: ele valida a conexão e libera a Base URL para
+> o FlutterFlow. Os endpoints de login e cadastro entram na Tarefa 08, junto com
+> a tabela de usuários.
 
 ---
 
