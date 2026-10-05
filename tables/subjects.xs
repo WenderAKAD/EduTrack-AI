@@ -9,6 +9,8 @@
 table subjects {
   auth = false
 
+  description = "Disciplinas do EduTrack AI. Cada linha pertence a um usuario autenticado via user_id."
+
   schema {
     // Chave primaria auto-incrementada
     int id

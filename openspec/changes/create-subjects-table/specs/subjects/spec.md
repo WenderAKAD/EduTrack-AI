@@ -12,7 +12,9 @@ records private to them.
 The system SHALL create a `subjects` table containing exactly five fields: `id`
 (auto-generated integer, primary key), `name` (text), `teacher` (text), `hours`
 (integer) and `user_id` (integer, required, relationship to `user`). The table
-name SHALL be `subjects`, in `snake_case`, declared at `tables/subjects.xs`.
+name SHALL be `subjects`, in `snake_case`, declared at `tables/subjects.xs`. The
+table SHALL carry a description stating that each row belongs to an
+authenticated user through `user_id`.
 
 #### Scenario: Table is created with the specified fields
 - **WHEN** the subjects table is created
@@ -25,6 +27,10 @@ name SHALL be `subjects`, in `snake_case`, declared at `tables/subjects.xs`.
 #### Scenario: Table name follows the naming convention
 - **WHEN** the table definition is read
 - **THEN** the table is named `subjects` in `snake_case` and the file lives at `tables/subjects.xs`
+
+#### Scenario: Table carries an ownership description
+- **WHEN** the subjects table definition is read
+- **THEN** it declares a description stating that each row belongs to an authenticated user through `user_id`
 
 ### Requirement: Subject ownership
 The system SHALL require a `user_id` on every subject row, declared as a
