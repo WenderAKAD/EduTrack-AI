@@ -66,6 +66,15 @@ each list degrades to a full table scan.
 *Alternative considered:* no index, add it when the data grows. Rejected: the
 access pattern is known now and is fixed by the spec, not by volume.
 
+**A `description` on the table states the ownership rule.**
+The specification requires the table to carry a description saying that each row
+belongs to an authenticated user through `user_id`. It is the one place in the
+schema where the rule survives being read by someone who does not read XanoScript
+— a dashboard listing shows it.
+*Alternative considered:* leave the rule in `design.md` and `AGENTS.md` only.
+Rejected — both are read by maintainers; the description is read by whoever
+opens the table.
+
 **No `created_at`.**
 The specification lists five fields. Adding timestamps would make the delivered
 table diverge from the spec it claims to implement, and the difference is not
