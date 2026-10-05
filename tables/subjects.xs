@@ -1,8 +1,9 @@
 // Tabela de disciplinas do EduTrack AI — primeira entidade de dominio.
 //
 // Nome da tabela em snake_case, conforme AGENTS.md.
-// A coluna user_id e o vinculo com a tabela de autenticacao "user", que ja
-// existe no workspace do Xano. Toda leitura deve filtrar por user_id.
+// A coluna user_id e o vinculo com a tabela de autenticacao "user", criada
+// em tables/user.xs (change create-user-table). Toda leitura deve filtrar
+// por user_id.
 //
 // Especificacao: openspec/specs/subjects/spec.md
 table subjects {
@@ -31,4 +32,5 @@ table subjects {
     {type: "primary", field: [{name: "id"}]}
     {type: "btree", field: [{name: "user_id"}]}
   ]
+  guid = "YMdxHfY-ImNmnW16gkHQ4a6s_yY"
 }
