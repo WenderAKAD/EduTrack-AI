@@ -9,10 +9,16 @@ requirements. Only the constraints that shape the approach are described here.
   will be the first versioned table and there is no in-repo precedent to copy.
   The closest reference is the versioned API Group at
   `apis/autenticacao_edutrack_ia_est/`.
-- The workspace *Wender's Workspace* (id `148813`, branch `v1`) already has a
-  `user` table. It is confirmed by `addons/109599_user.xs`, which is an addon
-  (`addon user { ... }`) querying `$db.user.id`. Built-in tables are not synced
-  into `tables/`, so the absence of a file there is expected and not a gap.
+- The workspace *Wender's Workspace* (id `148813`, branch `v1`) has **no tables
+  at all** — confirmed against the CLI object cache: 194 objects, none of type
+  `table`. The `addons/109599_user.xs` file references `$db.user` but is itself
+  broken (`table = ""`, `db.query ""`), so it is not evidence of an existing
+  table. There is no `user` table to link to yet.
+- `user_id` therefore depends on the `create-user-table` change landing first.
+  The CLI sends documents in alphabetical path order, and `tables/subjects.xs`
+  sorts before `tables/user.xs`, so a single combined push would leave the
+  relationship unresolved. The two tables must be pushed separately, `user`
+  first.
 - Per `AGENTS.md`, the agent generates and reviews files; the push to Xano is
   performed manually by the developer.
 
@@ -61,11 +67,11 @@ the table.
 
 ## Risks / Trade-offs
 
-- **Relationship target is unversioned** — `user` exists in Xano but has no
-  file under `tables/`, so the foreign key cannot be cross-checked in the repo
-  → *Mitigation:* rely on the push to validate it; if Xano rejects the
-  relationship, report the error rather than changing the authentication
-  schema.
+- **The `user_id` relationship cannot resolve in the same push** — `user` does
+  not exist yet and sorts after `subjects` alphabetically → *Mitigation:* land
+  `create-user-table` first and push `user` on its own. Task 2.1–2.2 of this
+  change assume that push already happened; if it did not, the relationship
+  imports as a placeholder and must be reported, not worked around.
 - **`trim` behaviour differs between Xano and a future non-Xano backend** → the
   rule lives in the spec, not only in the `.xs` file, so it survives a backend
   change.
