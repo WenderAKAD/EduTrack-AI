@@ -81,35 +81,38 @@ acompanhamento acadêmico.
 
 | Campo | Valor |
 |---|---|
-| Nome do grupo | **Xano Backend** |
-| Base URL | `https://x8ki-letl-twmt.n7.xano.io/api:<API_ID>` |
+| Nome do grupo no FlutterFlow | **Xano Backend** |
+| Base URL | `https://x8ki-letl-twmt.n7.xano.io/api:JBdUmIAC` |
+| Endpoint de teste | `GET /status` |
 | Instância | `x8ki-letl-twmt` (Free Instance) |
 | Workspace | Wender's Workspace (id `148813`) |
 | Branch no Xano | `v1` (Live branch) |
 | Token | Access Token **VS Code** — Metadata API & MCP Server |
 | Escopos | Database, API Groups, Functions, Content |
 
-**Como obter a Base URL:** no Xano, abrir a API **AutenticacaoEduTrackIAEst**
-(criada para o EduTrack AI) e copiar a *Base URL* exibida no topo do editor.
-A pasta versionada correspondente é `apis/autenticacao_edutrack_ia_est/`.
+**API group no Xano:** `AutenticacaoEduTrackIAEst` — canonical `JBdUmIAC`
+(atribuído pelo Xano). Pasta versionada: `apis/autenticacao_edutrack_ia_est/`.
 
 **Teste de conexão:** usar a URL completa do endpoint `status`:
 
 ```
-https://x8ki-letl-twmt.n7.xano.io/api:<API_ID>/status
+https://x8ki-letl-twmt.n7.xano.io/api:JBdUmIAC/status
 ```
 
-Esperado — resposta `200`:
+Resposta `200` confirmada em 4 de outubro de 2026:
 
 ```json
 {
   "status": "ok",
   "app": "EduTrack AI",
   "modulo": "1 - Introducao ao Spec-Driven Development",
-  "ambiente": "producao",
-  "instance": "x8ki-letl-twmt"
+  "instance": "x8ki-letl-twmt",
+  "timestamp": "now"
 }
 ```
+
+> **Nota:** o campo `timestamp` devolve a string literal `"now"`. Para gerar um
+> epoch em ms é preciso `datetime_now()` — ajuste previsto para a Tarefa 08.
 
 > **Nota:** a Tarefa 04 apenas fez *pull* dos 10 API groups padrão que já
 > vinham no workspace do Xano. Nenhuma tabela (`tables/`) foi criada até aqui —
