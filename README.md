@@ -28,6 +28,7 @@
 - [Tarefa 04 – Primeiro Pull/Push com XanoScript](#tarefa-04--primeiro-pullpush-com-xanoscript)
 - [Tarefa 05 – Exercícios Básicos de Git (Branches e Pull Requests)](#tarefa-05--exercícios-básicos-de-git-branches-e-pull-requests)
 - [Tarefa 06 – Exploração de Templates Gratuitos](#tarefa-06--exploração-de-templates-gratuitos)
+- [Tarefa 07 – Configuração Inicial no FlutterFlow](#tarefa-07--configuração-inicial-no-flutterflow)
 
 ---
 
@@ -424,6 +425,93 @@ no EduTrack AI.
 - A pasta docs/pesquisa/img/ foi versionada com .gitkeep, pois as capturas de
   tela são opcionais nesta tarefa.
 - O arquivo final vive em docs/pesquisa/referencias.md na branch main.
+
+---
+
+Data de entrega: 6 de outubro de 2026
+Aluno: Wender Araujo Santos
+
+---
+
+## Tarefa 07 – Configuração Inicial no FlutterFlow
+
+Aluno: Wender Araujo Santos
+Disciplina: Innovation Lab: Desenvolvimento Avançado No/Low Code
+Módulo: 1 – Introdução ao Spec-Driven Development
+
+Início da interface (frontend) do EduTrack AI no FlutterFlow, conectada ao
+backend Xano e com o Design System definido.
+
+---
+
+1. O QUE FOI FEITO
+
+- Projeto "EduTrack AI" criado no FlutterFlow a partir de um template em
+  branco (Blank Project), com a configuração inicial de Firebase pulada
+  conforme o enunciado — o backend principal do projeto é o Xano.
+- Design System definido no Theme Settings, com paleta e tipografia
+  registradas em flutterflow/REGISTRO-CONFIGURACAO.md.
+- API Group "Xano Backend" criado em Settings & Integrations > API Calls,
+  apontando para a Base URL da API do workspace no Xano.
+- Configuração inicial documentada em flutterflow/REGISTRO-CONFIGURACAO.md,
+  incluindo o mockup de referência do tema.
+
+---
+
+2. ENTREGÁVEIS
+
+- [ ] Screenshot da tela inicial do projeto no FlutterFlow.
+- [ ] Screenshot da configuração do "API Group" com a URL do Xano.
+- [ ] Link do repositório GitHub com o README atualizado (este arquivo).
+
+---
+
+3. CRITÉRIOS DE AVALIAÇÃO
+
+[ ] Projeto criado com nome correto no FlutterFlow.
+Confirmação: projeto "EduTrack AI" criado a partir de Blank Project. Print
+em DMAtividades/7ATIVIDADE/flutterflow-projeto.png.
+
+[ ] Cores e fontes personalizadas no Theme Settings.
+Confirmação: paleta vermelha em duas variantes (claro e dark + neon) e
+tipografia Inter + JetBrains Mono definidas em
+flutterflow/REGISTRO-CONFIGURACAO.md, com mockup de referência em
+flutterflow/img/tema-referencia-vermelho.png.
+
+[ ] Grupo de API configurado com a URL correta do Xano.
+Confirmação: API Group "Xano Backend" com a Base URL da instância
+x8ki-letl-twmt. Print em DMAtividades/7ATIVIDADE/flutterflow-api-group.png.
+
+[ ] Registro do progresso realizado no README do projeto via Git.
+Confirmação: branch 'chore/flutterflow-setup' criada, alteração commitada e
+enviada, Pull Request aberto e mergeado na main.
+
+---
+
+4. OBSERVAÇÕES TÉCNICAS
+
+- O FlutterFlow é uma ferramenta baseada em navegador: não há artefatos de
+  build local para commitar. O versionamento do projeto acontece no
+  repositório Git, onde a configuração é registrada em markdown.
+- A paleta adotada parte das referências gratuitas levantadas na Tarefa 06 e
+  foi consolidada em duas variantes — tema claro e tema dark com acento neon —
+  mantendo o mesmo vermelho de marca (#E10600) como cor primária.
+- No tema claro o vermelho neon (#FF1E3C) não é usado em texto: sobre fundo
+  branco ele perde contraste. Nesse caso entra #C1121F, que é o mesmo
+  vermelho com contraste acessível. O neon fica restrito a preenchimentos e
+  brilhos, no limite de 5-10% da tela.
+- A importação automática do Figma para o FlutterFlow é experimental e
+  frequentemente falha. A abordagem é usar o Figma como referência visual e
+  montar os componentes manualmente com Column, Row e Container.
+- Base URL da API: no Xano, abrir a API criada na Tarefa 04 e copiar a Base URL
+  exibida no topo do editor. O formato é
+  https://x8ki-letl-twmt.n7.xano.io/api:JBdUmIAC.
+
+---
+
+5. PRÓXIMO PASSO
+
+Tarefa 08 — uso do OpenSpec para planejar as mudanças do projeto.
 
 ---
 
