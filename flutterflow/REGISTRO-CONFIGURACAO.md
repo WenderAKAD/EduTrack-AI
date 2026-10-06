@@ -156,7 +156,58 @@ git push -u origin chore/flutterflow-setup
 
 ---
 
-## 6. Checklist dos critérios de avaliação
+## 6. Navegação e Assets (Tarefa 09)
+
+Especificação da navegação adicionada na Tarefa 09. Registrada aqui porque o
+FlutterFlow não produz artefato de build: o versionamento do projeto é este
+documento mais os arquivos de `assets/`.
+
+### 6.1 Páginas
+
+Três páginas, com os nomes exatos abaixo — o nome da página é o alvo das
+actions de navegação, e o action `Navigate to Page` o resolve pelo nome.
+
+| Página | Conteúdo | Ícone na NavBar |
+|---|---|---|
+| `HomePage` | Título **EduTrack AI** + card de visão geral | `home.svg` |
+| `SubjectsPage` | Título **Disciplinas** + lista de `Container` com borda arredondada, cada um com nome, professor e carga horária | `subjects.svg` |
+| `TasksPage` | Título **Tarefas** + `ListView` com ao menos um item, cada um com título, data e estado | `tasks.svg` |
+
+Todas as páginas declararem que **não chamam nenhuma API** e exibem apenas
+conteúdo estático de exemplo. Os endpoints de `subjects` e `user` entram na
+tarefa seguinte; ligar as telas a eles agora produziria erro de runtime em tela
+vazia.
+
+### 6.2 Barra de navegação
+
+Componente `NavBar`, em `Column`, no rodapé da página. Três itens, nesta ordem:
+
+| # | Rótulo | Destino | Ícone | Estado ativo |
+|---|---|---|---|---|
+| 1 | Home | `HomePage` | `home.svg` | `#E10600` |
+| 2 | Disciplinas | `SubjectsPage` | `subjects.svg` | `#E10600` |
+| 3 | Tarefas | `TasksPage` | `tasks.svg` | `#E10600` |
+
+Cada item usa a action **Navigate to Page** apontando para a página da tabela.
+O item da página atual fica com o preenchimento em `Primary Color`; os demais,
+com `Text secundário` (`#7B6A67`).
+
+### 6.3 Assets
+
+Nove ícones SVG em [`../assets/icons/`](../assets/icons/), com o registro de
+origem em [`../assets/README.md`](../assets/README.md). Todos usam
+`stroke="currentColor"`, o que permite recolorir entre os dois temas sem
+duplicar arquivo.
+
+### 6.4 Largura
+
+O FlutterFlow serve build de celular e preview de navegador a partir do mesmo
+projeto, então cada página é conferida nas duas larguras. Um layout que só
+funciona em uma delas não atende ao requisito.
+
+---
+
+## 7. Checklist dos critérios de avaliação
 
 | # | Critério | Print de evidência | Status |
 |---|---|---|---|
@@ -168,8 +219,10 @@ git push -u origin chore/flutterflow-setup
 
 ---
 
-## 7. Referências
+## 8. Referências
 
 - Documentação das Tarefas 01 a 07: `README.md`
 - Referências de design: `docs/pesquisa/referencias.md`
 - Mockup do tema: [`tema-referencia.html`](tema-referencia.html) / [`img/tema-referencia-vermelho.png`](img/tema-referencia-vermelho.png)
+- Navegação e assets da Tarefa 09: seção 6 deste arquivo
+- Registro de origem dos ícones: [`../assets/README.md`](../assets/README.md)

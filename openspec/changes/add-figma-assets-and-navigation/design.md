@@ -9,8 +9,15 @@ nothing else. `flutterflow/REGISTRO-CONFIGURACAO.md` fixes a palette and two
 typefaces, and the Figma file referenced in Tarefa 06 supplies the visual
 reference. Neither has been turned into files or pages.
 
-Three constraints come from the platform, not from preference:
+Five constraints come from the platform, not from preference:
 
+- **The development machine cannot run either web IDE.** The MacBook Pro 2016
+  (`MacBook8,1`, Intel Core `m-5Y31` at 0.90 GHz, Intel HD Graphics 5300) blocks
+  both tools: Chrome 154 reports `WebGL: Disabled` because the 2015 GPU is
+  blocklisted, and Figma refuses Safari 16.6 because it requires 17.4+, which
+  macOS 13.7.8 cannot provide. Both steps therefore run on a Windows 11 machine
+  over remote access. This is an environment limitation, not a design choice —
+  recorded so that the constraint is not rediscovered later.
 - FlutterFlow is browser-based. There is no build artifact to commit, so the
   repository can only hold the *inputs* to the frontend — the original asset
   files and a written record of the configuration. Versioning the app itself is
@@ -118,3 +125,21 @@ record labels every sample value as a placeholder. This is the failure mode the
 light background uses `#C1121F`, and the neon stays confined to fills and the
 active nav item. Carried over from the Tarefa 07 observation, restated here
 because assets are where the mistake is easiest to make.
+
+**The work happens off the development machine** → The assets are exported and
+the pages are built on a Windows 11 machine reached over remote access; only the
+files come back to this repository. The risk is divergence between what was
+built and what is recorded here, so the screenshots of the three pages are
+required evidence rather than decoration, and the asset record names the file
+each screenshot shows.
+
+**No Figma file exists for this project** → Tarefa 06 recorded four Community
+templates as visual references in `docs/pesquisa/referencias.md`; it duplicated
+no file and left no project link. A file named "EduTrack Orbit AI — Design
+System" (`file_key` `i6BKRzp9HGlhyubcz6xhJ1`) does exist, but it belongs to a
+different, abandoned project — a Streamlit/Python application with its own git
+history at `Documents/2 Semestre/Innovation Lab/EduTrack Orbit IA/`. It must not
+be used: it is a different stack, a different codebase and a different design,
+and importing from it would mix two projects in one deliverable. The change
+therefore creates a dedicated Figma file for EduTrack AI, built from the Design
+System already recorded in `flutterflow/REGISTRO-CONFIGURACAO.md`.
