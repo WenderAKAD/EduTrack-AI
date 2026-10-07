@@ -518,6 +518,8 @@ Xano.
 - A importação automática do Figma para o FlutterFlow é experimental e
   frequentemente falha. A abordagem é usar o Figma como referência visual e
   montar os componentes manualmente com Column, Row e Container.
+  (A partir da Tarefa 09 a fonte de design passou a ser o mockup
+  `flutterflow/tema-referencia.html` — ver Tarefa 09.)
 - Base URL da API: no Xano, abrir a API criada na Tarefa 04 e copiar a Base URL
   exibida no topo do editor. O formato é
   https://x8ki-letl-twmt.n7.xano.io/api:JBdUmIAC.
@@ -723,7 +725,7 @@ os assets que as sustentam.
   `stroke-width="2"`, o que permite recolorir entre os dois temas da Tarefa 07
   sem duplicar arquivo.
 - `assets/README.md` criado com a tabela de origem de cada ícone, a cor por tema
-  e o estado da exportação.
+  e a fonte de design (mockup `tema-referencia.html`, sem Figma).
 - `flutterflow/REGISTRO-CONFIGURACAO.md` recebeu a seção 6, que especifica os
   nomes exatos das três páginas, os três itens da NavBar com suas actions
   Navigate to Page e a regra de conferência nas duas larguras.
@@ -759,9 +761,10 @@ os assets que as sustentam.
       para as páginas correspondentes.
       Especificado, ainda não construído. Três itens com action Navigate to
       Page.
-- [ ] Assets exportados do Figma e versionados.
-      **Parcial.** Os nove SVGs estão versionados em `assets/icons/`, mas
-      **ainda não foram exportados do Figma** — ver item 4.
+- [ ] Assets provenientes do Design System e versionados.
+      **Parcial.** Os nove SVGs estão versionados em `assets/icons/`, sourced do
+      Design System da Tarefa 07 e conferidos contra o mockup — ver item 4. Não
+      há exportação de Figma: a spec foi revisada (Opção A).
 - [ ] Assets referenciados no projeto FlutterFlow.
       *Pendente.*
 - [ ] Pull Request aberto com o histórico de commits.
@@ -772,6 +775,14 @@ os assets que as sustentam.
 ---
 
 4. OBSERVAÇÕES TÉCNICAS
+
+- **O Figma foi substituído pelo mockup como fonte de design.** O enunciado
+  pedia exportar do arquivo do Figma "duplicado na Tarefa 06", mas esse arquivo
+  nunca existiu e nenhuma máquina disponível roda o editor. A spec da change
+  `design-assets` foi revisada: todo asset agora provém do Design System da
+  Tarefa 07, materializado em `flutterflow/tema-referencia.html`, que é a nova
+  fonte editável de referência. Nenhuma task da Tarefa 09 depende mais do Figma;
+  só o FlutterFlow segue pendente, por bloqueio de hardware.
 
 - **O arquivo do Figma citado no enunciado não existe.** A tarefa diz "abra o
   arquivo do Figma que você duplicou na Tarefa 06", mas a Tarefa 06 entregou um
@@ -786,18 +797,19 @@ os assets que as sustentam.
   "Orbit" neste repositório. Importar dali misturaria dois projetos numa entrega
   só, então não foi usado.
 
-- **Os nove ícones foram autorados, não exportados.** Como o Figma do projeto não
-  existe, os ícones foram escritos a partir do Design System já versionado na
-  Tarefa 07 e estão versionados como base de trabalho. `assets/README.md`
-  declara isso abertamente e marca a exportação como pendência. A alternativa
-  seria apresentar os arquivos como exportação do Figma, o que seria falso.
+- **Os nove ícones foram sourced do Design System, não exportados.** Como não há
+  arquivo do Figma de onde exportar, os ícones foram construídos a partir do
+  Design System já versionado na Tarefa 07 e conferidos contra o mockup
+  `tema-referencia.html`. `assets/README.md` declara a origem por ícone e a
+  decisão. Apresentá-los como exportação do Figma seria falso.
 
-- **O hardware de desenvolvimento não abre nenhum dos dois IDEs.** O MacBook Pro
-  2016 (Intel Core `m-5Y31` a 0,90 GHz, Intel HD Graphics 5300) não roda o
-  Figma — exige Safari 17.4+, e a máquina tem 16.6; o Chrome 154 reporta
-  `WebGL: Disabled` porque a GPU de 2015 está em blocklist. O FlutterFlow não
-  usa WebGL, mas não carrega nessa CPU. A execução foi planejada para uma
-  máquina Windows 11 por acesso remoto, e o roteiro está versionado.
+- **O hardware de desenvolvimento não abre o FlutterFlow.** O MacBook Pro 2016
+  (Intel Core `m-5Y31` a 0,90 GHz, Intel HD Graphics 5300) não carrega o IDE —
+  o Chrome 154 reporta `WebGL: Disabled` por causa da GPU de 2015 em blocklist, e
+  o FlutterFlow, ainda que não use WebGL, não roda nessa CPU. A execução foi
+  planejada para uma máquina Windows 11 por acesso remoto, e o roteiro está
+  versionado. O Figma, que antes também bloqueava, saiu de cena por decisão de
+  spec.
 
 - **Nenhum dado é buscado da API.** As três páginas declaram que não chamam
   nenhum endpoint e exibem conteúdo estático de exemplo. Os endpoints de
@@ -813,9 +825,10 @@ os assets que as sustentam.
 
 5. PRÓXIMO PASSO
 
-Executar `docs/guia-execucao-windows.md` na máquina Windows: subir os nove ícones
-no Figma, reexportá-los, montar as três páginas e a NavBar no FlutterFlow,
-tirar os prints e abrir o Pull Request.
+Executar `docs/guia-execucao-windows.md` na máquina Windows: conferir o mockup
+`tema-referencia.html` como referência, montar as três páginas e a NavBar no
+FlutterFlow usando os ícones já versionados em `assets/icons/`, tirar os prints
+e abrir o Pull Request.
 
 ---
 

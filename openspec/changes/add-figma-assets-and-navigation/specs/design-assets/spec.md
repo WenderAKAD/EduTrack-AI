@@ -8,38 +8,43 @@ the design tokens every one of them must match.
 
 ## ADDED Requirements
 
-### Requirement: Assets originate from the EduTrack AI Figma file
-The system SHALL source every icon and image asset from the project's Figma file
-by exporting the element, rather than by authoring the file outside Figma. The
-export SHALL be of the Dashboard screen's elements, grouped logically by
-function — one group for the subject card, one for the task card, one for the
-navigation bar. No asset may be drawn or traced outside Figma.
+### Requirement: Assets originate from the EduTrack AI Design System
+The system SHALL source every icon and image asset from the Design System of
+Tarefa 07, recorded in `flutterflow/REGISTRO-CONFIGURACAO.md` and materialized in
+the editable reference mockup `flutterflow/tema-referencia.html`. There is no
+source to export from in a design tool: the EduTrack AI Figma file named by
+Tarefa 06 was never duplicated, and no machine available to this project runs
+Figma (`WebGL: Disabled`; Safari 16.6 vs. required 17.4+). The mockup is
+therefore the design source, and its Dashboard section SHALL group elements
+logically by function — one group for the subject card, one for the task card,
+one for the navigation bar. No asset may be authored without a counterpart in
+the mockup.
 
-#### Scenario: Icon is exported from Figma
+#### Scenario: Icon is sourced from the reference mockup
 - **WHEN** an icon asset is added to the project
-- **THEN** it was exported from a selected element of the EduTrack AI Figma file, and not recreated from scratch elsewhere
+- **THEN** it has a counterpart in `flutterflow/tema-referencia.html` and derives from the Design System of Tarefa 07, not from an element exported out of Figma
 
 #### Scenario: Elements are grouped by function
-- **WHEN** the Dashboard screen is inspected in Figma
+- **WHEN** the Dashboard section of the reference mockup is inspected
 - **THEN** its elements are organized into groups by function, such as a subject card group, a task card group and a navigation bar group
 
 #### Scenario: Ungrouped element is refused
-- **WHEN** an asset is exported from an element that still sits loose on the canvas, outside any functional group
-- **THEN** the element is grouped in Figma before the export is accepted
+- **WHEN** an asset corresponds to an element that still sits loose in the mockup, outside any functional group
+- **THEN** the element is grouped in the mockup before the asset is accepted
 
 ### Requirement: Icons use the SVG format
-The system SHALL export every icon, glyph or logo mark as **SVG**, and SHALL NOT
-commit raster icons in their place. Icons SHALL be exported in a single color
+The system SHALL provide every icon, glyph or logo mark as **SVG**, and SHALL NOT
+commit raster icons in their place. Icons SHALL be delivered in a single color
 that FlutterFlow can recolor, so that one file serves both the light and the
 dark theme of the Design System.
 
-#### Scenario: Icon is exported as SVG
-- **WHEN** an icon is exported from Figma for the repository
-- **THEN** the exported file is an `.svg`
+#### Scenario: Icon is provided as SVG
+- **WHEN** an icon is added to the repository
+- **THEN** the file is an `.svg`
 
 #### Scenario: Raster icon is refused
 - **WHEN** an icon arrives as `.png`, `.jpg` or `.webp` in `assets/icons/`
-- **THEN** it is rejected and re-exported from Figma as SVG
+- **THEN** it is rejected and replaced by an SVG from the design sources
 
 #### Scenario: One icon serves both themes
 - **WHEN** the same icon is used on a light background and on a dark background
@@ -68,18 +73,18 @@ for raster content.
 - **THEN** it carries a `.gitkeep` file, so the structure exists in Git before it holds assets
 
 ### Requirement: Assets are versioned in Git
-The system SHALL commit every exported asset to the repository, so that the
-original files survive independently of the FlutterFlow cloud copy. The assets
-SHALL be delivered on a dedicated branch, so that the addition of binary and
-vector files is reviewable on its own.
+The system SHALL commit every asset to the repository, so that the original
+files survive independently of the FlutterFlow cloud copy. The assets SHALL be
+delivered on a dedicated branch, so that the addition of binary and vector files
+is reviewable on its own.
 
 #### Scenario: Asset is committed
-- **WHEN** an asset is exported from Figma
+- **WHEN** an asset is added to the design sources
 - **THEN** it is added to the repository and pushed to a branch of its own
 
 #### Scenario: Asset survives deletion from FlutterFlow
 - **WHEN** an asset is removed from the FlutterFlow Media Assets library
-- **THEN** the original file is still recoverable from the repository, and can be re-uploaded without re-exporting it from Figma
+- **THEN** the original file is still recoverable from the repository, and can be re-uploaded without rebuilding it from scratch
 
 ### Requirement: Assets match the design tokens
 Every asset SHALL be built against the Design System recorded in

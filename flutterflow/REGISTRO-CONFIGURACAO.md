@@ -123,17 +123,18 @@ Resposta `200` confirmada em 4 de outubro de 2026:
 
 ---
 
-## 4. Integração com o Figma (opcional / experimental)
+## 4. Fonte de design (mockup, sem Figma)
 
 | Campo | Valor |
 |---|---|
-| Figma Personal Access Token | *a colar* |
-| Referências de design | `docs/pesquisa/referencias.md` (lista os 4 templates gratuitos escolhidos) |
+| Fonte editável de design | `tema-referencia.html` (paleta, tipografia, cards e NavBar) |
+| Referências visuais | `docs/pesquisa/referencias.md` (lista os 4 templates gratuitos escolhidos) |
 
-**Observação:** a importação automática do Figma para o FlutterFlow é
-experimental e frequentemente falha. A abordagem adotada é usar o Figma como
-**referência visual** e montar os componentes manualmente no FlutterFlow com os
-widgets `Column`, `Row` e `Container`.
+**Observação:** o Figma não é usado neste projeto — o arquivo citado na
+Tarefa 09 nunca foi criado e nenhuma máquina disponível abre o editor. A fonte
+de design é o mockup `tema-referencia.html`; os componentes são montados
+manualmente no FlutterFlow com os widgets `Column`, `Row` e `Container`,
+seguindo o mockup como referência visual.
 
 ---
 
@@ -215,7 +216,7 @@ funciona em uma delas não atende ao requisito.
 | 2 | Cores e fontes personalizadas no Theme Settings | `flutterflow-theme.png` | ☐ |
 | 3 | Grupo de API configurado com a URL correta do Xano | `flutterflow-api-group.png` | ☐ |
 | 4 | Registro do progresso no README do projeto via Git | `flutterflow-git-readme.png` | ☐ |
-| 5 | Importação do Figma (opcional) | `flutterflow-figma.png` | ☐ |
+| 5 | Importação do Figma (opcional) — **não se aplica** | `flutterflow-figma.png` | ⛔ |
 
 ---
 
