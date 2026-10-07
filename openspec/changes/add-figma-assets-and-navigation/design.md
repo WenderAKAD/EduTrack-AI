@@ -6,8 +6,8 @@ See `proposal.md` — Why, for the motivation.
 
 The shape of this change: the EduTrack AI frontend has a Design System record and
 nothing else. `flutterflow/REGISTRO-CONFIGURACAO.md` fixes a palette and two
-typefaces, and the Figma file referenced in Tarefa 06 supplies the visual
-reference. Neither has been turned into files or pages.
+typefaces, and the reference mockup `flutterflow/tema-referencia.html`
+materializes the visual reference. Neither has been turned into pages.
 
 Five constraints come from the platform, not from preference:
 
@@ -23,8 +23,12 @@ Five constraints come from the platform, not from preference:
   files and a written record of the configuration. Versioning the app itself is
   not available.
 - The Figma-to-FlutterFlow automatic import is experimental and fails often.
-  The project already decided in Tarefa 07 to use Figma as a visual reference
-  and assemble widgets by hand. This change keeps that decision.
+  The project decided in Tarefa 07 to use a visual reference and assemble
+  widgets by hand. This change keeps that decision.
+- **Figma is not the design source.** The EduTrack AI Figma file named by Tarefa 06 was never
+  created, and no machine available to this project runs the tool, so the change
+  sources the assets from the Design System of Tarefa 07 and the reference
+  mockup `flutterflow/tema-referencia.html` instead.
 - FlutterFlow serves both a phone build and a browser preview from one project,
   so a layout that only works at one width fails half the requirement.
 
@@ -32,8 +36,8 @@ Five constraints come from the platform, not from preference:
 
 **Goals:**
 
-- Make the exported asset files reproducible and checkable: a reader can tell
-  which file came from which Figma element and where it is used.
+- Make the asset files reproducible and checkable: a reader can tell which
+  file came from which element of the design sources and where it is used.
 - Declare the navigation topology in the spec, so "three pages and a working
   NavBar" is verifiable rather than a screenshot assertion.
 - Pin the design tokens the shell must use, so consistency with the Design
@@ -44,8 +48,8 @@ Five constraints come from the platform, not from preference:
 - No data binding. The pages render static content; the Xano API is untouched.
 - No Xano endpoints. Those are a separate change, and the tables from Tarefa 08
   have no endpoints yet.
-- No Figma file restructuring beyond grouping the Dashboard screen's elements.
-  Redesigning the file is not this change.
+- No design-tool restructuring beyond grouping the Dashboard section's elements.
+  Redesigning the interface is not this change.
 - No icons for features that do not exist yet — no "edit profile", no "settings",
   no "grades". Assets are limited to what the three pages actually show.
 
@@ -107,10 +111,12 @@ project's established PR flow, from Tarefa 05.
 
 ## Risks / Trade-offs
 
-**The Figma file may not be grouped as the task expects** → Group the Dashboard
-elements first, then export. If a specific element cannot be grouped without
-redesigning the file, export it anyway and record the exception in the asset
-record rather than silently shipping an untraceable file.
+**The design sources are HTML/CSS and raw SVG, not a vector canvas** → The
+mockup carries the grouping and the tokens; the icons are edited directly in SVG
+and reviewed against the mockup rather than in a design tool. A future design
+tool adoption is out of scope — this change fixes the mockup as the source.
+Nothing about the pages, the navigation or the FlutterFlow build changes as a
+result.
 
 **A page built at one width may break at the other** → Build and check both
 widths before the change is archived. The requirement is explicit for this
@@ -126,20 +132,23 @@ light background uses `#C1121F`, and the neon stays confined to fills and the
 active nav item. Carried over from the Tarefa 07 observation, restated here
 because assets are where the mistake is easiest to make.
 
-**The work happens off the development machine** → The assets are exported and
-the pages are built on a Windows 11 machine reached over remote access; only the
-files come back to this repository. The risk is divergence between what was
-built and what is recorded here, so the screenshots of the three pages are
-required evidence rather than decoration, and the asset record names the file
-each screenshot shows.
+**The work happens off the development machine** → The pages are built on a
+Windows 11 machine reached over remote access; only the files come back to this
+repository. The risk is divergence between what was built and what is recorded
+here, so the screenshots of the three pages are required evidence rather than
+decoration, and the asset record names the file each screenshot shows.
 
-**No Figma file exists for this project** → Tarefa 06 recorded four Community
-templates as visual references in `docs/pesquisa/referencias.md`; it duplicated
-no file and left no project link. A file named "EduTrack Orbit AI — Design
-System" (`file_key` `i6BKRzp9HGlhyubcz6xhJ1`) does exist, but it belongs to a
-different, abandoned project — a Streamlit/Python application with its own git
-history at `Documents/2 Semestre/Innovation Lab/EduTrack Orbit IA/`. It must not
-be used: it is a different stack, a different codebase and a different design,
-and importing from it would mix two projects in one deliverable. The change
-therefore creates a dedicated Figma file for EduTrack AI, built from the Design
-System already recorded in `flutterflow/REGISTRO-CONFIGURACAO.md`.
+**No Figma file exists for this project, and no machine runs it** → Tarefa 06
+recorded four Community templates as visual references in
+`docs/pesquisa/referencias.md`; it duplicated no file and left no project link. A
+file named "EduTrack Orbit AI — Design System" (`file_key`
+`i6BKRzp9HGlhyubcz6xhJ1`) does exist, but it belongs to a different, abandoned
+project — a Streamlit/Python application with its own git history at
+`Documents/2 Semestre/Innovation Lab/EduTrack Orbit IA/`. It must not be used: it
+is a different stack, a different codebase and a different design, and importing
+from it would mix two projects in one deliverable. The change therefore adopts
+`flutterflow/tema-referencia.html`, already built from the Design System recorded
+in `flutterflow/REGISTRO-CONFIGURACAO.md`, as the editable design source in place
+of Figma. Trade-off: HTML/CSS is not a vector editor, so icon work is done in
+raw SVG and verified against the mockup — which is exactly what the export step
+used to guarantee.

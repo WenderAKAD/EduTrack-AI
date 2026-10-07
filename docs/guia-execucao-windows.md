@@ -10,9 +10,14 @@ partir de uma máquina Windows 11.
 O MacBook Pro 2016 usado no desenvolvimento não abre nenhum dos dois IDEs web:
 
 | Ferramenta | Bloqueio no Mac |
-|---|---|
-| **Figma** | Exige Safari 17.4+; a máquina tem Safari 16.6 (macOS 13.7.8 não recebe versão mais nova). O Chrome 154 também recusa: `WebGL: Disabled`, porque a Intel HD Graphics 5300 de 2015 está na blocklist da GPU. |
+|---|---|---|
 | **FlutterFlow** | Não usa WebGL, mas é um IDE web pesado e a CPU (Intel Core `m-5Y31` a 0,90 GHz, dual-core) não sustenta o carregamento. |
+
+> O **Figma deixou de ser usado** (decisão registrada na spec `design-assets`):
+> o arquivo do projeto nunca existiu e nenhuma máquina disponível o abre. A
+> fonte de design é o mockup `flutterflow/tema-referencia.html` — `assets/` já
+> contém os nove ícones a partir dele, sem depender do Figma. Este guia usa o
+> HTML apenas como referência visual.
 
 Nada disso é problema do projeto — é limite de hardware. A execução acontece
 inteiramente no Windows, por acesso remoto. O que volta para o repositório são
@@ -44,39 +49,25 @@ bytes.
 
 ---
 
-## Passo 2 — Figma
+## Passo 2 — Referência visual
 
-**2.1.** Crie um arquivo novo em `figma.com` chamado **EduTrack AI — Design
-System**.
+O Figma não é usado neste projeto (decisão em `openspec/changes/add-figma-assets-and-navigation/specs/design-assets/spec.md`). O mockup é a referência de design:
+
+**2.1.** Abra `flutterflow/tema-referencia.html` num navegador. Ele é a fonte
+editável do design — paleta, tipografia, cards e a barra de navegação.
+
+**2.2.** Confira que a seção Dashboard do mockup organiza os elementos em grupos
+por função: um grupo para o card de disciplina, um para o card de tarefa e um
+para a barra de navegação. Nenhum elemento deve ficar solto fora de grupo —
+se estiver, agrupe com `Ctrl+G` na página referente.
+
+**2.3.** Os nove ícones de `assets/icons/` já são a saída do design — não há
+exportação a fazer. Use a tabela de `../assets/README.md` para conferir que cada
+ícone tem contraparte no mockup.
 
 > Não use o arquivo "EduTrack Orbit AI — Design System". Ele pertence ao
 > projeto antigo em Streamlit, é outro código e outro design. O motivo está
 > registrado em `assets/README.md`.
-
-**2.2.** Na aba `Icons`, arraste os nove `.svg` do Explorer até o canvas — um de
-cada vez, senão o Figma empilha todos no mesmo ponto. Organize num grid com
-folga de 40px.
-
-**2.3.** Renomeie cada vetor no painel **Design** para `home`, `subjects`,
-`tasks`, `add-subject`, `add-task`, `check`, `clock`, `empty-subjects`,
-`empty-tasks`.
-
-**2.4.** Crie a variável de cor. No painel de variáveis (ícone de sliders, à
-direita): `+ Create variable` → nome `icon/default` → tipo **Color** → valor
-`1A1312`. Selecione os nove ícones e aplique a variável. É o que permite
-recolorir entre os temas claro e dark.
-
-**2.5.** Crie a aba `Dashboard` e monte a tela de referência seguindo
-[`../flutterflow/tema-referencia.html`](../flutterflow/tema-referencia.html):
-header, um card de disciplina, um card de tarefa e a barra de navegação com os
-três ícones. Agrupe cada bloco com `Ctrl+G`.
-
-**2.6.** Exporte: selecione o ícone → painel **Design** → seção **Export** → `+`
-→ **SVG** → Exportar.
-
-Anote o `node-id` de cada vetor (aparece na URL ao selecionar, ou em
-*Copy link to selection*) para preencher a tabela de
-[`../assets/README.md`](../assets/README.md).
 
 ---
 
@@ -124,15 +115,11 @@ Quatro prints, em `DMAtividades/9ATIVIDADE/`:
 
 ## Problemas conhecidos
 
-**O SVG arrastado aparece vermelho sólido.** Não é o vetor — foi a miniatura do
-Explorer. Arraste de novo.
-
-**O export sai com `stroke="#000000"`.** Esperado: o Figma converte a variável
-para o valor literal no export. Registrar como limitação em `assets/README.md`
-ou trocar por `currentColor` à mão.
-
 **O FlutterFlow não carrega.** Permite pop-ups e área de transferência de
 `app.flutterflow.io` nas configurações do navegador antes de desconsiderar.
 
-**O Figma não tem WebGL.** No Windows isso não deveria ocorrer; se ocorrer, teste
-outro navegador.
+**O ícone aparece vermelho sólido no Media Assets.** Não é o vetor — é a
+miniatura gerada pelo upload. Abra o asset e confira o traçado real.
+
+**O SVG sobe com `stroke="#1A1312"` fixo.** Esperado se o editor de SVG
+materializou a cor; trocar por `currentColor` no arquivo de `assets/icons/`

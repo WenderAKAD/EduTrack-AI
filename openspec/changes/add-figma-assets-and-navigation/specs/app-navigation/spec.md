@@ -53,7 +53,7 @@ is inert. Tapping an item SHALL mark that item as the active one.
 
 ### Requirement: Pages render content, not empty containers
 Every page SHALL contain visible content. A `ListView` SHALL have children, and
-a `Container` standing in for a Figma card SHALL contain at least one `Text`
+a `Container` standing in for a mockup card SHALL contain at least one `Text`
 widget. An empty container SHALL NOT count as a built page.
 
 #### Scenario: Subject card has content
