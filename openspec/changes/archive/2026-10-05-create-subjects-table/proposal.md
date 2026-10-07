@@ -17,6 +17,9 @@ filters by the authenticated `user_id` has no table to apply to.
   column of every read.
 - Enforce `hours >= 1` and trim whitespace from `name` at the schema level, so
   invalid rows are rejected by the database rather than by each endpoint.
+- Declare a table `description` stating that each row belongs to an
+  authenticated user through `user_id`, so the ownership rule is readable from
+  the table itself and not only from this proposal.
 - Document that `created_at` is deliberately absent: the specification fixes the
   field list, and adding timestamps is a separate change.
 
