@@ -589,7 +589,8 @@ primeiras tabelas do projeto.
 - [x] Implementação da tabela `subjects` em XanoScript.
       Arquivo: tables/subjects.xs
 - [x] Link do repositório GitHub com o README atualizado (este arquivo).
-      https://github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est
+      https://github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est (PR #5
+      merged — https://github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est/pull/5)
 
 &nbsp;
 
@@ -741,8 +742,8 @@ os assets que as sustentam.
       *Pendente — depende do acesso à máquina Windows.*
 - [ ] Print da pasta `assets/` no VS Code.
       *Pendente — depende do acesso à máquina Windows.*
-- [ ] Link do Pull Request da branch `style/assets-figma`.
-      *Pendente — abre quando as páginas existirem.*
+- [x] Link do Pull Request da branch `style/assets-figma`.
+      PR #6 merged — https://github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est/pull/6
 - [x] Registro de configuração do frontend atualizado com a navegação.
       Arquivo: flutterflow/REGISTRO-CONFIGURACAO.md (seção 6)
 - [x] Registro de origem dos assets.
