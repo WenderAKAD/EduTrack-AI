@@ -3,7 +3,7 @@
 ## 1. Assets do Design System
 
 - [ ] 1.1 Abrir `flutterflow/tema-referencia.html` e verificar que os elementos da tela Dashboard estão agrupados por função (grupo do card de disciplina, grupo do card de tarefa, grupo da barra de navegação) — verificar no HTML que não há elemento solto fora de grupo
-- [ ] 1.2 Exportar os ícones em **SVG** — verificar que nenhum arquivo em `assets/icons/` tem extensão `.png`, `.jpg` ou `.webp`
+- [ ] 1.2 Conferir que os ícones em `assets/icons/` estão em **SVG** e têm contraparte no mockup `tema-referencia.html` — verificar que nenhum arquivo tem extensão `.png`, `.jpg` ou `.webp`
 - [ ] 1.3 Exportar as imagens raster em PNG para `assets/images/` — verificar que a pasta existe e não está vazia sem motivo
 - [x] 1.4 Renomear os arquivos exportados para `kebab-case` descritivo, com base na função e não na cor (ex: `add-task.svg`, e não `red-circle.svg`) — verificar com `ls assets/icons assets/images` que nenhum nome tem espaço, acento ou caractere maiúsculo
 - [x] 1.5 Confirmar que cada SVG é recolorível, ou seja, sem `fill` fixo que impeça o FlutterFlow de aplicar a cor do Design System — abrir cada `.svg` em editor de texto e procurar por `fill="#`
@@ -34,7 +34,7 @@
 - [x] 4.4 Documentar a Tarefa 09 no `README.md` com o mesmo padrão de 5 seções das tarefas anteriores, incluindo a seção "Próximo passo"
 - [x] 4.5 Rodar `openspec validate add-figma-assets-and-navigation --strict` e confirmar que a change é válida
 - [ ] 4.6 Arquivar a change com `openspec archive add-figma-assets-and-navigation --yes` e confirmar que `openspec/specs/design-assets/spec.md` e `openspec/specs/app-navigation/spec.md` foram gerados — verificar com `openspec validate --specs --strict`
-- [ ] 4.7 Abrir o Pull Request de `style/assets-figma` para `main` e registrar a URL no README
+- [x] 4.7 Abrir o Pull Request de `style/assets-figma` para `main`, mergear e registrar a URL no README — PR #6 (https://github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est/pull/6) e PR #5 da Tarefa 08
 
 ---
 
