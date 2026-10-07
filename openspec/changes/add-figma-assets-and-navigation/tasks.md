@@ -2,8 +2,8 @@
 
 ## 1. Assets do Design System
 
-- [ ] 1.1 Abrir `flutterflow/tema-referencia.html` e verificar que os elementos da tela Dashboard estão agrupados por função (grupo do card de disciplina, grupo do card de tarefa, grupo da barra de navegação) — verificar no HTML que não há elemento solto fora de grupo
-- [ ] 1.2 Conferir que os ícones em `assets/icons/` estão em **SVG** e têm contraparte no mockup `tema-referencia.html` — verificar que nenhum arquivo tem extensão `.png`, `.jpg` ou `.webp`
+- [x] 1.1 Abrir `flutterflow/tema-referencia.html` e verificar que os elementos da tela Dashboard estão agrupados por função (grupo do card de disciplina, grupo do card de tarefa, grupo da barra de navegação) — verificar no HTML que não há elemento solto fora de grupo
+- [x] 1.2 Conferir que os ícones em `assets/icons/` estão em **SVG** e têm contraparte no mockup `tema-referencia.html` — verificar que nenhum arquivo tem extensão `.png`, `.jpg` ou `.webp`
 - [ ] 1.3 Exportar as imagens raster em PNG para `assets/images/` — verificar que a pasta existe e não está vazia sem motivo
 - [x] 1.4 Renomear os arquivos exportados para `kebab-case` descritivo, com base na função e não na cor (ex: `add-task.svg`, e não `red-circle.svg`) — verificar com `ls assets/icons assets/images` que nenhum nome tem espaço, acento ou caractere maiúsculo
 - [x] 1.5 Confirmar que cada SVG é recolorível, ou seja, sem `fill` fixo que impeça o FlutterFlow de aplicar a cor do Design System — abrir cada `.svg` em editor de texto e procurar por `fill="#`
