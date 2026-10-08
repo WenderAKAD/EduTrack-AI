@@ -749,8 +749,12 @@ os assets que as sustentam.
   `flutter analyze` sem issues.
 - **Evidências em `docs/evidencias/tarefa09/`**: seis screenshots do app rodando
   (`flutter build web` + Chrome headless com SwiftShader) — três páginas × duas
-  larguras (celular 390×844 e navegador 1280×800). Roteiro:
+  larguras (celular 390×844 e navegador 1280×800) — mais
+  `assets-screenshot.png` (pasta `assets/` no VS Code). Roteiro:
   `tools/capture-screenshots.sh`.
+- **Material da entrega** em `docs/evidencias/tarefa09/Tarefa09-entrega.{html,pdf}`
+  (15 páginas), com capa, seções e as figuras comentadas e referenciadas. Cópia
+  para o Classroom em `DMAtividades/9Atividade/`.
 
 ---
 
@@ -759,9 +763,9 @@ os assets que as sustentam.
 - [x] Link do projeto FlutterFlow com as três páginas, ou prints das páginas.
       *FlutterFlow não abre nesta máquina — usadas as seis capturas de
       `docs/evidencias/tarefa09/` (3 páginas × celular/navegador).*
-- [ ] Print da pasta `assets/` no VS Code.
-      *Evidência manual a capturar pelo aluno na máquina de desenvolvimento —
-      a estrutura versionada está em `assets/`.*
+- [x] Print da pasta `assets/` no VS Code.
+      `docs/evidencias/tarefa09/assets-screenshot.png` — `icons/` (nove SVGs),
+      `images/` e o `README.md` de origem dos assets.
 - [x] Link do Pull Request da branch `style/assets-figma`.
       PR #6 merged — https://github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est/pull/6
 - [x] Registro de configuração do frontend atualizado com a navegação.
@@ -856,9 +860,11 @@ os assets que as sustentam.
 
 5. PRÓXIMO PASSO
 
-Concluir a Tarefa 09: capturar o print da pasta `assets/` no VS Code, abrir o
-Pull Request da branch `feat/flutter-app-local` e arquivar a change. Em seguida,
-a Tarefa 10 — preparação do "cérebro" da IA assistente para o desenvolvimento.
+Concluir a Tarefa 09: abrir o Pull Request da branch `feat/flutter-app-local` e
+arquivar a change. O print da pasta `assets/` já foi capturado
+(`docs/evidencias/tarefa09/assets-screenshot.png`) e o material da entrega está em
+`docs/evidencias/tarefa09/Tarefa09-entrega.{html,pdf}`. Em seguida, a Tarefa 10 —
+preparação do "cérebro" da IA assistente para o desenvolvimento.
 
 ---
 
