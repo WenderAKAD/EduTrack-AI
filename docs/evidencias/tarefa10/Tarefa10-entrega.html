@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Tarefa 10 – Configuração Avançada do AGENTS.md</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 18mm 16mm 16mm; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: Inter, -apple-system, sans-serif;
+    color: #1A1312; font-size: 11.2pt; line-height: 1.55;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+
+  .mono { font-family: "JetBrains Mono", monospace; }
+
+  .capa { page-break-after: always; padding-top: 26mm; }
+  .tag {
+    display: inline-block; background: #E10600; color: #fff;
+    font-size: 8.5pt; font-weight: 700; letter-spacing: 1.1px;
+    padding: 4px 11px; border-radius: 20px; text-transform: uppercase;
+  }
+  .capa h1 { font-size: 27pt; line-height: 1.2; letter-spacing: -0.7px; margin: 16px 0 6px; font-weight: 700; }
+  .capa h2 { font-size: 14pt; font-weight: 500; color: #7B6A67; margin-bottom: 26px; }
+  .rule { height: 3px; width: 74px; background: #E10600; border-radius: 3px; margin-bottom: 26px; }
+
+  table.meta { width: 100%; border-collapse: collapse; margin-bottom: 22px; }
+  table.meta td { padding: 7px 0; border-bottom: 1px solid #EADFDC; vertical-align: top; font-size: 10.5pt; }
+  table.meta td.k { width: 42%; color: #7B6A67; font-weight: 500; }
+
+  .box {
+    background: #F7F4F3; border: 1px solid #EADFDC;
+    border-left: 3px solid #E10600; border-radius: 8px;
+    padding: 12px 14px; margin-bottom: 18px; font-size: 10.5pt;
+  }
+  .box b { color: #C1121F; }
+
+  .sumario { background: #FFFFFF; border: 1px solid #EADFDC; border-radius: 10px; padding: 14px 18px; }
+  .sumario h3 { font-size: 10pt; text-transform: uppercase; letter-spacing: 1px; color: #7B6A67; margin-bottom: 9px; }
+  .sumario ol { margin-left: 17px; font-size: 10.5pt; }
+  .sumario li { margin-bottom: 4px; }
+
+  h3.sec {
+    font-size: 13pt; font-weight: 700; margin: 0 0 12px;
+    padding-bottom: 7px; border-bottom: 2px solid #E10600;
+    display: flex; align-items: center; gap: 9px;
+  }
+  h3.sec .num {
+    background: #E10600; color: #fff; font-size: 9.5pt; font-weight: 700;
+    width: 21px; height: 21px; border-radius: 5px;
+    display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+
+  h4 { font-size: 11pt; font-weight: 700; margin: 16px 0 7px; color: #C1121F; }
+
+  p { margin-bottom: 9px; }
+  ul, ol { margin-left: 18px; margin-bottom: 10px; }
+  li { margin-bottom: 4px; }
+
+  section { margin-bottom: 18px; }
+
+  figure { margin: 12px 0 16px; page-break-inside: avoid; }
+  figure img { width: 100%; border: 1px solid #EADFDC; border-radius: 7px; display: block; }
+  figure img.phone { width: 40%; margin: 0 auto 8px; }
+  figcaption { font-size: 9pt; color: #7B6A67; margin-top: 6px; padding-top: 6px; border-top: 1px dashed #EADFDC; }
+  figcaption b { color: #1A1312; }
+  figcaption .ref { font-family: "JetBrains Mono", monospace; }
+
+  pre {
+    background: #16181C; color: #E6E8EA; padding: 12px 14px;
+    border-radius: 8px; font-family: "JetBrains Mono", monospace;
+    font-size: 8.8pt; line-height: 1.5; overflow: hidden;
+    page-break-inside: avoid; margin-bottom: 12px;
+  }
+  pre.light {
+    background: #F7F4F3; color: #1A1312; border: 1px solid #EADFDC;
+    border-radius: 8px; padding: 11px 13px; font-family: "JetBrains Mono", monospace;
+    font-size: 8.8pt; line-height: 1.5; overflow-x: auto; margin-bottom: 13px;
+  }
+
+  code.inl {
+    background: #F7F4F3; border: 1px solid #EADFDC; border-radius: 4px;
+    padding: 1px 5px; font-family: "JetBrains Mono", monospace; font-size: 9.3pt;
+  }
+
+  table.t { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 9.8pt; }
+  table.t th {
+    background: #F7F4F3; text-align: left; padding: 7px 9px;
+    border-bottom: 2px solid #E10600; font-size: 9pt;
+    text-transform: uppercase; letter-spacing: 0.6px; color: #7B6A67;
+  }
+  table.t td { padding: 7px 9px; border-bottom: 1px solid #EADFDC; vertical-align: top; }
+  table.t tr:nth-child(even) td { background: #FDFCFC; }
+
+  .nota {
+    background: #FFF8F7; border: 1px solid #F0D5D2; border-left: 3px solid #E10600;
+    border-radius: 7px; padding: 10px 13px; font-size: 9.8pt; margin-bottom: 12px;
+    page-break-inside: avoid;
+  }
+  .nota b { color: #C1121F; }
+
+  .check { background:#E10600; color:#fff; font-size:8.5pt; font-weight:700; width:16px; height:16px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; }
+
+  .rodape {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    border-top: 1px solid #EADFDC; padding-top: 5px;
+    font-size: 8pt; color: #7B6A67;
+    display: flex; justify-content: space-between;
+  }
+</style>
+</head>
+<body>
+
+<div class="rodape">
+  <span>EduTrack AI &middot; Innovation Lab &middot; Tarefa 10</span>
+  <span>Wender Araujo Santos</span>
+</div>
+
+<!-- ==================== CAPA ==================== -->
+<section class="capa">
+  <span class="tag">Entrega 10 &middot; Innovation Lab</span>
+  <h1>Configuração Avançada<br>do AGENTS.md</h1>
+  <h2>O “manual de instruções” da IA para o EduTrack AI</h2>
+  <div class="rule"></div>
+
+  <table class="meta">
+    <tr><td class="k">Disciplina</td><td>Innovation Lab: Desenvolvimento Avançado No/Low Code</td></tr>
+    <tr><td class="k">Módulo</td><td>1 – Introdução ao Spec-Driven Development</td></tr>
+    <tr><td class="k">Duração estimada</td><td>2 horas</td></tr>
+    <tr><td class="k">Pré-requisitos</td><td>Tarefas 08 (OpenSpec) e 09 (frontend) concluídas</td></tr>
+    <tr><td class="k">Aluno</td><td>Wender Araújo Santos</td></tr>
+    <tr><td class="k">E-mail institucional</td><td class="mono">wender.araujo@aluno.impacta.edu.br</td></tr>
+    <tr><td class="k">Data de entrega</td><td>6 de outubro de 2026</td></tr>
+    <tr><td class="k">Branch</td><td class="mono">feat/config-agents-ia</td></tr>
+    <tr><td class="k">Repositório</td><td><a href="https://github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est">github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est</a></td></tr>
+  </table>
+
+  <div class="box">
+    <b>Resumo.</b> O <span class="mono">AGENTS.md</span> da raiz foi reescrito
+    com a camada avançada: quatro regras prioritárias (escopo, sem
+    push/deploy, precedência de instruções e consulta aos guidelines do
+    XanoScript), convenções de branch/commit e o checklist de validação
+    OpenSpec. Em seguida, a proposta de teste
+    <span class="mono">feature-notas-atividades</span> foi criada, validada
+    (4/4 artifacts) e arquivada.
+  </div>
+
+  <div class="sumario">
+    <h3>Sumário</h3>
+    <ol>
+      <li>Objetivo e conceitos-chave</li>
+      <li>O que mudou desde a Tarefa 08</li>
+      <li>O novo AGENTS.md</li>
+      <li>Proposta de teste: feature-notas-atividades</li>
+      <li>Verificação das regras pela IA</li>
+      <li>Adaptações à realidade do repositório</li>
+      <li>Evidências</li>
+      <li>Critérios de avaliação</li>
+      <li>Observações técnicas</li>
+      <li>Próximo passo</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ==================== 1. OBJETIVO ==================== -->
+<section>
+  <h3 class="sec"><span class="num">1</span> Objetivo e conceitos-chave</h3>
+
+  <p>O objetivo é refinar e expandir o <span class="mono">AGENTS.md</span> —
+  o arquivo que serve de “manual de instruções” para as IAs que ajudam a
+  codificar. Na Tarefa 08 estavam as regras básicas; aqui entram as instruções
+  avançadas para que a IA escreva backend e frontend seguindo os padrões do
+  EduTrack AI.</p>
+
+  <table class="t">
+    <tr><th>Conceito</th><th>O que significa no projeto</th></tr>
+    <tr><td><b>Context Window</b></td><td>O limite de informação que a IA lê de uma vez. O <span class="mono">AGENTS.md</span> resume o essencial para que a IA foque no que importa.</td></tr>
+    <tr><td><b>System Prompt</b></td><td>Instruções de alto nível que definem o comportamento: “você é um especialista em XanoScript e FlutterFlow”.</td></tr>
+    <tr><td><b>Auto-Spec Behavior</b></td><td>Instruir a IA a escrever ela mesma as especificações OpenSpec a partir de um pedido simples.</li>
+  </table>
+</section>
+
+<!-- ==================== 2. O QUE MUDOU ==================== -->
+<section>
+  <h3 class="sec"><span class="num">2</span> O que mudou desde a Tarefa 08</h3>
+
+  <p>A versão avançada adiciona camadas de profissionalismo e segurança
+  essenciais para projetos reais:</p>
+
+  <table class="t">
+    <tr><th>Camada</th><th>O que foi definido</th></tr>
+    <tr><td><b>Versionamento</b></td><td>Branches com prefixos <span class="mono">feat/</span>, <span class="mono">fix/</span>, <span class="mono">docs/</span> e commits no padrão Conventional Commits.</td></tr>
+    <tr><td><b>Rigor no OpenSpec</b></td><td>Estrutura fixa de <span class="mono">proposal.md</span>, <span class="mono">spec.md</span> e <span class="mono">tasks.md</span>, com deltas <span class="mono">ADDED/MODIFIED/REMOVED</span> e cenários <span class="mono">WHEN/THEN</span>.</td></tr>
+    <tr><td><b>Segurança (mandatória)</b></td><td>Regra de ouro: toda consulta ao banco filtra pelo <span class="mono">user_id</span> do usuário logado.</td></tr>
+    <tr><td><b>Boas práticas de API</b></td><td>Endpoints seguindo o padrão RESTful (<span class="mono">GET/POST/PATCH/DELETE</span>).</td></tr>
+    <tr><td><b>Protocolo de comunicação</b></td><td>A IA explica o que pretende fazer e em quais arquivos vai mexer antes de codificar.</td></tr>
+  </table>
+</section>
+
+<!-- ==================== 2. AGENTS.MD ==================== -->
+<section>
+  <h3 class="sec"><span class="num">3</span> O novo AGENTS.md</h3>
+
+  <p>O conteúdo das Tarefas 08/09 (tudo o que estava antes da tag
+  <span class="mono">&lt;!-- OPENSPEC:START --&gt;</span>) foi substituído pelo
+  texto avançado. O bloco gerenciado pelo framework OpenSpec foi
+  <b>preservado intacto</b>, como manda a própria regra do arquivo.</p>
+
+  <h4>3.1 As quatro regras prioritárias</h4>
+  <table class="t">
+    <tr><th>#</th><th>Regra</th><th>Efeito prático</th></tr>
+    <tr><td>1</td><td class="mono">Escopo de tarefas</td><td><span class="mono">tasks.md</span> contém SOMENTE o que foi pedido; nada de CRUD/testes/frontend por conta própria.</td></tr>
+    <tr><td>2</td><td class="mono">Nada de push/deploy</td><td>A IA para na geração dos arquivos; o push ao Xano é responsabilidade do desenvolvedor.</td></tr>
+    <tr><td>3</td><td class="mono">Prioridade de instruções</td><td>AGENTS.md raiz &gt; pedido do usuário &gt; OpenSpec &gt; comandos slash &gt; AGENTS.md de extensões.</td></tr>
+    <tr><td>4</td><td class="mono">Consultar guidelines</td><td>Antes de criar/editar <span class="mono">.xs</span>, ler o guideline do XanoScript — não inventar sintaxe.</td></tr>
+  </table>
+
+  <h4>3.2 Convenções e segurança</h4>
+  <table class="t">
+    <tr><th>Tema</th><th>Regra</th></tr>
+    <tr><td>Língua</td><td>Código e variáveis sempre em INGLÊS</td></tr>
+    <tr><td>Banco</td><td><span class="mono">snake_case</span> — <span class="mono">academic_tasks</span>, <span class="mono">user_id</span></td></tr>
+    <tr><td>Branches</td><td>prefixos <span class="mono">feat/</span>, <span class="mono">fix/</span>, <span class="mono">docs/</span></td></tr>
+    <tr><td>Commits</td><td>Conventional Commits: <span class="mono">feat:</span>, <span class="mono">fix:</span>, <span class="mono">docs:</span>, <span class="mono">chore:</span></td></tr>
+    <tr><td>APIs REST</td><td><span class="mono">GET</span> lista · <span class="mono">POST</span> cria · <span class="mono">PATCH /{id}</span> atualiza · <span class="mono">DELETE /{id}</span> remove</td></tr>
+    <tr><td>Segurança</td><td>Toda query filtra por <span class="mono">user_id</span> do usuário autenticado</td></tr>
+    <tr><td>Python</td><td>Tratamento de erros com <span class="mono">try/except</span> em lógica complexa</td></tr>
+    <tr><td>Comunicação</td><td>Explicar o que vai fazer antes; indicar os arquivos; perguntar em caso de dúvida</td></tr>
+  </table>
+
+  <p>O arquivo também traz o checklist de validação OpenSpec (com a estrutura
+  correta de um delta em <span class="mono">changes/</span>) e dois exemplos que
+  contrastam a estrutura válida de <span class="mono">spec.md</span> com a
+  estrutura que falha na validação.</p>
+
+  <div class="nota">
+    <b>Documento vivo.</b> Como a própria tarefa sugere, o
+    <span class="mono">AGENTS.md</span> é revisado à medida que o projeto cresce:
+    novas regras entram conforme as necessidades reais aparecem.
+  </div>
+</section>
+
+<!-- ==================== 3. PROPOSTA TESTE ==================== -->
+<section>
+  <h3 class="sec"><span class="num">4</span> Proposta de teste: feature-notas-atividades</h3>
+
+  <p>Para verificar se a IA respeita o escopo definido no
+  <span class="mono">AGENTS.md</span>, foi pedido o planejamento de
+  <i>“feature-notas-atividades, para permitir que o professor lance notas”</i>.
+  O comportamento correto é planejar <b>apenas</b> o lançamento de nota — sem
+  adicionar listagem, edição, remoção ou telas que ninguém pediu.</p>
+
+  <h4>4.1 tasks.md gerado — no escopo</h4>
+  <pre># Tasks
+
+## 1. Tabela
+
+- [ ] 1.1 Criar a tabela `activity_grades` em `tables/activity_grades.xs`, com
+      `id`, `activity_id`, `student_id`, `grade` e `user_id` (relationship `user`)
+
+## 2. Endpoint
+
+- [ ] 2.1 Criar o endpoint `POST /activity_grades` (para o professor lançar a
+      nota de um aluno em uma atividade), gravando com o `user_id` autenticado</pre>
+
+  <p>Compare com o erro que a REGRA Nº 1 descreve: uma IA sem a regra teria
+  adicionado <span class="mono">GET /academic_tasks/{id}/grades</span> e
+  <span class="mono">GET /users/{id}/grades</span>, que não foram pedidos.</p>
+
+  <h4>4.2 Artefatos e validação</h4>
+  <table class="t">
+    <tr><th>Artifact</th><th>Arquivo</th></tr>
+    <tr><td class="mono">proposal</td><td class="mono">proposal.md</td></tr>
+    <tr><td class="mono">specs</td><td class="mono">specs/activity-grades/spec.md</td></tr>
+    <tr><td class="mono">design</td><td class="mono">design.md</td></tr>
+    <tr><td class="mono">tasks</td><td class="mono">tasks.md</td></tr>
+  </table>
+
+  <pre>openspec status --change "feature-notas-atividades"
+  &rarr;  Progress: 4/4 artifacts complete
+
+openspec validate feature-notas-atividades --strict
+  &rarr;  Change 'feature-notas-atividades' is valid</pre>
+
+  <p>Como era uma proposta apenas para testar a configuração, ela foi arquivada
+  logo em seguida, para manter o ambiente limpo:</p>
+
+  <pre>openspec/changes/archive/2026-10-08-feature-notas-atividades/</pre>
+
+  <div class="nota">
+    <b>Arquivada sem integrar spec permanente.</b> Como a proposta de teste
+    <b>não foi implementada</b>, ela foi movida manualmente para
+    <span class="mono">changes/archive/</span> em vez de rodar
+    <span class="mono">openspec archive</span>. O <span class="mono">archive</span>
+    funde o delta nas specs permanentes de <span class="mono">openspec/specs/</span>,
+    o que registraria a capability <span class="mono">activity-grades</span> como
+    se existisse. A própria tarefa prevê a movimentação manual como alternativa;
+    ela mantém o registro da mudança sem criar um requisito de algo não
+    implementado.
+  </div>
+</section>
+
+<!-- ==================== 4. VERIFICACAO ==================== -->
+<section>
+  <h3 class="sec"><span class="num">5</span> Verificação das regras pela IA</h3>
+
+  <p>Teste de leitura: pediu-se à IA que respondesse, a partir do
+  <span class="mono">AGENTS.md</span>, três perguntas. As respostas abaixo são o
+  que o arquivo define:</p>
+
+  <table class="t">
+    <tr><th>Pergunta</th><th>Resposta obtida do AGENTS.md</th></tr>
+    <tr><td>Qual é o nome do projeto?</td><td><b>EduTrack AI</b> — app de gestão acadêmica</td></tr>
+    <tr><td>Qual o padrão para nomes de branches?</td><td>Prefixos <span class="mono">feat/</span>, <span class="mono">fix/</span>, <span class="mono">docs/</span> (ex.: <span class="mono">feat/tabela-tarefas</span>)</td></tr>
+    <tr><td>O que é uma Proposal no OpenSpec?</td><td>Uma mudança planejada em <span class="mono">openspec/changes/&lt;id&gt;/</span>, com <span class="mono">proposal.md</span>, specs delta e <span class="mono">tasks.md</span>, validada antes de implementar</td></tr>
+  </table>
+
+  <p>As três regras mais importantes, resumidas pela IA:</p>
+  <pre>1. Escopo: tasks.md contém SOMENTE o que foi pedido (nem mais, nem menos)
+2. Segurança: toda query filtra por user_id do usuário autenticado
+3. A IA não faz push/deploy — apenas gera os arquivos</pre>
+
+  <div class="nota">
+    <b>Print da resposta da IA (evidência manual).</b> O screenshot da resposta
+    do chat da IA confirmando a leitura das regras é capturado no
+    <b>Gemini Code Assist</b> (ou no agente de IA em uso) pelo aluno, na máquina de
+    desenvolvimento. É o item de evidência previsto no enunciado e fica anexado à
+    entrega do Classroom em <span class="mono">DMAtividades/10Atividade/</span>.
+  </div>
+</section>
+
+<!-- ==================== 5. ADAPTACOES ==================== -->
+<section>
+  <h3 class="sec"><span class="num">6</span> Adaptações à realidade do repositório</h3>
+
+  <p>Três pontos do texto do enunciado não correspondem a este repositório. Para
+  não registrar informação falsa, o conteúdo foi adaptado e cada divergência
+  fica registrada aqui:</p>
+
+  <table class="t">
+    <tr><th>Enunciado</th><th>Realidade do repositório</th></tr>
+    <tr><td>“Tabela existente: <span class="mono">users</span>”</td><td>A tabela é <span class="mono">user</span> e é <b>criada pelo projeto</b> em <span class="mono">tables/user.xs</span> (change <span class="mono">create-user-table</span>, Tarefa 08). Não vem pronta no Xano.</td></tr>
+    <tr><td>Ler <span class="mono">docs/{table,function,api_query,task}_guideline.md</span></td><td>Esses arquivos <b>não existem</b> neste repositório nem na extensão. A REGRA Nº 4 foi mantida, com nota de que os guidelines são a documentação do XanoScript — a regra de ouro permanece: não inventar sintaxe.</td></tr>
+    <tr><td>Comandos slash em <span class="mono">.gemini/commands/openspec/*.toml</span></td><td>Nesta instalação os comandos estão em <span class="mono">.gemini/commands/opsx/*.toml</span>; a referência foi corrigida.</td></tr>
+  </table>
+
+  <div class="nota">
+    <b>O bloco OPENSPEC.</b> A tag
+    <span class="mono">&lt;!-- OPENSPEC:START --&gt; … &lt;!-- OPENSPEC:END --&gt;</span>
+    foi mantida no fim do arquivo, conforme a instrução deixada na própria versão
+    da Tarefa 08.
+  </div>
+</section>
+
+<!-- ==================== 6. EVIDENCIAS ==================== -->
+<section>
+  <h3 class="sec"><span class="num">7</span> Evidências</h3>
+
+  <table class="t">
+    <tr><th>Evidência</th><th>Onde</th></tr>
+    <tr><td>Conteúdo completo do <span class="mono">AGENTS.md</span></td><td><span class="mono">AGENTS.md</span> na raiz do repositório</td></tr>
+    <tr><td>Proposta de teste criada e validada</td><td><span class="mono">openspec/changes/archive/2026-10-08-feature-notas-atividades/</span></td></tr>
+    <tr><td>Validação das specs permanentes</td><td><span class="mono">openspec validate --specs --strict</span> → 4 passed, 0 failed</td></tr>
+    <tr><td>Screenshot da resposta da IA</td><td>Manual — chat da IA na máquina de desenvolvimento (item 5)</td></tr>
+  </table>
+</section>
+
+<!-- ==================== 6. CRITERIOS ==================== -->
+<section>
+  <h3 class="sec"><span class="num">8</span> Critérios de avaliação</h3>
+
+  <table class="t">
+    <tr><th>Critério</th><th>Status</th></tr>
+    <tr><td>AGENTS.md presente na raiz do repositório</td><td><span class="check">&#10003;</span> <span class="mono">AGENTS.md</span></td></tr>
+    <tr><td>Instruções claras sobre as tecnologias (Xano, FlutterFlow, OpenSpec)</td><td><span class="check">&#10003;</span> Perfil do projeto + REGRAS 2 e 4 + checklist OpenSpec</td></tr>
+    <tr><td>Definição de padrões de commit e nomenclatura</td><td><span class="check">&#10003;</span> Conventional Commits + prefixos de branch + <span class="mono">snake_case</span></td></tr>
+    <tr><td>Proposta OpenSpec criada e arquivada</td><td><span class="check">&#10003;</span> <span class="mono">feature-notas-atividades</span> (4/4 artifacts, valid)</td></tr>
+  </table>
+</section>
+
+<!-- ==================== 7. OBSERVACOES ==================== -->
+<section>
+  <h3 class="sec"><span class="num">9</span> Observações técnicas</h3>
+
+  <table class="t">
+    <tr><th>Tema</th><th>Detalhe</th></tr>
+    <tr><td>Bloco OPENSPEC preservado</td><td>O conteúdo novo foi colado antes de <span class="mono">&lt;!-- OPENSPEC:START --&gt;</span>, que permanece no fim do arquivo.</td></tr>
+    <tr><td>Escopo respeitado</td><td>A proposta de teste contém só tabela + <span class="mono">POST</span>; nenhum <span class="mono">GET/PATCH/DELETE</span> e nenhuma tela.</td></tr>
+    <tr><td>Sem push</td><td>Conforme a REGRA Nº 2, nenhum push ao Xano foi feito; os arquivos ficam para revisão e envio manual.</td></tr>
+    <tr><td>Arquivamento</td><td>Movimentação manual para <span class="mono">changes/archive/</span>, sem fundir delta em specs permanentes (feature não implementada).</td></tr>
+    <tr><td>Branch</td><td>Trabalho em <span class="mono">feat/config-agents-ia</span>, conforme o enunciado.</td></tr>
+  </table>
+</section>
+
+<!-- ==================== 8. PROXIMO ==================== -->
+<section>
+  <h3 class="sec"><span class="num">10</span> Próximo passo</h3>
+
+  <p>Com o Módulo 1 concluído (ambiente configurado e regras da IA definidas), o
+  próximo passo é o Módulo 2 — a criação das funcionalidades reais do backend,
+  começando pelos endpoints de <span class="mono">subjects</span> e
+  <span class="mono">user</span> no Xano.</p>
+
+  <div class="box">
+    <b>Arquivos produzidos nesta tarefa.</b>
+    <span class="mono">AGENTS.md</span> (reescrito) &middot;
+    <span class="mono">openspec/changes/archive/2026-10-08-feature-notas-atividades/</span>
+    (proposal, specs/activity-grades, design, tasks) &middot;
+    <span class="mono">docs/evidencias/tarefa10/</span> (este material)
+  </div>
+</section>
+
+</body>
+</html>
