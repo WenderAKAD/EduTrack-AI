@@ -25,9 +25,16 @@ Captura de navegador gerada com Chrome headless usando SwiftShader
 (renderização por software, `--enable-unsafe-swiftshader`), porque a GPU de 2015
 está em blocklist do Chrome (`WebGL: Disabled`).
 
-**Pasta `assets/` no VS Code:** evidência manual a capturar pelo aluno na
-máquina de desenvolvimento; a estrutura versionada é
-[`assets/`](../../assets/) (`icons/` + `images/` + `README.md`).
+**Pasta `assets/` no VS Code:** capturada em `assets-screenshot.png` — a pasta
+`assets/` aberta no VS Code com `icons/` (nove SVGs), `images/` e o `README.md`.
+A estrutura versionada é [`assets/`](../../assets/) (`icons/` + `images/` +
+`README.md`).
+
+## Entrega
+
+- `Tarefa09-entrega.html` — material da entrega (fonte editável).
+- `Tarefa09-entrega.pdf` — PDF autocontido, com as figuras comentadas e
+  referenciadas (mesma versão em `DMAtividades/9Atividade/`).
 
 ## Como reproduzir
 
