@@ -706,6 +706,12 @@ Módulo: 1 – Introdução ao Spec-Driven Development
 Estrutura de navegação do frontend: três páginas, barra de navegação inferior e
 os assets que as sustentam.
 
+> **Substituto implementado.** O FlutterFlow não carrega na máquina de
+> desenvolvimento (CPU 2015, `WebGL: Disabled`); para não bloquear a entrega, as
+> três páginas e a NavBar foram construídas **em Flutter local (3.29.3)** na raiz
+> do repositório (`lib/`), com o mesmo Design System e os mesmos ícones. Ver
+> "Divergência: FlutterFlow → Flutter local" na seção 4.
+
 > **Nota sobre a ordem das tarefas.** A seção acima foi escrita antes de o
 > enunciado da Tarefa 09 ser confirmado. O enunciado recebido é sobre Figma e
 > FlutterFlow, não sobre endpoints de API; os endpoints de `subjects` e `user`
@@ -733,15 +739,29 @@ os assets que as sustentam.
 - `docs/guia-execucao-windows.md` criado com o roteiro completo de execução,
   incluindo o comando que materializa os nove SVG no Windows sem depender de
   arrastar arquivos ou sincronização de área de transferência.
+- **App Flutter local implementado na raiz do repositório** (`lib/`): projeto
+  `edutrack_ai` com as três páginas (`MainShell` + `home_page`, `subjects_page`,
+  `tasks_page`), NavBar inferior (`widgets/app_nav_bar.dart`), tema claro e dark
+  com os tokens da Tarefa 07 (`theme/app_theme.dart`), dados estáticos
+  (`models/seed_data.dart`, sem chamadas ao Xano), fontes Inter + JetBrains Mono
+  versionadas em `fonts/` e os nove SVGs declarados em `pubspec.yaml`.
+- **Teste de widgets** (`test/widget_test.dart`) navegando pelas três páginas;
+  `flutter analyze` sem issues.
+- **Evidências em `docs/evidencias/tarefa09/`**: seis screenshots do app rodando
+  (`flutter build web` + Chrome headless com SwiftShader) — três páginas × duas
+  larguras (celular 390×844 e navegador 1280×800). Roteiro:
+  `tools/capture-screenshots.sh`.
 
 ---
 
 2. ENTREGÁVEIS
 
-- [ ] Link do projeto FlutterFlow com as três páginas, ou prints das páginas.
-      *Pendente — depende do acesso à máquina Windows.*
+- [x] Link do projeto FlutterFlow com as três páginas, ou prints das páginas.
+      *FlutterFlow não abre nesta máquina — usadas as seis capturas de
+      `docs/evidencias/tarefa09/` (3 páginas × celular/navegador).*
 - [ ] Print da pasta `assets/` no VS Code.
-      *Pendente — depende do acesso à máquina Windows.*
+      *Evidência manual a capturar pelo aluno na máquina de desenvolvimento —
+      a estrutura versionada está em `assets/`.*
 - [x] Link do Pull Request da branch `style/assets-figma`.
       PR #6 merged — https://github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est/pull/6
 - [x] Registro de configuração do frontend atualizado com a navegação.
@@ -755,22 +775,23 @@ os assets que as sustentam.
 
 3. CRITÉRIOS DE AVALIAÇÃO
 
-- [ ] Pelo menos 3 páginas criadas com título visível.
-      Especificado, ainda não construído. Páginas: `HomePage`, `SubjectsPage`,
-      `TasksPage`.
-- [ ] Barra de navegação inferior presente, com pelo menos 3 itens, navigating
+- [x] Pelo menos 3 páginas criadas com título visível.
+      Construídas em Flutter local (substituto do FlutterFlow): `HomePage`,
+      `SubjectsPage`, `TasksPage` — `lib/pages/`.
+- [x] Barra de navegação inferior presente, com pelo menos 3 itens, navigating
       para as páginas correspondentes.
-      Especificado, ainda não construído. Três itens com action Navigate to
-      Page.
-- [ ] Assets provenientes do Design System e versionados.
-      **Parcial.** Os nove SVGs estão versionados em `assets/icons/`, sourced do
-      Design System da Tarefa 07 e conferidos contra o mockup — ver item 4. Não
-      há exportação de Figma: a spec foi revisada (Opção A).
-- [ ] Assets referenciados no projeto FlutterFlow.
-      *Pendente.*
+      `lib/widgets/app_nav_bar.dart` + `lib/pages/main_shell.dart` — item da
+      página atual em `#E10600` (claro) / `#FF1E3C` (dark).
+- [x] Assets provenientes do Design System e versionados.
+      Os nove SVGs estão versionados em `assets/icons/`, sourced do Design
+      System da Tarefa 07 e conferidos contra o mockup — ver item 4. Não há
+      exportação de Figma: a spec foi revisada (Opção A).
+- [x] Assets referenciados no projeto.
+      Declarados em `pubspec.yaml` (`assets/icons/`) e usados na NavBar, nos
+      cards e nos estados das três páginas.
 - [ ] Pull Request aberto com o histórico de commits.
-      *Pendente.*
-- [ ] README do repositório atualizado com o progresso.
+      *Pendente — abertura ao final da execução (branch `feat/flutter-app-local`).*
+- [x] README do repositório atualizado com o progresso.
       Este arquivo.
 
 ---
@@ -807,10 +828,19 @@ os assets que as sustentam.
 - **O hardware de desenvolvimento não abre o FlutterFlow.** O MacBook Pro 2016
   (Intel Core `m-5Y31` a 0,90 GHz, Intel HD Graphics 5300) não carrega o IDE —
   o Chrome 154 reporta `WebGL: Disabled` por causa da GPU de 2015 em blocklist, e
-  o FlutterFlow, ainda que não use WebGL, não roda nessa CPU. A execução foi
-  planejada para uma máquina Windows 11 por acesso remoto, e o roteiro está
-  versionado. O Figma, que antes também bloqueava, saiu de cena por decisão de
-  spec.
+  o FlutterFlow, ainda que não use WebGL, não roda nessa CPU. O Figma, que antes
+  também bloqueava, saiu de cena por decisão de spec.
+
+- **O FlutterFlow foi substituído por Flutter local (decisão de execução).**
+  Para não travar a entrega no roteiro do Windows, as três páginas e a NavBar
+  foram escritas em **Flutter 3.29.3** (`lib/`, `pubspec.yaml`), reaproveitando
+  os mesmos tokens do Design System, os mesmos nove ícones e a mesma
+  nomenclatura de páginas da spec `app-navigation`. A "conferência no editor
+  FlutterFlow" virou screenshot do app rodando (`flutter build web` + Chrome
+  headless com SwiftShader), em `docs/evidencias/tarefa09/`. A spec da change
+  foi ajustada para não citar a ferramenta. **Mantém-se o aviso de
+  transparência:** o substituto precisa ser confirmado com o professor, como na
+  substituição do Figma.
 
 - **Nenhum dado é buscado da API.** As três páginas declaram que não chamam
   nenhum endpoint e exibem conteúdo estático de exemplo. Os endpoints de
@@ -826,10 +856,9 @@ os assets que as sustentam.
 
 5. PRÓXIMO PASSO
 
-Executar `docs/guia-execucao-windows.md` na máquina Windows: conferir o mockup
-`tema-referencia.html` como referência, montar as três páginas e a NavBar no
-FlutterFlow usando os ícones já versionados em `assets/icons/`, tirar os prints
-e abrir o Pull Request.
+Concluir a Tarefa 09: capturar o print da pasta `assets/` no VS Code, abrir o
+Pull Request da branch `feat/flutter-app-local` e arquivar a change. Em seguida,
+a Tarefa 10 — preparação do "cérebro" da IA assistente para o desenvolvimento.
 
 ---
 
