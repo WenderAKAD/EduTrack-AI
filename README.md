@@ -789,8 +789,8 @@ os assets que as sustentam.
 - [x] Assets referenciados no projeto.
       Declarados em `pubspec.yaml` (`assets/icons/`) e usados na NavBar, nos
       cards e nos estados das três páginas.
-- [ ] Pull Request aberto com o histórico de commits.
-      *Pendente — abertura ao final da execução (branch `feat/flutter-app-local`).*
+- [x] Pull Request aberto com o histórico de commits.
+      PR #7 (https://github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est/pull/7).
 - [x] README do repositório atualizado com o progresso.
       Este arquivo.
 
