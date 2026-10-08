@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Tarefa 09 – Estrutura de Navegação e Assets do Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 18mm 16mm 16mm; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: Inter, -apple-system, sans-serif;
+    color: #1A1312; font-size: 11.2pt; line-height: 1.55;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+
+  .mono { font-family: "JetBrains Mono", monospace; }
+
+  /* ---------- CAPA ---------- */
+  .capa { page-break-after: always; padding-top: 26mm; }
+  .tag {
+    display: inline-block; background: #E10600; color: #fff;
+    font-size: 8.5pt; font-weight: 700; letter-spacing: 1.1px;
+    padding: 4px 11px; border-radius: 20px; text-transform: uppercase;
+  }
+  .capa h1 {
+    font-size: 27pt; line-height: 1.2; letter-spacing: -0.7px;
+    margin: 16px 0 6px; font-weight: 700;
+  }
+  .capa h2 { font-size: 14pt; font-weight: 500; color: #7B6A67; margin-bottom: 26px; }
+
+  .rule { height: 3px; width: 74px; background: #E10600; border-radius: 3px; margin-bottom: 26px; }
+
+  table.meta { width: 100%; border-collapse: collapse; margin-bottom: 22px; }
+  table.meta td { padding: 7px 0; border-bottom: 1px solid #EADFDC; vertical-align: top; font-size: 10.5pt; }
+  table.meta td.k { width: 42%; color: #7B6A67; font-weight: 500; }
+
+  .box {
+    background: #F7F4F3; border: 1px solid #EADFDC;
+    border-left: 3px solid #E10600; border-radius: 8px;
+    padding: 12px 14px; margin-bottom: 18px; font-size: 10.5pt;
+  }
+  .box b { color: #C1121F; }
+
+  .sumario { background: #FFFFFF; border: 1px solid #EADFDC; border-radius: 10px; padding: 14px 18px; }
+  .sumario h3 { font-size: 10pt; text-transform: uppercase; letter-spacing: 1px; color: #7B6A67; margin-bottom: 9px; }
+  .sumario ol { margin-left: 17px; font-size: 10.5pt; }
+  .sumario li { margin-bottom: 4px; }
+
+  /* ---------- SEÇÕES ---------- */
+  h3.sec {
+    font-size: 13pt; font-weight: 700; margin: 0 0 12px;
+    padding-bottom: 7px; border-bottom: 2px solid #E10600;
+    display: flex; align-items: center; gap: 9px;
+  }
+  h3.sec .num {
+    background: #E10600; color: #fff; font-size: 9.5pt; font-weight: 700;
+    width: 21px; height: 21px; border-radius: 5px;
+    display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+
+  h4 { font-size: 11pt; font-weight: 700; margin: 16px 0 7px; color: #C1121F; }
+
+  p { margin-bottom: 9px; }
+  ul, ol { margin-left: 18px; margin-bottom: 10px; }
+  li { margin-bottom: 4px; }
+
+  section { margin-bottom: 18px; }
+
+  /* ---------- FIGURAS ---------- */
+  figure { margin: 12px 0 16px; page-break-inside: avoid; }
+  figure img { width: 100%; border: 1px solid #EADFDC; border-radius: 7px; display: block; }
+  figure img.phone { width: 33%; margin: 0 auto 8px; }
+  figcaption {
+    font-size: 9pt; color: #7B6A67; margin-top: 6px;
+    padding-top: 6px; border-top: 1px dashed #EADFDC;
+  }
+  figcaption b { color: #1A1312; }
+  figcaption .ref { font-family: "JetBrains Mono", monospace; font-size: 8.4pt; }
+
+  /* ---------- CÓDIGO ---------- */
+  pre {
+    background: #16181C; color: #E6E8EA; padding: 12px 14px;
+    border-radius: 8px; font-family: "JetBrains Mono", monospace;
+    font-size: 8.8pt; line-height: 1.5; overflow: hidden;
+    page-break-inside: avoid; margin-bottom: 12px;
+  }
+
+  code.inl {
+    background: #F7F4F3; border: 1px solid #EADFDC; border-radius: 4px;
+    padding: 1px 5px; font-family: "JetBrains Mono", monospace; font-size: 9.3pt;
+  }
+
+  /* ---------- TABELA ---------- */
+  table.t { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 9.8pt; }
+  table.t th {
+    background: #F7F4F3; text-align: left; padding: 7px 9px;
+    border-bottom: 2px solid #E10600; font-size: 9pt;
+    text-transform: uppercase; letter-spacing: 0.6px; color: #7B6A67;
+  }
+  table.t td { padding: 7px 9px; border-bottom: 1px solid #EADFDC; vertical-align: top; }
+  table.t tr:nth-child(even) td { background: #FDFCFC; }
+
+  .sw { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 5px; vertical-align: middle; border: 1px solid rgba(0,0,0,.15); }
+
+  .nota {
+    background: #FFF8F7; border: 1px solid #F0D5D2; border-left: 3px solid #E10600;
+    border-radius: 7px; padding: 10px 13px; font-size: 9.8pt; margin-bottom: 12px;
+    page-break-inside: avoid;
+  }
+  .nota b { color: #C1121F; }
+
+  .check {
+    background: #E10600; color: #fff; font-size: 8.5pt; font-weight: 700;
+    width: 16px; height: 16px; border-radius: 4px; flex-shrink: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+
+  .rodape {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    border-top: 1px solid #EADFDC; padding-top: 5px;
+    font-size: 8pt; color: #7B6A67;
+    display: flex; justify-content: space-between;
+  }
+</style>
+</head>
+<body>
+
+<div class="rodape">
+  <span>EduTrack AI &middot; Innovation Lab &middot; Tarefa 09</span>
+  <span>Wender Araujo Santos</span>
+</div>
+
+<!-- ==================== CAPA ==================== -->
+<section class="capa">
+  <span class="tag">Entrega 09 &middot; Innovation Lab</span>
+  <h1>Estrutura de Navegação<br>e Assets do Design System</h1>
+  <h2>A casca do frontend EduTrack AI — três páginas, NavBar e nove ícones SVG</h2>
+  <div class="rule"></div>
+
+  <table class="meta">
+    <tr><td class="k">Disciplina</td><td>Innovation Lab: Desenvolvimento Avançado No/Low Code</td></tr>
+    <tr><td class="k">Módulo</td><td>1 – Introdução ao Spec-Driven Development</td></tr>
+    <tr><td class="k">Duração estimada</td><td>2 horas</td></tr>
+    <tr><td class="k">Aluno</td><td>Wender Araújo Santos</td></tr>
+    <tr><td class="k">E-mail institucional</td><td class="mono">wender.araujo@aluno.impacta.edu.br</td></tr>
+    <tr><td class="k">Data de entrega</td><td>6 de outubro de 2026</td></tr>
+    <tr><td class="k">Branch</td><td class="mono">feat/flutter-app-local</td></tr>
+    <tr><td class="k">Repositório</td><td><a href="https://github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est">github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est</a></td></tr>
+  </table>
+
+  <div class="box">
+    <b>Resumo.</b> Change <span class="mono">add-figma-assets-and-navigation</span>
+    criada, implementada, validada e arquivada: a casca do app (três páginas +
+    NavBar), nove ícones SVG do Design System versionados em
+    <span class="mono">assets/</span> e seis capturas das páginas nas duas
+    larguras de conferência. Resultado em 11 requirements e 29 cenários, mais os
+    PRs #6 e #7 no repositório.
+  </div>
+
+  <div class="sumario">
+    <h3>Sumário</h3>
+    <ol>
+      <li>O que a tarefa pede</li>
+      <li>A change no OpenSpec</li>
+      <li>Assets do Design System</li>
+      <li>As três páginas</li>
+      <li>A barra de navegação</li>
+      <li>Substituições registradas</li>
+      <li>Evidências e como reproduzir</li>
+      <li>Critérios de avaliação</li>
+      <li>Observações técnicas</li>
+      <li>Próximo passo</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ==================== 1. ENUNCIADO ==================== -->
+<section>
+  <h3 class="sec"><span class="num">1</span> O que a tarefa pede</h3>
+
+  <p>A Tarefa 09 é a primeira a construir a interface do EduTrack AI. O escopo é
+  a <b>casca</b>: as páginas, a navegação entre elas e os arquivos de asset que
+  o Design System produz. Não há ligação com dados — isso é das tarefas seguintes.</p>
+
+  <table class="t">
+    <tr><th>Item pedido no enunciado</th><th>O que foi entregue</th></tr>
+    <tr><td>Ao menos <b>3 páginas</b> com título visível</td><td><span class="mono">HomePage</span>, <span class="mono">SubjectsPage</span> e <span class="mono">TasksPage</span> — seção 4</td></tr>
+    <tr><td><b>Barra de navegação inferior</b> com ao menos 3 itens, navegando para as páginas</td><td>Componente NavBar com os itens Home, Disciplinas e Tarefas — seção 5</td></tr>
+    <tr><td>Assets do <b>Design System</b>, versionados</td><td>Nove ícones SVG em <span class="mono">assets/icons/</span> — seção 3</td></tr>
+    <tr><td>Assets <b>referenciados no projeto</b></td><td>Declarados em <span class="mono">pubspec.yaml</span> e usados na NavBar, nos cards e nos estados</td></tr>
+    <tr><td><b>Pull Request</b> com o histórico de commits</td><td>PR #6 (assets) e PR #7 (shell Flutter local)</td></tr>
+    <tr><td><b>README</b> atualizado</td><td>Seção “Tarefa 09” no README do repositório</td></tr>
+  </table>
+
+  <div class="nota">
+    <b>Nota sobre a ordem das tarefas.</b> O README ainda trazia, por engano, que
+    a Tarefa 09 seria “criação dos endpoints no Xano”. O enunciado confirmado é
+    de frontend (Figma/FlutterFlow); os endpoints ficam para a tarefa seguinte. O
+    próprio README registra a correção.
+  </div>
+</section>
+
+<!-- ==================== 2. CHANGE ==================== -->
+<section>
+  <h3 class="sec"><span class="num">2</span> A change no OpenSpec</h3>
+
+  <p>O trabalho foi planejado como uma change do OpenSpec,
+  <span class="mono">add-figma-assets-and-navigation</span>, com os quatro
+  artifacts exigidos pelo schema <span class="mono">spec-driven</span>:</p>
+
+  <table class="t">
+    <tr><th>Artifact</th><th>Arquivo</th><th>Conteúdo</th></tr>
+    <tr><td><span class="mono">proposal</span></td><td><span class="mono">proposal.md</span></td><td>Por quê e o que muda; duas capabilities novas</td></tr>
+    <tr><td><span class="mono">specs</span></td><td><span class="mono">specs/design-assets/spec.md</span> e <span class="mono">specs/app-navigation/spec.md</span></td><td>Requisitos dos assets e da navegação</td></tr>
+    <tr><td><span class="mono">design</span></td><td><span class="mono">design.md</span></td><td>Decisões e alternativas descartadas</td></tr>
+    <tr><td><span class="mono">tasks</span></td><td><span class="mono">tasks.md</span></td><td>Roteiro de execução verificado item a item</td></tr>
+  </table>
+
+  <p>Duas capabilities foram declaradas como novas:</p>
+  <ul>
+    <li><span class="mono">design-assets</span> — os ícones, o formato, a
+    convenção de nome, onde são versionados e os tokens de design que todos
+    devem seguir.</li>
+    <li><span class="mono">app-navigation</span> — as três páginas e a barra de
+    navegação, incluindo a ação de cada item e o comportamento nas duas
+    larguras.</li>
+  </ul>
+
+  <p>O conjunto fecha em <b>11 requirements e 29 cenários</b>. A change foi
+  validada com <span class="mono">openspec validate --strict</span> e arquivada,
+  gerando as specs mestras em <span class="mono">openspec/specs/</span>:</p>
+
+  <pre class="mono" style="background:#F7F4F3;border:1px solid #EADFDC;border-radius:8px;padding:11px 13px;font-size:8.8pt;line-height:1.5;overflow-x:auto;margin-bottom:13px;">openspec validate add-figma-assets-and-navigation --strict   &rarr;  valid
+openspec archive  add-figma-assets-and-navigation --yes
+openspec validate --specs --strict                          &rarr;  4 passed, 0 failed</pre>
+
+  <div class="nota">
+    <b>Nenhuma capability existente foi modificada.</b> <span class="mono">subjects</span>
+    e <span class="mono">user</span> descrevem tabelas; esta change não adiciona
+    coluna, endpoint ou query. As páginas <span class="mono">SubjectsPage</span> e
+    <span class="mono">TasksPage</span> são cascas de apresentação — as listas que
+    vão renderizar são assunto de uma change futura, quando os endpoints da
+    Tarefa 10 existirem.
+  </div>
+</section>
+
+<!-- ==================== 3. ASSETS ==================== -->
+<section>
+  <h3 class="sec"><span class="num">3</span> Assets do Design System</h3>
+
+  <p>Nove ícones SVG foram criados em <span class="mono">assets/icons/</span>,
+  todos na grade 24×24 com <span class="mono">fill="none"</span>,
+  <span class="mono">stroke="currentColor"</span> e
+  <span class="mono">stroke-width="2"</span>. O <span class="mono">currentColor</span>
+  é o que permite recolorir o mesmo arquivo entre os dois temas da Tarefa 07, sem
+  duplicar arquivo.</p>
+
+  <table class="t">
+    <tr><th>Arquivo</th><th>Uso na interface</th><th>Origem no mockup</th></tr>
+    <tr><td class="mono">icons/home.svg</td><td>Item 1 da NavBar — Home</td><td>NavBar — item Home</td></tr>
+    <tr><td class="mono">icons/subjects.svg</td><td>Item 2 da NavBar — Disciplinas</td><td>NavBar — item Disciplinas</td></tr>
+    <tr><td class="mono">icons/tasks.svg</td><td>Item 3 da NavBar — Tarefas</td><td>NavBar — item Tarefas</td></tr>
+    <tr><td class="mono">icons/add-subject.svg</td><td>Botão de adicionar disciplina</td><td>Card de disciplina</td></tr>
+    <tr><td class="mono">icons/add-task.svg</td><td>Botão de adicionar tarefa</td><td>Card de tarefa</td></tr>
+    <tr><td class="mono">icons/check.svg</td><td>Tarefa concluída</td><td>Card de tarefa</td></tr>
+    <tr><td class="mono">icons/clock.svg</td><td>Tarefa pendente ou atrasada</td><td>Card de tarefa</td></tr>
+    <tr><td class="mono">icons/empty-subjects.svg</td><td>Estado vazio da lista de disciplinas</td><td>Grupos de funcionalidade — lista vazia</td></tr>
+    <tr><td class="mono">icons/empty-tasks.svg</td><td>Estado vazio da lista de tarefas</td><td>Grupos de funcionalidade — lista vazia</td></tr>
+  </table>
+
+  <p>Um SVG com <span class="mono">stroke="#1A1312"</span> escrito dentro ficaria
+  ilegível no tema dark, e o arquivo teria de ser duplicado. Com
+  <span class="mono">currentColor</span>, a cor é resolvida pelo tema ativo:</p>
+
+  <table class="t">
+    <tr><th>Tema</th><th>Cor do ícone</th></tr>
+    <tr><td>Claro</td><td><span class="sw" style="background:#1A1312"></span><span class="mono">#1A1312</span> (text principal)</td></tr>
+    <tr><td>Dark</td><td><span class="sw" style="background:#F2F3F5"></span><span class="mono">#F2F3F5</span> (text principal)</td></tr>
+  </table>
+
+  <figure>
+    <img src="assets-screenshot.png" alt="Pasta assets no VS Code com as subpastas icons e images">
+    <figcaption><b>Figura 1.</b> A pasta <span class="mono">assets/</span> no VS
+    Code: <span class="mono">icons/</span> com os nove SVGs versionados,
+    <span class="mono">images/</span> vazia (só o <span class="mono">.gitkeep</span>,
+    porque não há asset raster) e o <span class="mono">README.md</span> com a
+    tabela de origem de cada ícone.
+    <span class="ref">Arquivo: assets-screenshot.png</span></figcaption>
+  </figure>
+
+  <div class="nota">
+    <b>“Nove ícones, nenhum a mais.”</b> Ícones de funcionalidades que o app ainda
+    não tem — login, notificações, configurações, perfil — ficaram de fora de
+    propósito. A entrega é a navegação entre três telas, e um ícone sem tela
+    correspondente seria escopo não pedido.
+  </div>
+</section>
+
+<!-- ==================== 4. PAGINAS ==================== -->
+<section>
+  <h3 class="sec"><span class="num">4</span> As três páginas</h3>
+
+  <p>As três páginas foram construídas em <b>Flutter 3.29.3 local</b>
+  (substituto do FlutterFlow — seção 6), com os mesmos tokens do Design System,
+  os mesmos nove ícones e a mesma nomenclatura da spec
+  <span class="mono">app-navigation</span>. O conteúdo é 100% estático
+  (<span class="mono">lib/models/seed_data.dart</span>), sem nenhuma chamada ao
+  Xano.</p>
+
+  <table class="t">
+    <tr><th>Página</th><th>Conteúdo</th><th>Ícone na NavBar</th><th>Arquivo</th></tr>
+    <tr><td class="mono">HomePage</td><td>Título <b>EduTrack AI</b> + KPIs, painéis de progresso e tarefas recentes</td><td class="mono">home.svg</td><td class="mono">lib/pages/home_page.dart</td></tr>
+    <tr><td class="mono">SubjectsPage</td><td>Título <b>Disciplinas</b> + cards arredondados com nome, professor e carga</td><td class="mono">subjects.svg</td><td class="mono">lib/pages/subjects_page.dart</td></tr>
+    <tr><td class="mono">TasksPage</td><td>Título <b>Tarefas</b> + lista com data e estado</td><td class="mono">tasks.svg</td><td class="mono">lib/pages/tasks_page.dart</td></tr>
+  </table>
+
+  <h4>4.1 HomePage</h4>
+  <p>Painel de visão geral do aluno: título, indicadores (72% de conclusão, 12
+  disciplinas, 6 tarefas), painel de progresso e a lista de tarefas recentes.</p>
+  <figure>
+    <img class="phone" src="flutterflow-home-phone.png" alt="HomePage em largura de celular">
+    <img src="flutterflow-home-browser.png" alt="HomePage em largura de navegador">
+    <figcaption><b>Figura 2.</b> <span class="mono">HomePage</span> nas duas
+    larguras de conferência da spec: <b>celular</b> (390×844) e <b>navegador</b>
+    (1280×800). O título <b>EduTrack AI</b> identifica a página em qualquer uma
+    delas, e a NavBar permanece visível, sem scroll horizontal.
+    <span class="ref">Arquivos: flutterflow-home-phone.png / flutterflow-home-browser.png</span></figcaption>
+  </figure>
+
+  <h4>4.2 SubjectsPage</h4>
+  <p>Lista das disciplinas em <span class="mono">Container</span> de bordas
+  arredondadas, cada um com nome, professor e carga horária — o card do mockup
+  da Tarefa 07.</p>
+  <figure>
+    <img class="phone" src="flutterflow-subjects-phone.png" alt="SubjectsPage em largura de celular">
+    <img src="flutterflow-subjects-browser.png" alt="SubjectsPage em largura de navegador">
+    <figcaption><b>Figura 3.</b> <span class="mono">SubjectsPage</span> — o card
+    arredondado contém texto (nome, professor, carga), e não é uma caixa vazia. O
+    item <b>Disciplinas</b> aparece ativo na NavBar (vermelho
+    <span class="mono">#E10600</span>).
+    <span class="ref">Arquivos: flutterflow-subjects-phone.png / flutterflow-subjects-browser.png</span></figcaption>
+  </figure>
+
+  <h4>4.3 TasksPage</h4>
+  <p><span class="mono">ListView</span> de tarefas com título, data e estado
+  (concluída, pendente ou atrasada), usando os ícones <span class="mono">check.svg</span>
+  e <span class="mono">clock.svg</span>.</p>
+  <figure>
+    <img class="phone" src="flutterflow-tasks-phone.png" alt="TasksPage em largura de celular">
+    <img src="flutterflow-tasks-browser.png" alt="TasksPage em largura de navegador">
+    <figcaption><b>Figura 4.</b> <span class="mono">TasksPage</span> — a lista tem
+    itens de verdade (não vazia) e cada item mostra título, data e estado. O item
+    <b>Tarefas</b> fica ativo na NavBar. A spec também exige estado vazio
+    explícito, implementado para quando a lista não tiver dados.
+    <span class="ref">Arquivos: flutterflow-tasks-phone.png / flutterflow-tasks-browser.png</span></figcaption>
+  </figure>
+</section>
+
+<!-- ==================== 5. NAVBAR ==================== -->
+<section>
+  <h3 class="sec"><span class="num">5</span> A barra de navegação</h3>
+
+  <p>Componente NavBar com três itens, um por página. Cada item tem a ação de
+  navegar para a própria página (o equivalente ao <span class="mono">Navigate to
+  Page</span> do FlutterFlow), de modo que nenhum item fica inerte.</p>
+
+  <table class="t">
+    <tr><th>#</th><th>Rótulo</th><th>Destino</th><th>Ícone</th><th>Estado ativo</th></tr>
+    <tr><td>1</td><td>Home</td><td class="mono">HomePage</td><td class="mono">home.svg</td><td><span class="sw" style="background:#E10600"></span><span class="mono">#E10600</span> (claro) · <span class="mono">#FF1E3C</span> (dark)</td></tr>
+    <tr><td>2</td><td>Disciplinas</td><td class="mono">SubjectsPage</td><td class="mono">subjects.svg</td><td>idem</td></tr>
+    <tr><td>3</td><td>Tarefas</td><td class="mono">TasksPage</td><td class="mono">tasks.svg</td><td>idem</td></tr>
+  </table>
+
+  <p>O item da página atual é visualmente distinto dos outros dois
+  (<span class="mono">NavigationBarTheme</span> em
+  <span class="mono">lib/theme/app_theme.dart</span>). Nas Figuras 2 a 4 dá para
+  conferir o item ativo mudando conforme a página — em cada captura, o rótulo da
+  página visível é o que está em vermelho.</p>
+</section>
+
+<!-- ==================== 5. SUBSTITUICOES ==================== -->
+<section>
+  <h3 class="sec"><span class="num">6</span> Substituições registradas</h3>
+
+  <p>Duas ferramentas previstas no roteiro não puderam ser usadas nesta máquina.
+  Em vez de inventar evidência de uso, cada substituição foi registrada na spec
+  da change e nas observações do README.</p>
+
+  <h4>6.1 O Figma foi substituído pelo mockup (Opção A)</h4>
+  <p>O enunciado pedia exportar do “arquivo do Figma duplicado na Tarefa 06”, mas
+  esse arquivo nunca existiu e nenhuma máquina disponível roda o editor. A spec
+  <span class="mono">design-assets</span> foi revisada: todo asset agora provém do
+  Design System da Tarefa 07, materializado no mockup editável
+  <span class="mono">flutterflow/tema-referencia.html</span>, que passou a ser a
+  fonte de design. Apresentar os ícones como “exportação do Figma” seria falso.</p>
+
+  <h4>6.2 O FlutterFlow foi substituído por Flutter local (Opção B)</h4>
+  <p>O FlutterFlow não carrega nesta máquina: o MacBook Pro 2016 (Intel Core
+  <span class="mono">m-5Y31</span> a 0,90 GHz) não roda o IDE, e o Chrome 154
+  reporta <span class="mono">WebGL: Disabled</span> por causa da GPU de 2015 em
+  blocklist. Para não travar a entrega no roteiro do Windows, as três páginas e a
+  NavBar foram escritas em <b>Flutter 3.29.3</b> (<span class="mono">lib/</span>,
+  <span class="mono">pubspec.yaml</span>), reaproveitando os mesmos tokens, os
+  mesmos nove ícones e a mesma nomenclatura da spec.</p>
+
+  <table class="t">
+    <tr><th>Item</th><th>Arquivo (Flutter local)</th></tr>
+    <tr><td>Projeto / dependências</td><td class="mono">pubspec.yaml</td></tr>
+    <tr><td>Tema (tokens da Tarefa 07)</td><td class="mono">lib/theme/app_theme.dart</td></tr>
+    <tr><td>Páginas</td><td class="mono">lib/pages/{home,subjects,tasks}_page.dart</td></tr>
+    <tr><td>NavBar inferior</td><td class="mono">lib/widgets/app_nav_bar.dart</td> + <span class="mono">lib/pages/main_shell.dart</span></tr>
+    <tr><td>Conteúdo estático</td><td class="mono">lib/models/seed_data.dart</td></tr>
+    <tr><td>Teste de widget</td><td class="mono">test/widget_test.dart</td></tr>
+  </table>
+
+  <div class="nota">
+    <b>Aviso de transparência.</b> O substituto Flutter local precisa ser
+    confirmado com o professor, como já foi feito com a substituição do Figma. Até
+    lá, ele fica registrado como decisão de execução, não como entrega silenciosa.
+  </div>
+</section>
+
+<!-- ==================== 6. EVIDENCIAS ==================== -->
+<section>
+  <h3 class="sec"><span class="num">7</span> Evidências e como reproduzir</h3>
+
+  <p>As capturas foram feitas com <span class="mono">flutter build web</span>
+  seguido de Chrome headless usando <b>SwiftShader</b> (renderização por
+  software), porque a GPU de 2015 está em blocklist do Chrome. A navegação entre
+  páginas usa um parâmetro de URL (<span class="mono">?page=home|subjects|tasks</span>).</p>
+
+  <table class="t">
+    <tr><th>Arquivo</th><th>Largura</th><th>Página</th></tr>
+    <tr><td class="mono">flutterflow-home-phone.png</td><td>390×844</td><td>HomePage</td></tr>
+    <tr><td class="mono">flutterflow-home-browser.png</td><td>1280×800</td><td>HomePage</td></tr>
+    <tr><td class="mono">flutterflow-subjects-phone.png</td><td>390×844</td><td>SubjectsPage</td></tr>
+    <tr><td class="mono">flutterflow-subjects-browser.png</td><td>1280×800</td><td>SubjectsPage</td></tr>
+    <tr><td class="mono">flutterflow-tasks-phone.png</td><td>390×844</td><td>TasksPage</td></tr>
+    <tr><td class="mono">flutterflow-tasks-browser.png</td><td>1280×800</td><td>TasksPage</td></tr>
+    <tr><td class="mono">assets-screenshot.png</td><td>—</td><td>Pasta <span class="mono">assets/</span> no VS Code (Figura 1)</td></tr>
+  </table>
+
+<pre>flutter build web
+cd build/web && python3 -m http.server 8080
+./tools/capture-screenshots.sh   # Chrome headless + SwiftShader</pre>
+
+  <p>As seis capturas estão versionadas em
+  <span class="mono">docs/evidencias/tarefa09/</span> do repositório, junto do
+  roteiro de reprodução.</p>
+</section>
+
+<!-- ==================== 7. CRITERIOS ==================== -->
+<section>
+  <h3 class="sec"><span class="num">8</span> Critérios de avaliação</h3>
+
+  <table class="t">
+    <tr><th>Critério</th><th>Status</th></tr>
+    <tr><td>Pelo menos 3 páginas criadas com título visível</td><td><span class="check">&#10003;</span> <span class="mono">HomePage</span>, <span class="mono">SubjectsPage</span>, <span class="mono">TasksPage</span> (Figuras 2–4)</td></tr>
+    <tr><td>Barra de navegação inferior com ao menos 3 itens navegando</td><td><span class="check">&#10003;</span> NavBar + <span class="mono">MainShell</span>; item ativo em <span class="mono">#E10600</span>/<span class="mono">#FF1E3C</span></td></tr>
+    <tr><td>Assets do Design System, versionados</td><td><span class="check">&#10003;</span> nove SVGs em <span class="mono">assets/icons/</span> (Figura 1)</td></tr>
+    <tr><td>Assets referenciados no projeto</td><td><span class="check">&#10003;</span> declarados em <span class="mono">pubspec.yaml</span> e usados na UI</td></tr>
+    <tr><td>Pull Request aberto com o histórico de commits</td><td><span class="check">&#10003;</span> PR #6 e PR #7</td></tr>
+    <tr><td>README atualizado com o progresso</td><td><span class="check">&#10003;</span> seção “Tarefa 09”</td></tr>
+  </table>
+
+  <div class="nota">
+    <b>Sobre o print do FlutterFlow.</b> O critério pedia o link do projeto
+    FlutterFlow, ou prints das páginas. Como o IDE não abre nesta máquina, foram
+    usadas as seis capturas do app rodando (Figuras 2–4), com o mesmo Design
+    System e a mesma nomenclatura da spec.
+  </div>
+</section>
+
+<!-- ==================== 8. OBSERVACOES ==================== -->
+<section>
+  <h3 class="sec"><span class="num">9</span> Observações técnicas</h3>
+
+  <table class="t">
+    <tr><th>Tema</th><th>Detalhe</th></tr>
+    <tr><td>Nenhum dado vem da API</td><td>As três páginas exibem conteúdo estático. Os endpoints de <span class="mono">subjects</span> e <span class="mono">user</span> ainda não existem; ligar as telas a eles agora produziria erro de runtime.</td></tr>
+    <tr><td>Estado vazio previsto</td><td>A spec exige <i>empty-state</i> explícito. A lista vazia renderiza um placeholder, e não nada — para isso existem <span class="mono">empty-subjects.svg</span> e <span class="mono">empty-tasks.svg</span>.</td></tr>
+    <tr><td>Ordem de entrega</td><td>Os assets foram versionados na branch <span class="mono">style/assets-figma</span> (PR #6) e a casca Flutter local em <span class="mono">feat/flutter-app-local</span> (PR #7).</td></tr>
+    <tr><td>Tema claro e dark</td><td>O mesmo ícone serve aos dois temas via <span class="mono">currentColor</span>; o neon <span class="mono">#FF1E3C</span> fica limitado a acentos e ao item ativo (5–10% da tela).</td></tr>
+    <tr><td>Sem binding, por spec</td><td>“Nenhuma página chama a API Group <span class="mono">Xano Backend</span>” é requirement da change, não apenas estado atual.</td></tr>
+  </table>
+</section>
+
+<!-- ==================== 9. PROXIMO ==================== -->
+<section>
+  <h3 class="sec"><span class="num">10</span> Próximo passo</h3>
+
+  <p>Concluir a Tarefa 09 abrindo o Pull Request da branch
+  <span class="mono">feat/flutter-app-local</span> e arquivando a change. Em
+  seguida, a Tarefa 10 — preparação do “cérebro” da IA assistente para o
+  desenvolvimento.</p>
+
+  <div class="box">
+    <b>Arquivos produzidos nesta tarefa.</b>
+    <span class="mono">assets/icons/*.svg</span> (9) &middot;
+    <span class="mono">assets/README.md</span> &middot;
+    <span class="mono">lib/</span> (app Flutter local) &middot;
+    <span class="mono">pubspec.yaml</span> &middot;
+    <span class="mono">test/widget_test.dart</span> &middot;
+    <span class="mono">flutterflow/REGISTRO-CONFIGURACAO.md</span> (seção 6) &middot;
+    <span class="mono">docs/evidencias/tarefa09/</span> &middot;
+    <span class="mono">openspec/specs/{app-navigation,design-assets}/spec.md</span> &middot;
+    <span class="mono">openspec/changes/archive/2026-10-07-add-figma-assets-and-navigation/</span>
+  </div>
+</section>
+
+</body>
+</html>
