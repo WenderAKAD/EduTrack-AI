@@ -5,7 +5,8 @@ Material e registro da entrega **Tarefa 10 – Configuração Avançada do AGENT
 | Arquivo | Descrição |
 |---|---|
 | `Tarefa10-entrega.html` | Documento de entrega (versão editável) |
-| `Tarefa10-entrega.pdf` | Documento de entrega (versão final, 8 páginas) |
+| `Tarefa10-entrega.pdf` | Documento de entrega (versão final, 9 páginas) |
+| `resposta-ia.png` | Print da resposta da IA confirmando a leitura do `AGENTS.md` |
 
 ## O que esta tarefa entregou
 
@@ -16,11 +17,12 @@ Material e registro da entrega **Tarefa 10 – Configuração Avançada do AGENT
   `openspec/changes/archive/2026-10-08-feature-notas-atividades/`.
 - Cópia do material de entrega versionada neste diretório.
 
-## Evidência pendente (coleta manual)
+## Evidência da IA
 
-- **Screenshot da resposta da IA** confirmando que leu as regras do `AGENTS.md`.
-  Precisa ser capturado do chat do agente de IA — não é produzível por linha de
-  comando. Depois de salvo, colocar o PNG neste diretório.
+- **Screenshot da resposta da IA** (`resposta-ia.png`): o agente confirmou que leu
+  o `AGENTS.md` da raiz e acertou as quatro perguntas do teste de leitura — nome
+  do projeto, prefixos de branch, estrutura de Proposal no OpenSpec e o filtro
+  obrigatório por `user_id`.
 
 ## Verificação
 
