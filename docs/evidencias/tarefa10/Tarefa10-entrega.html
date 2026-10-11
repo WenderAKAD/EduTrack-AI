@@ -309,15 +309,31 @@ openspec validate feature-notas-atividades --strict
 <section>
   <h3 class="sec"><span class="num">5</span> Verificação das regras pela IA</h3>
 
-  <p>Teste de leitura: pediu-se à IA que respondesse, a partir do
-  <span class="mono">AGENTS.md</span>, três perguntas. As respostas abaixo são o
-  que o arquivo define:</p>
+  <p>Teste de leitura: pediu-se ao agente de IA que respondesse, a partir
+  exclusivamente do <span class="mono">AGENTS.md</span>, quatro perguntas. A IA
+  confirmou a leitura do arquivo e acertou todas:</p>
+
+  <figure>
+    <img src="resposta-ia.png" alt="Resposta da IA confirmando a leitura do AGENTS.md">
+    <figcaption>
+      <b>Figura 1 — Resposta da IA.</b> O agente confirma que leu o
+      <span class="mono">AGENTS.md</span> da raiz e responde: projeto
+      <b>EduTrack AI</b>; branches com prefixo <span class="mono">feat/</span>,
+      <span class="mono">fix/</span> e <span class="mono">docs/</span>; Proposal em
+      <span class="mono">openspec/changes/&lt;id&gt;/</span> com
+      <span class="mono">## Why</span>, <span class="mono">## What Changes</span> e
+      <span class="mono">## Impact</span>; e o filtro obrigatório por
+      <span class="mono">user_id</span>.
+      <span class="ref">arquivo: resposta-ia.png</span>
+    </figcaption>
+  </figure>
 
   <table class="t">
-    <tr><th>Pergunta</th><th>Resposta obtida do AGENTS.md</th></tr>
+    <tr><th>Pergunta</th><th>Resposta da IA</th></tr>
     <tr><td>Qual é o nome do projeto?</td><td><b>EduTrack AI</b> — app de gestão acadêmica</td></tr>
     <tr><td>Qual o padrão para nomes de branches?</td><td>Prefixos <span class="mono">feat/</span>, <span class="mono">fix/</span>, <span class="mono">docs/</span> (ex.: <span class="mono">feat/tabela-tarefas</span>)</td></tr>
-    <tr><td>O que é uma Proposal no OpenSpec?</td><td>Uma mudança planejada em <span class="mono">openspec/changes/&lt;id&gt;/</span>, com <span class="mono">proposal.md</span>, specs delta e <span class="mono">tasks.md</span>, validada antes de implementar</td></tr>
+    <tr><td>O que é uma Proposal no OpenSpec?</td><td>Uma mudança em <span class="mono">openspec/changes/&lt;id&gt;/</span> com <span class="mono">## Why</span>, <span class="mono">## What Changes</span>, <span class="mono">## Impact</span> e <span class="mono">## ADDED Requirements</span>, com escopo restrito em <span class="mono">tasks.md</span></td></tr>
+    <tr><td>Cite uma regra de segurança obrigatória.</td><td>Toda query ao banco <b>DEVE</b> filtrar por <span class="mono">user_id</span> do usuário autenticado</td></tr>
   </table>
 
   <p>As três regras mais importantes, resumidas pela IA:</p>
@@ -326,11 +342,12 @@ openspec validate feature-notas-atividades --strict
 3. A IA não faz push/deploy — apenas gera os arquivos</pre>
 
   <div class="nota">
-    <b>Print da resposta da IA (evidência manual).</b> O screenshot da resposta
-    do chat da IA confirmando a leitura das regras é capturado no
-    <b>Gemini Code Assist</b> (ou no agente de IA em uso) pelo aluno, na máquina de
-    desenvolvimento. É o item de evidência previsto no enunciado e fica anexado à
-    entrega do Classroom em <span class="mono">DMAtividades/10Atividade/</span>.
+    <b>A IA leu o arquivo, não chutou.</b> A primeira linha da resposta
+    (&ldquo;Confirmo que li o arquivo AGENTS.md localizado na raiz do
+    repositório&rdquo;) e os detalhes específicos do projeto &mdash; os prefixos de
+    branch, a estrutura de Proposal e o filtro por <span class="mono">user_id</span>
+    &mdash; só existem dentro do <span class="mono">AGENTS.md</span>. Não são
+    conhecimento genérico do modelo.
   </div>
 </section>
 

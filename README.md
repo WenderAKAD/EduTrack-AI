@@ -881,10 +881,10 @@ uma proposta OpenSpec de teste foi criada, validada e arquivada.
       `openspec/changes/archive/2026-10-08-feature-notas-atividades/`
 - [x] Link do repositório GitHub.
       https://github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est
-- [ ] Screenshot da resposta da IA confirmando que leu as regras.
-      *Pendente — captura manual no chat do agente de IA (`docs/evidencias/tarefa10/`).*
+- [x] Screenshot da resposta da IA confirmando que leu as regras.
+      Arquivo: `docs/evidencias/tarefa10/resposta-ia.png`
 - [x] Material de entrega versionado.
-      `docs/evidencias/tarefa10/Tarefa10-entrega.html` e `.pdf`
+      `docs/evidencias/tarefa10/Tarefa10-entrega.html`, `.pdf` e `resposta-ia.png`
 
 ---
 
@@ -916,6 +916,10 @@ uma proposta OpenSpec de teste foi criada, validada e arquivada.
   slash ficam em `.gemini/commands/opsx/`, não `.../openspec/`.
 - **Nenhum push ao Xano.** Conforme a REGRA Nº 2, os arquivos foram apenas
   gerados; o envio é responsabilidade do desenvolvedor.
+- **A IA leu o `AGENTS.md`.** No teste de leitura, o agente confirmou a leitura
+  do arquivo da raiz e acertou as quatro perguntas (nome do projeto, prefixo de
+  branch, estrutura de Proposal no OpenSpec e o filtro por `user_id`). Print em
+  `docs/evidencias/tarefa10/resposta-ia.png`.
 
 ---
 
