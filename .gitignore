@@ -1,2 +1,12 @@
 .DS_Store
 *.code-workspace
+
+# Flutter / Dart
+.dart_tool/
+.packages
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.flutter_tool_state
+*.iml
+.idea/
