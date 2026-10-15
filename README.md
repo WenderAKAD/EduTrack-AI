@@ -26,7 +26,7 @@ Development).
 
 ## Tarefas
 
-Progresso: **10 de 16 tarefas** concluídas (Tarefas 01 a 10). O detalhe de cada
+Progresso: **11 de 16 tarefas** concluídas (Tarefas 01 a 11). O detalhe de cada
 tarefa — entregáveis, critérios e observações — fica em `docs/tarefas/`.
 
 | # | Tarefa | Status | PR | Detalhe |
@@ -41,6 +41,7 @@ tarefa — entregáveis, critérios e observações — fica em `docs/tarefas/`.
 | 08 | Uso do OpenSpec para Planejar Mudanças | Concluída | #5 | [tarefa08](docs/tarefas/tarefa08.md) |
 | 09 | Navegação e Assets do Design System | Parcial | #6, #7 | [tarefa09](docs/tarefas/tarefa09.md) |
 | 10 | Configuração Avançada do AGENTS.md | Concluída | #8 | [tarefa10](docs/tarefas/tarefa10.md) |
+| 11 | Adicionar Tabela Tarefas via XanoScript | Concluída | #9 | [tarefa11](docs/tarefas/tarefa11.md) |
 
 ## Estrutura do repositório
 
