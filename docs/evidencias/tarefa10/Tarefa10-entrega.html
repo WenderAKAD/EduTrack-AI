@@ -112,6 +112,18 @@
     font-size: 8pt; color: #7B6A67;
     display: flex; justify-content: space-between;
   }
+
+  /* Visualizacao em tela: pagina centralizada com margens (a impressao usa @page) */
+  @media screen {
+    html { background: #EFEBEA; }
+    body {
+      width: 100%; max-width: 210mm; margin: 0 auto; background: #ffffff;
+      padding: 18mm 16mm 20mm;
+      box-shadow: 0 0 0 1px #EADFDC, 0 10px 40px rgba(0,0,0,.10);
+      min-height: 100vh;
+    }
+    .rodape { position: static; margin-top: 24px; }
+  }
 </style>
 </head>
 <body>

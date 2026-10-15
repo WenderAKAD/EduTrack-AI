@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Tarefa 11 – Adicionar Tabela Tarefas via XanoScript</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 18mm 16mm 16mm; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: Inter, -apple-system, sans-serif;
+    color: #1A1312; font-size: 11.2pt; line-height: 1.55;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+
+  .mono { font-family: "JetBrains Mono", monospace; }
+
+  .capa { page-break-after: always; padding-top: 26mm; }
+  .tag {
+    display: inline-block; background: #E10600; color: #fff;
+    font-size: 8.5pt; font-weight: 700; letter-spacing: 1.1px;
+    padding: 4px 11px; border-radius: 20px; text-transform: uppercase;
+  }
+  .capa h1 { font-size: 27pt; line-height: 1.2; letter-spacing: -0.7px; margin: 16px 0 6px; font-weight: 700; }
+  .capa h2 { font-size: 14pt; font-weight: 500; color: #7B6A67; margin-bottom: 26px; }
+  .rule { height: 3px; width: 74px; background: #E10600; border-radius: 3px; margin-bottom: 26px; }
+
+  table.meta { width: 100%; border-collapse: collapse; margin-bottom: 22px; }
+  table.meta td { padding: 7px 0; border-bottom: 1px solid #EADFDC; vertical-align: top; font-size: 10.5pt; }
+  table.meta td.k { width: 42%; color: #7B6A67; font-weight: 500; }
+
+  .box {
+    background: #F7F4F3; border: 1px solid #EADFDC;
+    border-left: 3px solid #E10600; border-radius: 8px;
+    padding: 12px 14px; margin-bottom: 18px; font-size: 10.5pt;
+  }
+  .box b { color: #C1121F; }
+
+  .sumario { background: #FFFFFF; border: 1px solid #EADFDC; border-radius: 10px; padding: 14px 18px; }
+  .sumario h3 { font-size: 10pt; text-transform: uppercase; letter-spacing: 1px; color: #7B6A67; margin-bottom: 9px; }
+  .sumario ol { margin-left: 17px; font-size: 10.5pt; }
+  .sumario li { margin-bottom: 4px; }
+
+  h3.sec {
+    font-size: 13pt; font-weight: 700; margin: 0 0 12px;
+    padding-bottom: 7px; border-bottom: 2px solid #E10600;
+    display: flex; align-items: center; gap: 9px;
+  }
+  h3.sec .num {
+    background: #E10600; color: #fff; font-size: 9.5pt; font-weight: 700;
+    width: 21px; height: 21px; border-radius: 5px;
+    display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+
+  h4 { font-size: 11pt; font-weight: 700; margin: 16px 0 7px; color: #C1121F; }
+
+  p { margin-bottom: 9px; }
+  ul, ol { margin-left: 18px; margin-bottom: 10px; }
+  li { margin-bottom: 4px; }
+
+  section { margin-bottom: 18px; }
+
+  figure { margin: 12px 0 16px; page-break-inside: avoid; }
+  figure img { width: 100%; border: 1px solid #EADFDC; border-radius: 7px; display: block; }
+  figcaption { font-size: 9pt; color: #7B6A67; margin-top: 6px; padding-top: 6px; border-top: 1px dashed #EADFDC; }
+  figcaption b { color: #1A1312; }
+  figcaption .ref { font-family: "JetBrains Mono", monospace; }
+
+  pre {
+    background: #16181C; color: #E6E8EA; padding: 12px 14px;
+    border-radius: 8px; font-family: "JetBrains Mono", monospace;
+    font-size: 8.8pt; line-height: 1.5; overflow: hidden;
+    page-break-inside: avoid; margin-bottom: 12px;
+  }
+  pre.light {
+    background: #F7F4F3; color: #1A1312; border: 1px solid #EADFDC;
+    border-radius: 8px; padding: 11px 13px; font-family: "JetBrains Mono", monospace;
+    font-size: 8.8pt; line-height: 1.5; overflow-x: auto; margin-bottom: 13px;
+  }
+
+  code.inl {
+    background: #F7F4F3; border: 1px solid #EADFDC; border-radius: 4px;
+    padding: 1px 5px; font-family: "JetBrains Mono", monospace; font-size: 9.3pt;
+  }
+
+  table.t { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 9.8pt; }
+  table.t th {
+    background: #F7F4F3; text-align: left; padding: 7px 9px;
+    border-bottom: 2px solid #E10600; font-size: 9pt;
+    text-transform: uppercase; letter-spacing: 0.6px; color: #7B6A67;
+  }
+  table.t td { padding: 7px 9px; border-bottom: 1px solid #EADFDC; vertical-align: top; }
+  table.t tr:nth-child(even) td { background: #FDFCFC; }
+
+  .nota {
+    background: #FFF8F7; border: 1px solid #F0D5D2; border-left: 3px solid #E10600;
+    border-radius: 7px; padding: 10px 13px; font-size: 9.8pt; margin-bottom: 12px;
+    page-break-inside: avoid;
+  }
+  .nota b { color: #C1121F; }
+
+  .check { background:#E10600; color:#fff; font-size:8.5pt; font-weight:700; width:16px; height:16px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; }
+
+  .rodape {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    border-top: 1px solid #EADFDC; padding-top: 5px;
+    font-size: 8pt; color: #7B6A67;
+    display: flex; justify-content: space-between;
+  }
+
+  /* Visualização em tela: centraliza e dá margens de página (a impressão usa @page) */
+  @media screen {
+    html { background: #EFEBEA; }
+    body {
+      width: 100%; max-width: 210mm; margin: 0 auto;
+      background: #FFFFFF; padding: 18mm 16mm 22mm;
+      box-shadow: 0 0 0 1px #EADFDC, 0 10px 44px rgba(0,0,0,.10);
+      min-height: 100vh;
+    }
+    .rodape { position: static; margin-top: 26px; }
+  }
+
+</style>
+</head>
+<body>
+
+<div class="rodape">
+  <span>EduTrack AI &middot; Innovation Lab &middot; Tarefa 11</span>
+  <span>Wender Araujo Santos</span>
+</div>
+
+<!-- ==================== CAPA ==================== -->
+<section class="capa">
+  <span class="tag">Entrega 11 &middot; Innovation Lab</span>
+  <h1>Adicionar Tabela Tarefas<br>via XanoScript</h1>
+  <h2>Criando a tabela <span class="mono">academic_tasks</span> com Spec-Driven Development</h2>
+  <div class="rule"></div>
+
+  <table class="meta">
+    <tr><td class="k">Disciplina</td><td>Innovation Lab: Desenvolvimento Avançado No/Low Code</td></tr>
+    <tr><td class="k">Módulo</td><td>2 – Integração Frontend-Backend</td></tr>
+    <tr><td class="k">Pré-requisitos</td><td>Tarefa 08 (OpenSpec + tabela <span class="mono">subjects</span>)</td></tr>
+    <tr><td class="k">Aluno</td><td>Wender Araújo Santos</td></tr>
+    <tr><td class="k">E-mail institucional</td><td class="mono">wender.araujo@aluno.impacta.edu.br</td></tr>
+    <tr><td class="k">Data de entrega</td><td>15 de outubro de 2026</td></tr>
+    <tr><td class="k">Branch</td><td class="mono">feat/tabela-tarefas</td></tr>
+    <tr><td class="k">Repositório</td><td><a href="https://github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est">github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est</a></td></tr>
+  </table>
+
+  <div class="box">
+    <b>Resumo.</b> A tabela <span class="mono">academic_tasks</span> foi criada no
+    backend do EduTrack AI seguindo o fluxo do Spec-Driven Development: a mudança
+    foi planejada (<span class="mono">proposal</span>, <span class="mono">spec</span>,
+    <span class="mono">design</span>, <span class="mono">tasks</span>), implementada em
+    XanoScript, validada, enviada ao Xano e arquivada — gerando a spec mestra
+    <span class="mono">openspec/specs/academic-tasks/spec.md</span>.
+  </div>
+
+  <div class="sumario">
+    <h3>Sumário</h3>
+    <ol>
+      <li>Objetivo e conceitos-chave</li>
+      <li>O fluxo OpenSpec (proposal → implementação → arquivo)</li>
+      <li>A tabela academic_tasks</li>
+      <li>Código XanoScript e push</li>
+      <li>Evidências</li>
+      <li>Critérios de avaliação</li>
+      <li>Observações técnicas</li>
+      <li>Próximo passo</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ==================== 1. OBJETIVO ==================== -->
+<section>
+  <h3 class="sec"><span class="num">1</span> Objetivo e conceitos-chave</h3>
+
+  <p>O objetivo é criar a tabela <span class="mono">academic_tasks</span> —
+  as tarefas acadêmicas do aluno (lições, provas e trabalhos) — diretamente por
+  código, no backend do Xano, seguindo o processo de planejamento do OpenSpec.</p>
+
+  <table class="t">
+    <tr><th>Conceito</th><th>O que significa no projeto</th></tr>
+    <tr><td><b>Spec-Driven Development</b></td><td>Primeiro se escreve a especificação da mudança; só depois se escreve o código. A spec é a fonte de verdade.</td></tr>
+    <tr><td><b>Tabela (Xano)</b></td><td>Estrutura de dados do backend. Equivalentes: <span class="mono">subjects</span>, <span class="mono">user</span> e agora <span class="mono">academic_tasks</span>.</td></tr>
+    <tr><td><b>XanoScript</b></td><td>Linguagem declarativa do Xano para descrever tabelas, APIs e funções em arquivos <span class="mono">.xs</span>.</td></tr>
+    <tr><td><b>Relationship</b></td><td>Campo que liga uma linha a outra tabela — aqui, <span class="mono">subject_id</span> liga cada tarefa à sua disciplina.</td></tr>
+  </table>
+</section>
+
+<!-- ==================== 2. FLUXO OPENSPEC ==================== -->
+<section>
+  <h3 class="sec"><span class="num">2</span> O fluxo OpenSpec (proposal → implementação → arquivo)</h3>
+
+  <p>A mudança foi planejada antes do código, com os quatro artifacts do schema
+  <span class="mono">spec-driven</span>:</p>
+
+  <table class="t">
+    <tr><th>Artifact</th><th>Arquivo</th><th>Papel</th></tr>
+    <tr><td class="mono">proposal</td><td class="mono">proposal.md</td><td>Por quê e o que muda</td></tr>
+    <tr><td class="mono">specs</td><td class="mono">specs/academic-tasks/spec.md</td><td>Requisitos com cenários WHEN/THEN</td></tr>
+    <tr><td class="mono">design</td><td class="mono">design.md</td><td>Decisões técnicas (tipo de data, ausência de user_id, etc.)</td></tr>
+    <tr><td class="mono">tasks</td><td class="mono">tasks.md</td><td>Lista de execução</td></tr>
+  </table>
+
+  <p>Validação da mudança e das specs permanentes:</p>
+  <pre>openspec validate create-academic-tasks-table --strict
+  &rarr;  Change 'create-academic-tasks-table' is valid
+
+openspec validate --specs --strict
+  &rarr;  3 passed, 0 failed  (spec/user, subjects, academic-tasks)</pre>
+
+  <p>Depois do push ao Xano, a mudança foi arquivada, o que fundiu o delta na
+  spec mestra da capability:</p>
+
+  <pre>openspec archive create-academic-tasks-table
+  &rarr;  openspec/changes/archive/2026-10-15-create-academic-tasks-table/
+  &rarr;  openspec/specs/academic-tasks/spec.md  (criada)</pre>
+</section>
+
+<!-- ==================== 3. A TABELA ==================== -->
+<section>
+  <h3 class="sec"><span class="num">3</span> A tabela academic_tasks</h3>
+
+  <p>Seis campos foram definidos — exatamente os pedidos, sem extras
+  (REGRA Nº 1 do <span class="mono">AGENTS.md</span>):</p>
+
+  <table class="t">
+    <tr><th>Campo</th><th>Tipo</th><th>Regra</th></tr>
+    <tr><td class="mono">id</td><td>int</td><td>Chave primária, auto-gerada</td></tr>
+    <tr><td class="mono">title</td><td>text</td><td>Obrigatório, <span class="mono">filters=trim</span></td></tr>
+    <tr><td class="mono">description</td><td>text</td><td>Obrigatório</td></tr>
+    <tr><td class="mono">due_date</td><td>date</td><td>Obrigatório — dia de prazo (sem horário)</td></tr>
+    <tr><td class="mono">status</td><td>text</td><td>Obrigatório, <span class="mono">filters=trim</span></td></tr>
+    <tr><td class="mono">subject_id</td><td>int (relationship)</td><td>Obrigatório → aponta para <span class="mono">subjects</span></td></tr>
+  </table>
+
+  <p>Index declarado: <span class="mono">primary</span> em <span class="mono">id</span>
+  e <span class="mono">btree</span> em <span class="mono">subject_id</span> (a
+  listagem de tarefas por disciplina é o acesso esperado).</p>
+
+  <div class="nota">
+    <b>Posse herdada.</b> A tabela <b>não</b> duplica <span class="mono">user_id</span>:
+    a posse vem de <span class="mono">subjects.user_id</span>. Uma tarefa só existe
+    dentro de uma disciplina, e a disciplina já é escopada por usuário — evita duas
+    fontes de verdade para o mesmo dado.
+  </div>
+</section>
+
+<!-- ==================== 4. CODIGO E PUSH ==================== -->
+<section>
+  <h3 class="sec"><span class="num">4</span> Código XanoScript e push</h3>
+
+  <p>O arquivo <span class="mono">tables/academic_tasks.xs</span>:</p>
+
+  <pre>table academic_tasks {
+  auth = false
+
+  description = "Tarefas academicas do EduTrack AI..."
+
+  schema {
+    int id
+    text title filters=trim
+    text description
+    date due_date
+    text status filters=trim
+    int subject_id {
+      table = "subjects"
+    }
+  }
+
+  index = [
+    {type: "primary", field: [{name: "id"}]}
+    {type: "btree", field: [{name: "subject_id"}]}
+  ]
+}</pre>
+
+  <p>Enviado ao Xano (workspace <span class="mono">148813</span>, branch
+  <span class="mono">v1</span>) — o push é feito pelo desenvolvedor, não pela IA
+  (REGRA Nº 2):</p>
+
+  <pre>xano workspace push --branch v1 --include "tables/academic_tasks.xs"
+
+  Tables               +1 created
+  --- Changes ---
+  CREATE           table              academic_tasks
+
+  Pushed 1 documents to workspace 148813</pre>
+</section>
+
+<!-- ==================== 5. EVIDENCIAS ==================== -->
+<section>
+  <h3 class="sec"><span class="num">5</span> Evidências</h3>
+
+  <figure>
+    <img src="xano-academic-tasks.png" alt="Painel do Xano mostrando a tabela academic_tasks criada">
+    <figcaption>
+      <b>Figura 1 — Tabela criada no painel do Xano.</b> A tabela
+      <span class="mono">academic_tasks</span> aparece no Database do workspace,
+      com os seis campos e o relacionamento <span class="mono">subject_id</span>
+      apontando para <span class="mono">subjects</span>.
+      <span class="ref">xano-academic-tasks.png</span>
+    </figcaption>
+  </figure>
+
+  <table class="t">
+    <tr><th>Evidência</th><th>Onde</th></tr>
+    <tr><td>Tabela criada via XanoScript</td><td><span class="mono">tables/academic_tasks.xs</span></td></tr>
+    <tr><td>Change planejada e arquivada</td><td><span class="mono">openspec/changes/archive/2026-10-15-create-academic-tasks-table/</span></td></tr>
+    <tr><td>Spec mestra sincronizada</td><td><span class="mono">openspec/specs/academic-tasks/spec.md</span></td></tr>
+    <tr><td>Push ao Xano</td><td><span class="mono">CREATE table academic_tasks</span> (workspace 148813, branch v1)</td></tr>
+    <tr><td>Relacionamento</td><td><span class="mono">subject_id</span> → <span class="mono">subjects</span></td></tr>
+  </table>
+</section>
+
+<!-- ==================== 6. CRITERIOS ==================== -->
+<section>
+  <h3 class="sec"><span class="num">6</span> Critérios de avaliação</h3>
+
+  <table class="t">
+    <tr><th>Critério</th><th>Status</th></tr>
+    <tr><td>Uso correto do fluxo OpenSpec (proposal → implementação → arquivo)</td><td><span class="check">&#10003;</span> <span class="mono">create-academic-tasks-table</span> (4/4 artifacts, valid, arquivada)</td></tr>
+    <tr><td>Tabela criada no Xano com todos os campos solicitados</td><td><span class="check">&#10003;</span> <span class="mono">academic_tasks</span> — 6 campos</td></tr>
+    <tr><td>Relacionamento entre tarefas e disciplinas</td><td><span class="check">&#10003;</span> <span class="mono">subject_id</span> → <span class="mono">subjects</span></td></tr>
+    <tr><td>Commit na branch <span class="mono">feat/tabela-tarefas</span></td><td><span class="check">&#10003;</span> PR aberto</td></tr>
+  </table>
+</section>
+
+<!-- ==================== 6. OBSERVACOES ==================== -->
+<section>
+  <h3 class="sec"><span class="num">7</span> Observações técnicas</h3>
+
+  <table class="t">
+    <tr><th>Tema</th><th>Decisão</th></tr>
+    <tr><td><b>Escopo</b></td><td>Apenas os campos pedidos. Sem <span class="mono">user_id</span> (posse herdada), sem enum de status, sem timestamps e sem endpoint.</td></tr>
+    <tr><td><b>Data</b></td><td><span class="mono">due_date</span> é <span class="mono">date</span>, não <span class="mono">timestamp</span> — evita inventar um horário.</td></tr>
+    <tr><td><b>guid</b></td><td>Não declarado no arquivo: o Xano gera no push e devolve para o arquivo local.</td></tr>
+    <tr><td><b>Push isolado</b></td><td>Enviado com <span class="mono">--include</span>, porque o CLI ordena por caminho e <span class="mono">academic_tasks</span> viria antes de <span class="mono">subjects</span>.</td></tr>
+    <tr><td><b>Sem push pela IA</b></td><td>REGRA Nº 2: a IA gera/valida os arquivos; o envio ao Xano é do desenvolvedor.</td></tr>
+    <tr><td><b>Enunciado</b></td><td>Cita <span class="mono">docs/*_guideline.md</span> e a Paleta XanoScript, que não existem aqui; o fluxo real usa o Xano CLI.</td></tr>
+  </table>
+</section>
+
+<!-- ==================== 6. PROXIMO ==================== -->
+<section>
+  <h3 class="sec"><span class="num">8</span> Próximo passo</h3>
+
+  <p>O Módulo 2 continua: expor os endpoints REST (CRUD) das tabelas do backend e
+  integrar o frontend ao Xano.</p>
+
+  <div class="box">
+    <b>Arquivos produzidos nesta tarefa.</b>
+    <span class="mono">tables/academic_tasks.xs</span> &middot;
+    <span class="mono">openspec/changes/archive/2026-10-15-create-academic-tasks-table/</span>
+    (proposal, specs/academic-tasks, design, tasks) &middot;
+    <span class="mono">openspec/specs/academic-tasks/spec.md</span> &middot;
+    <span class="mono">docs/evidencias/tarefa11/</span> (este material)
+  </div>
+</section>
+
+</body>
+</html>
