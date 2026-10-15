@@ -21,12 +21,13 @@ Development).
 - Node.js / npm
 - OpenSpec
 - Xano / XanoScript
+- Python
 - Antigravity (IA)
 - Flutter
 
 ## Tarefas
 
-Progresso: **11 de 16 tarefas** concluídas (Tarefas 01 a 11). O detalhe de cada
+Progresso: **12 de 16 tarefas** concluídas (Tarefas 01 a 12). O detalhe de cada
 tarefa — entregáveis, critérios e observações — fica em `docs/tarefas/`.
 
 | # | Tarefa | Status | PR | Detalhe |
@@ -42,6 +43,7 @@ tarefa — entregáveis, critérios e observações — fica em `docs/tarefas/`.
 | 09 | Navegação e Assets do Design System | Parcial | #6, #7 | [tarefa09](docs/tarefas/tarefa09.md) |
 | 10 | Configuração Avançada do AGENTS.md | Concluída | #8 | [tarefa10](docs/tarefas/tarefa10.md) |
 | 11 | Adicionar Tabela Tarefas via XanoScript | Concluída | #9 | [tarefa11](docs/tarefas/tarefa11.md) |
+| 12 | Integração Python Básica | Concluída | #10 | [tarefa12](docs/tarefas/tarefa12.md) |
 
 ## Estrutura do repositório
 
