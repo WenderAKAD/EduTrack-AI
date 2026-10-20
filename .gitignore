@@ -1,2 +1,7 @@
 .DS_Store
 *.code-workspace
+build/
+.dart_tool/
+.idea/
+*.iml
+__pycache__/

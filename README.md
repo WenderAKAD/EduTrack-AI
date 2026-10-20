@@ -52,6 +52,9 @@ tarefa — entregáveis, critérios e observações — fica em `docs/tarefas/`.
 - `apis/`, `tables/`, `functions/`, `addons/` — backend Xano (XanoScript).
 - `flutterflow/`, `lib/`, `assets/` — frontend.
 - `docs/` — documentação; `docs/tarefas/` (detalhe por tarefa) e `docs/evidencias/`.
+- `docs/painel-status.html` — painel visual de progresso, gerado automaticamente
+  por `scripts/update_status_page.py` a cada commit (hook `pre-commit`; reinstale
+  após clonar com `sh scripts/install-hooks.sh`).
 
 ## Observações de transparência
 

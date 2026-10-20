@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EduTrack AI — Painel de Status</title>
+<style>
+  :root {
+    --vermelho: #E10600; --vermelho-esc: #FF1E3C; --fundo: #0f1420;
+    --card: #171e2e; --card-2: #1d2639; --texto: #e8ecf5; --suave: #9aa7bf;
+    --ok: #2ecc71; --parcial: #f1c40f; --pend: #6c7a94;
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+         background:var(--fundo); color:var(--texto); line-height:1.5; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 28px 20px 60px; }
+  header.hero { background: linear-gradient(135deg, #1a2236 0%, #241016 60%, #3a0d10 100%);
+    border-bottom: 3px solid var(--vermelho); border-radius: 16px; padding: 30px 26px; margin-bottom: 22px; }
+  header.hero h1 { margin:0 0 6px; font-size: 1.9rem; letter-spacing:-.5px; }
+  header.hero p { margin:0; color:var(--suave); font-size:.95rem; }
+  .badge { display:inline-block; background:var(--vermelho); color:#fff; font-weight:700;
+    padding:3px 10px; border-radius:999px; font-size:.8rem; margin-top:12px; }
+  .stats { display:grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-bottom:26px; }
+  .stat { background:var(--card); border:1px solid #232d44; border-radius:12px; padding:14px 16px; }
+  .stat .n { font-size:1.7rem; font-weight:800; }
+  .stat .l { color:var(--suave); font-size:.78rem; text-transform:uppercase; letter-spacing:.6px; }
+  h2 { font-size:1.05rem; margin:30px 0 12px; text-transform:uppercase; letter-spacing:1px;
+    color:#cfd8ea; border-left:4px solid var(--vermelho); padding-left:10px; }
+  .bar-geral { background:var(--card); border:1px solid #232d44; border-radius:14px; padding:18px 20px; }
+  .track { background:#0c111c; border-radius:999px; height:22px; overflow:hidden; }
+  .fill { height:100%; background:linear-gradient(90deg,var(--vermelho),var(--vermelho-esc));
+    display:flex; align-items:center; justify-content:flex-end; color:#fff; font-size:.72rem; font-weight:700;
+    padding-right:8px; transition:width .5s; }
+  .faixa { display:flex; justify-content:space-between; color:var(--suave); font-size:.78rem; margin-top:6px; }
+  .fase { background:var(--card); border:1px solid #232d44; border-radius:12px; padding:14px 16px; margin-bottom:10px; }
+  .fase .topo { display:flex; justify-content:space-between; align-items:center; gap:10px; }
+  .fase .nome { font-weight:700; font-size:.95rem; }
+  .fase .nome span { color:var(--suave); font-weight:400; }
+  .fase .mini { background:#0c111c; height:10px; border-radius:999px; margin-top:10px; overflow:hidden; }
+  .fase .mini i { display:block; height:100%; background:var(--vermelho); }
+  .chip { font-size:.7rem; font-weight:700; padding:2px 9px; border-radius:999px; white-space:nowrap; }
+  .chip.ok { background:rgba(46,204,113,.15); color:var(--ok); border:1px solid rgba(46,204,113,.4); }
+  .chip.parcial { background:rgba(241,196,15,.14); color:var(--parcial); border:1px solid rgba(241,196,15,.4); }
+  .chip.pendente { background:rgba(108,122,148,.16); color:var(--suave); border:1px solid #33405c; }
+  table { width:100%; border-collapse:collapse; background:var(--card); border-radius:12px; overflow:hidden;
+    border:1px solid #232d44; font-size:.87rem; }
+  th, td { padding:9px 12px; text-align:left; border-bottom:1px solid #222c42; }
+  th { background:var(--card-2); font-size:.72rem; text-transform:uppercase; letter-spacing:.7px; color:var(--suave); }
+  tr:last-child td { border-bottom:none; }
+  td.num { font-weight:700; color:var(--suave); width:44px; }
+  a { color:var(--vermelho-esc); }
+  .bloco { background:var(--card); border:1px solid #232d44; border-radius:12px; padding:14px 16px; margin-bottom:10px; }
+  .bloco h3 { margin:0 0 8px; font-size:.95rem; display:flex; justify-content:space-between; gap:10px; }
+  .bloco ul { margin:6px 0 0; padding-left:0; list-style:none; }
+  .bloco li { padding:3px 0 3px 22px; position:relative; font-size:.85rem; color:#c6cfe2; }
+  .bloco li::before { position:absolute; left:0; top:3px; width:15px; height:15px; border-radius:4px;
+    font-size:.7rem; display:flex; align-items:center; justify-content:center; font-weight:700; }
+  .bloco li.feita::before { content:"✓"; background:rgba(46,204,113,.18); color:var(--ok); border:1px solid var(--ok); }
+  .bloco li.aberta::before { content:"·"; background:#0c111c; color:var(--suave); border:1px solid #33405c; }
+  .lista { background:var(--card); border:1px solid #232d44; border-radius:12px; padding:8px 16px; margin:0; }
+  .lista li { padding:7px 0; border-bottom:1px solid #222c42; font-size:.87rem; color:#c6cfe2; }
+  .lista li:last-child { border-bottom:none; }
+  .tags { display:flex; flex-wrap:wrap; gap:8px; }
+  .tag { background:var(--card-2); border:1px solid #2b3757; color:#cfd8ea; font-size:.78rem;
+    padding:5px 11px; border-radius:8px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
+  footer { margin-top:34px; color:var(--suave); font-size:.78rem; text-align:center; border-top:1px solid #222c42;
+    padding-top:16px; }
+  .nota { background:var(--card); border-left:3px solid var(--parcial); border-radius:0 10px 10px 0;
+    padding:12px 16px; color:#c6cfe2; font-size:.86rem; margin-top:10px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <h1>EduTrack AI — Painel de Status</h1>
+    <p>Assistente educacional · Innovation Lab · Faculdade Impacta · Wender Araújo Santos</p>
+    <span class="badge">Etapa: 11 de 16 tarefas concluídas · Tarefa 09 parcial · 1 change ativa</span>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><div class="n">11/16</div><div class="l">Tarefas concluídas · 1 parcial</div></div>
+    <div class="stat"><div class="n">72%</div><div class="l">Progresso geral</div></div>
+    <div class="stat"><div class="n">4</div><div class="l">Specs permanentes</div></div>
+    <div class="stat"><div class="n">5</div><div class="l">Changes arquivadas</div></div>
+    <div class="stat"><div class="n">1</div><div class="l">Change ativa</div></div>
+    <div class="stat"><div class="n">10</div><div class="l">Pull requests</div></div>
+  </div>
+
+  <div class="bar-geral">
+    <div class="track"><div class="fill" style="width:72%">72%</div></div>
+    <div class="faixa"><span>Tarefa 01</span><span>APIs REST e app completo</span><span>Tarefa 16</span></div>
+    <div class="nota"><strong>Nota de consistência:</strong> o texto do README declara <strong>12 de 16</strong> tarefas concluídas, mas a própria tabela marca a Tarefa 09 como <em>parcial</em>. Este painel usa a tabela: 11 concluídas + 1 parcial = 72% do total.</div>
+  </div>
+
+  <h2>Fases do projeto</h2>
+  <div class="fase"><div class="topo"><div class="nome">Fase 1: Fundacao: Git, VS Code e OpenSpec <span>· tarefas 01, 02, 03, 04, 05</span></div><span class="chip ok">concluída</span></div><div class="mini"><i style="width:100%"></i></div></div>
+<div class="fase"><div class="topo"><div class="nome">Fase 2: Design, Templates e FlutterFlow <span>· tarefas 06, 07, 09</span></div><span class="chip parcial">em andamento</span></div><div class="mini"><i style="width:83%"></i></div></div>
+<div class="fase"><div class="topo"><div class="nome">Fase 3: Planejamento: OpenSpec e AGENTS.md <span>· tarefas 08, 10</span></div><span class="chip ok">concluída</span></div><div class="mini"><i style="width:100%"></i></div></div>
+<div class="fase"><div class="topo"><div class="nome">Fase 4: Backend Xano (tabelas via XanoScript) <span>· tarefas 11</span></div><span class="chip ok">concluída</span></div><div class="mini"><i style="width:100%"></i></div></div>
+<div class="fase"><div class="topo"><div class="nome">Fase 5: Logica e integracao Python <span>· tarefas 12</span></div><span class="chip ok">concluída</span></div><div class="mini"><i style="width:100%"></i></div></div>
+<div class="fase"><div class="topo"><div class="nome">Fase 6: APIs REST e aplicacao completa <span>· tarefas 13, 14, 15, 16</span></div><span class="chip pendente">a iniciar</span></div><div class="mini"><i style="width:0%"></i></div></div>
+
+  <h2>Tarefas</h2>
+  <table>
+    <thead><tr><th>#</th><th>Tarefa</th><th>Status</th><th>PR</th></tr></thead>
+    <tbody><tr><td class="num">01</td><td>Primeiro Contato com Git e GitHub<br><span style="color:var(--suave);font-size:.76rem"><a href="../docs/tarefas/tarefa01.md">detalhe</a></span></td><td><span class="chip ok">concluída</span></td><td>—</td></tr>
+<tr><td class="num">02</td><td>VS Code, Node.js e Configuração de IA<br><span style="color:var(--suave);font-size:.76rem"><a href="../docs/tarefas/tarefa02.md">detalhe</a></span></td><td><span class="chip ok">concluída</span></td><td>—</td></tr>
+<tr><td class="num">03</td><td>Instalação e Inicialização do OpenSpec<br><span style="color:var(--suave);font-size:.76rem"><a href="../docs/tarefas/tarefa03.md">detalhe</a></span></td><td><span class="chip ok">concluída</span></td><td>—</td></tr>
+<tr><td class="num">04</td><td>Primeiro Pull/Push com XanoScript<br><span style="color:var(--suave);font-size:.76rem"><a href="../docs/tarefas/tarefa04.md">detalhe</a></span></td><td><span class="chip ok">concluída</span></td><td>—</td></tr>
+<tr><td class="num">05</td><td>Exercícios Básicos de Git (Branches e PRs)<br><span style="color:var(--suave);font-size:.76rem"><a href="../docs/tarefas/tarefa05.md">detalhe</a></span></td><td><span class="chip ok">concluída</span></td><td>#1, #2</td></tr>
+<tr><td class="num">06</td><td>Exploração de Templates Gratuitos<br><span style="color:var(--suave);font-size:.76rem"><a href="../docs/tarefas/tarefa06.md">detalhe</a></span></td><td><span class="chip ok">concluída</span></td><td>#3</td></tr>
+<tr><td class="num">07</td><td>Configuração Inicial no FlutterFlow<br><span style="color:var(--suave);font-size:.76rem"><a href="../docs/tarefas/tarefa07.md">detalhe</a></span></td><td><span class="chip ok">concluída</span></td><td>#4</td></tr>
+<tr><td class="num">08</td><td>Uso do OpenSpec para Planejar Mudanças<br><span style="color:var(--suave);font-size:.76rem"><a href="../docs/tarefas/tarefa08.md">detalhe</a></span></td><td><span class="chip ok">concluída</span></td><td>#5</td></tr>
+<tr><td class="num">09</td><td>Navegação e Assets do Design System<br><span style="color:var(--suave);font-size:.76rem"><a href="../docs/tarefas/tarefa09.md">detalhe</a></span></td><td><span class="chip parcial">parcial</span></td><td>#6, #7</td></tr>
+<tr><td class="num">10</td><td>Configuração Avançada do AGENTS.md<br><span style="color:var(--suave);font-size:.76rem"><a href="../docs/tarefas/tarefa10.md">detalhe</a></span></td><td><span class="chip ok">concluída</span></td><td>#8</td></tr>
+<tr><td class="num">11</td><td>Adicionar Tabela Tarefas via XanoScript<br><span style="color:var(--suave);font-size:.76rem"><a href="../docs/tarefas/tarefa11.md">detalhe</a></span></td><td><span class="chip ok">concluída</span></td><td>#9</td></tr>
+<tr><td class="num">12</td><td>Integração Python Básica<br><span style="color:var(--suave);font-size:.76rem"><a href="../docs/tarefas/tarefa12.md">detalhe</a></span></td><td><span class="chip ok">concluída</span></td><td>#10</td></tr>
+<tr><td class="num">13</td><td>Expor o calculo de progresso via API REST<br><span style="color:var(--suave);font-size:.76rem">—</span></td><td><span class="chip pendente">aguardando</span></td><td>—</td></tr>
+<tr><td class="num">14</td><td>A definir<br><span style="color:var(--suave);font-size:.76rem">—</span></td><td><span class="chip pendente">aguardando</span></td><td>—</td></tr>
+<tr><td class="num">15</td><td>A definir<br><span style="color:var(--suave);font-size:.76rem">—</span></td><td><span class="chip pendente">aguardando</span></td><td>—</td></tr>
+<tr><td class="num">16</td><td>A definir<br><span style="color:var(--suave);font-size:.76rem">—</span></td><td><span class="chip pendente">aguardando</span></td><td>—</td></tr></tbody>
+  </table>
+
+  <h2>Change OpenSpec ativa</h2>
+  <div class="fase"><div class="topo"><div class="nome">add-figma-assets-and-navigation</div><span class="chip parcial">12/24 tasks · 50%</span></div><div class="mini"><i style="width:50%"></i></div></div><div class="bloco"><h3>Assets do Design System<span class="chip parcial">5/6</span></h3><ul><li class="feita">1.1 Abrir `flutterflow/tema-referencia.html` e verificar que os elementos da tela Dashboard estão agrupados por função (grupo do card de disciplina, grupo do card de tarefa, grupo da barra de navegação) — verificar no HTML que não há elemento solto fora de grupo</li><li class="feita">1.2 Conferir que os ícones em `assets/icons/` estão em **SVG** e têm contraparte no mockup `tema-referencia.html` — verificar que nenhum arquivo tem extensão `.png`, `.jpg` ou `.webp`</li><li class="aberta">1.3 Exportar as imagens raster em PNG para `assets/images/` — verificar que a pasta existe e não está vazia sem motivo</li><li class="feita">1.4 Renomear os arquivos exportados para `kebab-case` descritivo, com base na função e não na cor (ex: `add-task.svg`, e não `red-circle.svg`) — verificar com `ls assets/icons assets/images` que nenhum nome tem espaço, acento ou caractere maiúsculo</li><li class="feita">1.5 Confirmar que cada SVG é recolorível, ou seja, sem `fill` fixo que impeça o FlutterFlow de aplicar a cor do Design System — abrir cada `.svg` em editor de texto e procurar por `fill="#`</li><li class="feita">1.6 Escrever `assets/README.md` registrando a origem de cada asset (elemento do mockup `tema-referencia.html`), o formato e onde ele é usado no FlutterFlow — verificar que todo arquivo em `assets/icons/` e `assets/images/` aparece na tabela</li></ul></div><div class="bloco"><h3>Estrutura no repositório<span class="chip ok">3/3</span></h3><ul><li class="feita">2.1 Criar a branch `style/assets-figma` a partir da `main` — verificar com `git branch --show-current`</li><li class="feita">2.2 Garantir que `assets/icons/` e `assets/images/` existam e contenham `.gitkeep` — verificar com `git ls-files assets/` que as pastas aparecem no índice</li><li class="feita">2.3 versionar os assets com `git add assets/` e um commit no formato `style: adiciona assets originais do Design System e estrutura de pastas` — verificar que nenhum `.png` ou `.svg` ficou de fora com `git status`</li></ul></div><div class="bloco"><h3>Páginas no FlutterFlow<span class="chip parcial">0/8</span></h3><ul><li class="aberta">3.1 Abrir o projeto EduTrack AI no FlutterFlow e criar a página `HomePage` com título visível — verificar na lista de páginas do projeto</li><li class="aberta">3.2 Criar a página `SubjectsPage` com título visível e um `Container` de bordas arredondadas com pelo menos um `Text` dentro, seguindo o card do mockup — verificar que o container não está vazio</li><li class="aberta">3.3 Criar a página `TasksPage` com título visível e uma `ListView` com pelo menos um item — verificar que a lista renderiza conteúdo</li><li class="aberta">3.4 Adicionar o componente **NavBar** com três itens, um por página, e atribuir a action **Navigate to Page** de cada item para a sua própria página — verificar que nenhum item está sem action</li><li class="aberta">3.5 Tornar o item da página atual visualmente distinto dos demais, com `#E10600` no tema claro e `#FF1E3C` no dark — verificar navegando entre as três páginas</li><li class="aberta">3.6 Fazer upload dos assets de `assets/` em **Media Assets** — verificar que os arquivos aparecem na biblioteca do FlutterFlow</li><li class="aberta">3.7 Verificar as três páginas nas duas larguras, celular e navegador — confirmar que a NavBar fica visível e que não há barra de rolagem horizontal</li><li class="aberta">3.8 Confirmar que nenhuma das três páginas chama a API Group "Xano Backend" — verificar em cada página que a lista de API Calls está vazia</li></ul></div><div class="bloco"><h3>Registro e entrega<span class="chip parcial">4/7</span></h3><ul><li class="feita">4.1 Atualizar `flutterflow/REGISTRO-CONFIGURACAO.md` com a seção de navegação e a tabela de assets, seguindo o padrão de registro da Tarefa 07</li><li class="aberta">4.2 Gerar o link de visualização do projeto no FlutterFlow pelo botão **Share**, ou registrar que ele não está disponível e usar screenshots no lugar</li><li class="aberta">4.3 Capturar os prints de evidência: as 3 páginas no FlutterFlow, a NavBar e a pasta `assets/` no VS Code</li><li class="feita">4.4 Documentar a Tarefa 09 no `README.md` com o mesmo padrão de 5 seções das tarefas anteriores, incluindo a seção "Próximo passo"</li><li class="feita">4.5 Rodar `openspec validate add-figma-assets-and-navigation --strict` e confirmar que a change é válida</li><li class="aberta">4.6 Arquivar a change com `openspec archive add-figma-assets-and-navigation --yes` e confirmar que `openspec/specs/design-assets/spec.md` e `openspec/specs/app-navigation/spec.md` foram gerados — verificar com `openspec validate --specs --strict`</li><li class="feita">4.7 Abrir o Pull Request de `style/assets-figma` para `main`, mergear e registrar a URL no README — PR #6 (https://github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est/pull/6) e PR #5 da Tarefa 08</li></ul></div><div class="nota"><strong>Estado de execução:</strong> A change está **parcialmente executada**. As tasks 3.1 a 3.8, 4.2, 4.3, 4.6 e 4.7 dependem do FlutterFlow, que não abre na máquina de desenvolvimento — o Chrome 154 bloqueia a GPU de 2015 (`WebGL: Disabled`) e o FlutterFlow não carrega no Core `m-5Y31` de 0,90 GHz. A execução está planejada para Windows 11, com o roteiro em `docs/guia-execucao-windows.md`.</div>
+
+  <h2>Especificações permanentes</h2>
+  <div class="tags"><span class="tag">academic-tasks</span><span class="tag">progress-calculation</span><span class="tag">subjects</span><span class="tag">user</span></div>
+
+  <h2>Bloqueios e transparência</h2>
+  <ul class="lista"><li>**Tarefa 02** — a IA foi configurada via **Antigravity** (conta institucional),</li><li>**Tarefa 07** — a importação automática do Figma não foi usada; os componentes</li><li>**Tarefa 09** — o FlutterFlow não foi construído por limitação de hardware</li></ul>
+
+  <h2>Pendências técnicas</h2>
+  <ul class="lista"><li>—</li></ul>
+
+  <h2>Repositório</h2>
+  <div class="bloco">
+    <ul class="lista" style="border:none;background:transparent;padding:0">
+      <li><strong>Branch:</strong> main &nbsp;·&nbsp; <strong>Commits:</strong> 61</li>
+      <li><strong>Último commit:</strong> 091bb95 · 2026-10-15 · Merge pull request #10 from wenderaraujo-creator/feat/python-progress</li>
+      <li><strong>Documentação:</strong> 12 guias em <code>docs/tarefas/</code> · 2 pastas de evidência</li>
+    </ul>
+  </div>
+
+  <footer>
+    Gerado automaticamente por <code>scripts/update_status_page.py</code> em 19/10/2026 22:03.<br>
+    Este arquivo é recriado a cada commit (hook <code>pre-commit</code>) — não edite manualmente.
+  </footer>
+</div>
+</body>
+</html>
