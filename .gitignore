@@ -1,7 +1,13 @@
 .DS_Store
 *.code-workspace
-build/
-.dart_tool/
-.idea/
-*.iml
 __pycache__/
+
+# Flutter / Dart
+.dart_tool/
+.packages
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.flutter_tool_state
+*.iml
+.idea/

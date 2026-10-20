@@ -1,5 +1,10 @@
 # Guia de Execução no Windows — Tarefa 09
 
+> **Status: histórico.** A Tarefa 09 foi concluída em **Flutter local**
+> (`lib/`, PR #7 merged) — as três páginas e a NavBar não dependem mais do
+> FlutterFlow nem de uma máquina Windows. Este roteiro fica registrado como
+> documentação da decisão original.
+
 Roteiro para montar as três páginas e os assets do EduTrack AI no FlutterFlow, a
 partir de uma máquina Windows 11.
 

@@ -40,7 +40,7 @@ tarefa — entregáveis, critérios e observações — fica em `docs/tarefas/`.
 | 06 | Exploração de Templates Gratuitos | Concluída | #3 | [tarefa06](docs/tarefas/tarefa06.md) |
 | 07 | Configuração Inicial no FlutterFlow | Concluída | #4 | [tarefa07](docs/tarefas/tarefa07.md) |
 | 08 | Uso do OpenSpec para Planejar Mudanças | Concluída | #5 | [tarefa08](docs/tarefas/tarefa08.md) |
-| 09 | Navegação e Assets do Design System | Parcial | #6, #7 | [tarefa09](docs/tarefas/tarefa09.md) |
+| 09 | Navegação e Assets do Design System | Concluída | #6, #7 | [tarefa09](docs/tarefas/tarefa09.md) |
 | 10 | Configuração Avançada do AGENTS.md | Concluída | #8 | [tarefa10](docs/tarefas/tarefa10.md) |
 | 11 | Adicionar Tabela Tarefas via XanoScript | Concluída | #9 | [tarefa11](docs/tarefas/tarefa11.md) |
 | 12 | Integração Python Básica | Concluída | #10 | [tarefa12](docs/tarefas/tarefa12.md) |
@@ -62,10 +62,11 @@ tarefa — entregáveis, critérios e observações — fica em `docs/tarefas/`.
   pois o login da extensão Gemini Code Assist não concluiu no VS Code.
 - **Tarefa 07** — a importação automática do Figma não foi usada; os componentes
   foram montados manualmente a partir do mockup de referência.
-- **Tarefa 09** — o FlutterFlow não foi construído por limitação de hardware
-  (CPU/GPU da máquina). As páginas foram montadas em **Flutter local** (PR #7) e
-  a fonte de design passou a ser o mockup, não o Figma. Aguarda confirmação do
-  professor.
+- **Tarefa 09** — o FlutterFlow não abre por limitação de hardware (CPU/GPU da
+  máquina). As três páginas e a NavBar foram implementadas em **Flutter local**
+  (PR #7, merged), com os assets do Design System e prints de evidência; a fonte
+  de design é o mockup, não o Figma. Aguarda confirmação do professor sobre a
+  substituição de ferramenta.
 - Os **endpoints de API** de `subjects` e `user` no Xano ficam para a próxima
   etapa do módulo.
 

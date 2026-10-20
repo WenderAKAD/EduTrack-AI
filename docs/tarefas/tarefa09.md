@@ -43,12 +43,14 @@ os assets que as sustentam.
 
 2. ENTREGÁVEIS
 
-- [ ] Link do projeto FlutterFlow com as três páginas, ou prints das páginas.
-      *Pendente — depende do acesso à máquina Windows.*
-- [ ] Print da pasta `assets/` no VS Code.
-      *Pendente — depende do acesso à máquina Windows.*
+- [x] Prints das três páginas (celular e navegador) e da pasta `assets/`.
+      FlutterFlow substituído por **Flutter local** (PR #7) — 6 prints e o print
+      dos assets em `docs/evidencias/tarefa09/` (`flutterflow-*-browser.png`,
+      `flutterflow-*-phone.png`, `assets-screenshot.png`).
 - [x] Link do Pull Request da branch `style/assets-figma`.
       PR #6 merged — https://github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est/pull/6
+- [x] Pull Request da implementação das páginas.
+      PR #7 merged — https://github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est/pull/7
 - [x] Registro de configuração do frontend atualizado com a navegação.
       Arquivo: flutterflow/REGISTRO-CONFIGURACAO.md (seção 6)
 - [x] Registro de origem dos assets.
@@ -60,22 +62,24 @@ os assets que as sustentam.
 
 3. CRITÉRIOS DE AVALIAÇÃO
 
-- [ ] Pelo menos 3 páginas criadas com título visível.
-      Especificado, ainda não construído. Páginas: `HomePage`, `SubjectsPage`,
-      `TasksPage`.
-- [ ] Barra de navegação inferior presente, com pelo menos 3 itens, navigating
+- [x] Pelo menos 3 páginas criadas com título visível.
+      `HomePage`, `SubjectsPage` e `TasksPage` em `lib/pages/`, com título
+      visível via `app_page_header.dart`.
+- [x] Barra de navegação inferior presente, com pelo menos 3 itens, navigating
       para as páginas correspondentes.
-      Especificado, ainda não construído. Três itens com action Navigate to
-      Page.
-- [ ] Assets provenientes do Design System e versionados.
-      **Parcial.** Os nove SVGs estão versionados em `assets/icons/`, sourced do
-      Design System da Tarefa 07 e conferidos contra o mockup — ver item 4. Não
-      há exportação de Figma: a spec foi revisada (Opção A).
-- [ ] Assets referenciados no projeto FlutterFlow.
-      *Pendente.*
-- [ ] Pull Request aberto com o histórico de commits.
-      *Pendente.*
-- [ ] README do repositório atualizado com o progresso.
+      `lib/widgets/app_nav_bar.dart` — três itens com navegação para as páginas
+      e item da página atual destacado (`#E10600` no tema claro, `#FF1E3C` no
+      dark).
+- [x] Assets provenientes do Design System e versionados.
+      Os nove SVGs em `assets/icons/`, sourced do Design System da Tarefa 07 e
+      conferidos contra o mockup — ver item 4. A spec `design-assets` adotou a
+      Opção A (sem Figma).
+- [x] Assets referenciados no projeto.
+      Os ícones são referenciados pelo tema em `lib/theme/app_theme.dart` e
+      usados nas páginas e na NavBar.
+- [x] Pull Request aberto com o histórico de commits.
+      PR #7 merged — branch `feat/flutter-app-local`.
+- [x] README do repositório atualizado com o progresso.
       Este arquivo.
 
 ---
@@ -88,7 +92,8 @@ os assets que as sustentam.
   `design-assets` foi revisada: todo asset agora provém do Design System da
   Tarefa 07, materializado em `flutterflow/tema-referencia.html`, que é a nova
   fonte editável de referência. Nenhuma task da Tarefa 09 depende mais do Figma;
-  só o FlutterFlow segue pendente, por bloqueio de hardware.
+  o FlutterFlow também saiu de cena — as páginas foram construídas em Flutter
+  local.
 
 - **O arquivo do Figma citado no enunciado não existe.** A tarefa diz "abra o
   arquivo do Figma que você duplicou na Tarefa 06", mas a Tarefa 06 entregou um
@@ -109,13 +114,14 @@ os assets que as sustentam.
   `tema-referencia.html`. `assets/README.md` declara a origem por ícone e a
   decisão. Apresentá-los como exportação do Figma seria falso.
 
-- **O hardware de desenvolvimento não abre o FlutterFlow.** O MacBook Pro 2016
-  (Intel Core `m-5Y31` a 0,90 GHz, Intel HD Graphics 5300) não carrega o IDE —
-  o Chrome 154 reporta `WebGL: Disabled` por causa da GPU de 2015 em blocklist, e
-  o FlutterFlow, ainda que não use WebGL, não roda nessa CPU. A execução foi
-  planejada para uma máquina Windows 11 por acesso remoto, e o roteiro está
-  versionado. O Figma, que antes também bloqueava, saiu de cena por decisão de
-  spec.
+- **O hardware de desenvolvimento não abre o FlutterFlow — e a solução foi o
+  Flutter local.** O MacBook Pro 2016 (Intel Core `m-5Y31` a 0,90 GHz, Intel HD
+  Graphics 5300) não carrega o IDE web: o Chrome 154 reporta `WebGL: Disabled` e
+  a CPU não sustenta o carregamento. Em vez de adiar a tarefa para uma máquina
+  Windows, as três páginas e a NavBar foram implementadas em **Flutter local**
+  (`lib/`, PR #7), usando os assets já versionados e o mockup como referência.
+  Os prints das páginas nas duas larguras estão em `docs/evidencias/tarefa09/`.
+  A substituição da ferramenta aguarda confirmação do professor.
 
 - **Nenhum dado é buscado da API.** As três páginas declaram que não chamam
   nenhum endpoint e exibem conteúdo estático de exemplo. Os endpoints de
@@ -131,10 +137,9 @@ os assets que as sustentam.
 
 5. PRÓXIMO PASSO
 
-Executar `docs/guia-execucao-windows.md` na máquina Windows: conferir o mockup
-`tema-referencia.html` como referência, montar as três páginas e a NavBar no
-FlutterFlow usando os ícones já versionados em `assets/icons/`, tirar os prints
-e abrir o Pull Request.
+Tarefa 13: expor os endpoints REST das tabelas do backend (`subjects`, `user` e
+o cálculo de progresso) e ligar o app Flutter ao Xano. O shell local está em
+`lib/` — `main_shell.dart` organiza as três páginas e a NavBar.
 
 ---
 

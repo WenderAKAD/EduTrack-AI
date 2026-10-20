@@ -1,12 +1,11 @@
 # design-assets Specification
 
 ## Purpose
-
 Define the icon and image files the EduTrack AI frontend is built from — where
 they come from, how they are named and formatted, where they are versioned, and
 the design tokens every one of them must match.
 
-## ADDED Requirements
+## Requirements
 
 ### Requirement: Assets originate from the EduTrack AI Design System
 The system SHALL source every icon and image asset from the Design System of
@@ -35,8 +34,8 @@ the mockup.
 ### Requirement: Icons use the SVG format
 The system SHALL provide every icon, glyph or logo mark as **SVG**, and SHALL NOT
 commit raster icons in their place. Icons SHALL be delivered in a single color
-that FlutterFlow can recolor, so that one file serves both the light and the
-dark theme of the Design System.
+that the host frontend can recolor, so that one file serves both the light and
+the dark theme of the Design System.
 
 #### Scenario: Icon is provided as SVG
 - **WHEN** an icon is added to the repository
@@ -82,8 +81,8 @@ is reviewable on its own.
 - **WHEN** an asset is added to the design sources
 - **THEN** it is added to the repository and pushed to a branch of its own
 
-#### Scenario: Asset survives deletion from FlutterFlow
-- **WHEN** an asset is removed from the FlutterFlow Media Assets library
+#### Scenario: Asset survives deletion from the frontend
+- **WHEN** an asset is removed from the Media Assets library of the host frontend
 - **THEN** the original file is still recoverable from the repository, and can be re-uploaded without rebuilding it from scratch
 
 ### Requirement: Assets match the design tokens
