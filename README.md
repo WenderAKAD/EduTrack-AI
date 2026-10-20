@@ -44,7 +44,7 @@ tarefa — entregáveis, critérios e observações — fica em `docs/tarefas/`.
 | 10 | Configuração Avançada do AGENTS.md | Concluída | #8 | [tarefa10](docs/tarefas/tarefa10.md) |
 | 11 | Adicionar Tabela Tarefas via XanoScript | Concluída | #9 | [tarefa11](docs/tarefas/tarefa11.md) |
 | 12 | Integração Python Básica | Concluída | #10 | [tarefa12](docs/tarefas/tarefa12.md) |
-| 13 | APIs CRUD para Disciplinas | Concluída | — | [tarefa13](docs/tarefas/tarefa13.md) |
+| 13 | APIs CRUD para Disciplinas | Concluída | #11 | [tarefa13](docs/tarefas/tarefa13.md) |
 
 ## Estrutura do repositório
 
