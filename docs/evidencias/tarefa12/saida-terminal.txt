@@ -1,0 +1,5 @@
+$ python3 scripts/calculate_progress.py
+{"percentage": 50.0}
+{"percentage": 100.0}
+{"percentage": 0}
+{"percentage": 66.67}
