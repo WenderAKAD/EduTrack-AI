@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Tarefa 12 – Integração Python Básica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 18mm 16mm 16mm; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: Inter, -apple-system, sans-serif;
+    color: #1A1312; font-size: 11.2pt; line-height: 1.55;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+
+  .mono { font-family: "JetBrains Mono", monospace; }
+
+  .capa { page-break-after: always; padding-top: 26mm; }
+  .tag {
+    display: inline-block; background: #E10600; color: #fff;
+    font-size: 8.5pt; font-weight: 700; letter-spacing: 1.1px;
+    padding: 4px 11px; border-radius: 20px; text-transform: uppercase;
+  }
+  .capa h1 { font-size: 27pt; line-height: 1.2; letter-spacing: -0.7px; margin: 16px 0 6px; font-weight: 700; }
+  .capa h2 { font-size: 14pt; font-weight: 500; color: #7B6A67; margin-bottom: 26px; }
+  .rule { height: 3px; width: 74px; background: #E10600; border-radius: 3px; margin-bottom: 26px; }
+
+  table.meta { width: 100%; border-collapse: collapse; margin-bottom: 22px; }
+  table.meta td { padding: 7px 0; border-bottom: 1px solid #EADFDC; vertical-align: top; font-size: 10.5pt; }
+  table.meta td.k { width: 42%; color: #7B6A67; font-weight: 500; }
+
+  .box {
+    background: #F7F4F3; border: 1px solid #EADFDC;
+    border-left: 3px solid #E10600; border-radius: 8px;
+    padding: 12px 14px; margin-bottom: 18px; font-size: 10.5pt;
+  }
+  .box b { color: #C1121F; }
+
+  .sumario { background: #FFFFFF; border: 1px solid #EADFDC; border-radius: 10px; padding: 14px 18px; }
+  .sumario h3 { font-size: 10pt; text-transform: uppercase; letter-spacing: 1px; color: #7B6A67; margin-bottom: 9px; }
+  .sumario ol { margin-left: 17px; font-size: 10.5pt; }
+  .sumario li { margin-bottom: 4px; }
+
+  h3.sec {
+    font-size: 13pt; font-weight: 700; margin: 0 0 12px;
+    padding-bottom: 7px; border-bottom: 2px solid #E10600;
+    display: flex; align-items: center; gap: 9px;
+  }
+  h3.sec .num {
+    background: #E10600; color: #fff; font-size: 9.5pt; font-weight: 700;
+    width: 21px; height: 21px; border-radius: 5px;
+    display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+
+  h4 { font-size: 11pt; font-weight: 700; margin: 16px 0 7px; color: #C1121F; }
+
+  p { margin-bottom: 9px; }
+  ul, ol { margin-left: 18px; margin-bottom: 10px; }
+  li { margin-bottom: 4px; }
+
+  section { margin-bottom: 18px; }
+
+  figure { margin: 12px 0 16px; page-break-inside: avoid; }
+  figure img { width: 100%; border: 1px solid #EADFDC; border-radius: 7px; display: block; }
+  figcaption { font-size: 9pt; color: #7B6A67; margin-top: 6px; padding-top: 6px; border-top: 1px dashed #EADFDC; }
+  figcaption b { color: #1A1312; }
+  figcaption .ref { font-family: "JetBrains Mono", monospace; }
+
+  pre {
+    background: #16181C; color: #E6E8EA; padding: 12px 14px;
+    border-radius: 8px; font-family: "JetBrains Mono", monospace;
+    font-size: 8.8pt; line-height: 1.5; overflow: hidden;
+    page-break-inside: avoid; margin-bottom: 12px;
+  }
+
+  code.inl {
+    background: #F7F4F3; border: 1px solid #EADFDC; border-radius: 4px;
+    padding: 1px 5px; font-family: "JetBrains Mono", monospace; font-size: 9.3pt;
+  }
+
+  table.t { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 9.8pt; }
+  table.t th {
+    background: #F7F4F3; text-align: left; padding: 7px 9px;
+    border-bottom: 2px solid #E10600; font-size: 9pt;
+    text-transform: uppercase; letter-spacing: 0.6px; color: #7B6A67;
+  }
+  table.t td { padding: 7px 9px; border-bottom: 1px solid #EADFDC; vertical-align: top; }
+  table.t tr:nth-child(even) td { background: #FDFCFC; }
+
+  .nota {
+    background: #FFF8F7; border: 1px solid #F0D5D2; border-left: 3px solid #E10600;
+    border-radius: 7px; padding: 10px 13px; font-size: 9.8pt; margin-bottom: 12px;
+    page-break-inside: avoid;
+  }
+  .nota b { color: #C1121F; }
+
+  .check { background:#E10600; color:#fff; font-size:8.5pt; font-weight:700; width:16px; height:16px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; }
+
+  .rodape {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    border-top: 1px solid #EADFDC; padding-top: 5px;
+    font-size: 8pt; color: #7B6A67;
+    display: flex; justify-content: space-between;
+  }
+
+  @media screen {
+    html { background: #EFEBEA; }
+    body {
+      width: 100%; max-width: 210mm; margin: 0 auto;
+      background: #FFFFFF; padding: 18mm 16mm 22mm;
+      box-shadow: 0 0 0 1px #EADFDC, 0 10px 44px rgba(0,0,0,.10);
+      min-height: 100vh;
+    }
+    .rodape { position: static; margin-top: 26px; }
+  }
+
+</style>
+</head>
+<body>
+
+<div class="rodape">
+  <span>EduTrack AI &middot; Innovation Lab &middot; Tarefa 12</span>
+  <span>Wender Araujo Santos</span>
+</div>
+
+<!-- ==================== CAPA ==================== -->
+<section class="capa">
+  <span class="tag">Entrega 12 &middot; Innovation Lab</span>
+  <h1>Integração Python Básica</h1>
+  <h2>Função customizada em Python para cálculo de progresso no Xano</h2>
+  <div class="rule"></div>
+
+  <table class="meta">
+    <tr><td class="k">Disciplina</td><td>Innovation Lab: Desenvolvimento Avançado No/Low Code</td></tr>
+    <tr><td class="k">Módulo</td><td>2 – Integração Frontend-Backend</td></tr>
+    <tr><td class="k">Pré-requisitos</td><td>Tarefa 11 (tabela <span class="mono">academic_tasks</span>)</td></tr>
+    <tr><td class="k">Aluno</td><td>Wender Araújo Santos</td></tr>
+    <tr><td class="k">E-mail institucional</td><td class="mono">wender.araujo@aluno.impacta.edu.br</td></tr>
+    <tr><td class="k">Entrega (PR #10)</td><td>15 de outubro de 2026</td></tr>
+    <tr><td class="k">Evidências</td><td>20 de outubro de 2026</td></tr>
+    <tr><td class="k">Branch</td><td class="mono">feat/python-progress</td></tr>
+    <tr><td class="k">Repositório</td><td><a href="https://github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est">github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est</a></td></tr>
+  </table>
+
+  <div class="box">
+    <b>Resumo.</b> Uma função customizada em Python puro recebe as tarefas de uma
+    disciplina em JSON e devolve o percentual de conclusão no mesmo formato — a
+    base do cálculo de progresso do EduTrack AI. A mudança foi planejada com
+    OpenSpec (<span class="mono">logica-calculo-progresso</span>), implementada em
+    <span class="mono">scripts/calculate_progress.py</span>, testada localmente e
+    arquivada, gerando a spec mestra
+    <span class="mono">openspec/specs/progress-calculation/spec.md</span>.
+  </div>
+
+  <div class="sumario">
+    <h3>Sumário</h3>
+    <ol>
+      <li>Objetivo e conceitos-chave</li>
+      <li>O fluxo OpenSpec (proposal → implementação → arquivo)</li>
+      <li>O script calculate_progress.py</li>
+      <li>Teste local e saída real</li>
+      <li>Evidências</li>
+      <li>Critérios de avaliação</li>
+      <li>Observações técnicas</li>
+      <li>Próximo passo</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ==================== 1. OBJETIVO ==================== -->
+<section>
+  <h3 class="sec"><span class="num">1</span> Objetivo e conceitos-chave</h3>
+
+  <p>O objetivo é escrever a lógica de cálculo de progresso de uma disciplina em
+  Python e empregá-la como <i>custom function</i> do Xano — o percentual de
+  tarefas concluídas que alimentará o dashboard do app.</p>
+
+  <table class="t">
+    <tr><th>Conceito</th><th>O que significa no projeto</th></tr>
+    <tr><td><b>Custom function</b></td><td>Função em Python hospedada no Xano, invocada por uma query. Recebe e devolve JSON.</td></tr>
+    <tr><td><b>Contrato JSON</b></td><td>Entrada <span class="mono">{"tasks": [...]}</span> → saída <span class="mono">{"percentage": ...}</span>.</td></tr>
+    <tr><td><b>Python restrito</b></td><td>Ambiente do Xano permite apenas <i>built-ins</i>; o script importa somente <span class="mono">json</span>.</td></tr>
+    <tr><td><b>Spec-Driven Development</b></td><td>A regra de cálculo foi especificada antes do código, em <span class="mono">progress-calculation/spec.md</span>.</td></tr>
+  </table>
+</section>
+
+<!-- ==================== 2. FLUXO OPENSPEC ==================== -->
+<section>
+  <h3 class="sec"><span class="num">2</span> O fluxo OpenSpec (proposal → implementação → arquivo)</h3>
+
+  <p>A mudança <span class="mono">logica-calculo-progresso</span> seguiu os quatro
+  artifacts do schema <span class="mono">spec-driven</span>:</p>
+
+  <table class="t">
+    <tr><th>Artifact</th><th>Arquivo</th><th>Papel</th></tr>
+    <tr><td class="mono">proposal</td><td class="mono">proposal.md</td><td>Por quê e o que muda</td></tr>
+    <tr><td class="mono">specs</td><td class="mono">specs/progress-calculation/spec.md</td><td>Requisitos com cenários WHEN/THEN</td></tr>
+    <tr><td class="mono">design</td><td class="mono">design.md</td><td>Decisões (status canônico, divisão por zero, arredondamento)</td></tr>
+    <tr><td class="mono">tasks</td><td class="mono">tasks.md</td><td>Lista de execução</td></tr>
+  </table>
+
+  <p>Validação e arquivamento:</p>
+
+  <pre>openspec validate logica-calculo-progresso --strict
+  &rarr;  Change 'logica-calculo-progresso' is valid
+
+openspec archive logica-calculo-progresso
+  &rarr;  openspec/changes/archive/2026-10-15-logica-calculo-progresso/
+  &rarr;  openspec/specs/progress-calculation/spec.md  (criada)</pre>
+</section>
+
+<!-- ==================== 3. O SCRIPT ==================== -->
+<section>
+  <h3 class="sec"><span class="num">3</span> O script calculate_progress.py</h3>
+
+  <p>Três funções públicas e o ponto de entrada
+  <span class="mono">handle(payload)</span>, usado pelo Xano:</p>
+
+  <pre>def calculate_progress(completed_tasks, total_tasks):
+    &quot;&quot;&quot;Retorna {&quot;percentage&quot;: x} de 0 a 100; 0 quando nao ha tarefas.&quot;&quot;&quot;
+    if total_tasks &lt;= 0:
+        return {&quot;percentage&quot;: 0}
+    return {&quot;percentage&quot;: round(completed_tasks / total_tasks * 100, 2)}
+
+def is_completed(task):
+    &quot;&quot;&quot;Uma tarefa conta como concluida quando o status e 'completed'.&quot;&quot;&quot;
+    status = str(task.get(&quot;status&quot;, &quot;&quot;)).strip().lower()
+    return status == COMPLETED_STATUS
+
+def calculate_subject_progress(tasks):
+    tasks = tasks or []
+    total_tasks = len(tasks)
+    completed_tasks = sum(1 for task in tasks if is_completed(task))
+    return calculate_progress(completed_tasks, total_tasks)
+
+def handle(payload):
+    &quot;&quot;&quot;Entrada/saida JSON: {&quot;tasks&quot;: [...]} -&gt; {&quot;percentage&quot;: ...}.&quot;&quot;&quot;
+    if isinstance(payload, str):
+        payload = json.loads(payload)
+    return calculate_subject_progress(payload.get(&quot;tasks&quot;, []))</pre>
+
+  <table class="t">
+    <tr><th>Decisão</th><th>Por quê</th></tr>
+    <tr><td><b>Só built-ins</b></td><td>O Xano executa funções em ambiente restrito; apenas <span class="mono">json</span> é importado.</td></tr>
+    <tr><td><b>Status canônico</b></td><td>Uma tarefa é concluída quando <span class="mono">status</span>, após <span class="mono">trim</span> e <span class="mono">lower</span>, é <span class="mono">completed</span>.</td></tr>
+    <tr><td><b>Divisão por zero</b></td><td><span class="mono">total_tasks &lt;= 0</span> devolve <span class="mono">{"percentage": 0}</span> em vez de levantar <span class="mono">ZeroDivisionError</span>.</td></tr>
+    <tr><td><b>Arredondamento</b></td><td><span class="mono">round(..., 2)</span> — duas casas bastam para exibição e evitam ruído de ponto flutuante.</td></tr>
+  </table>
+</section>
+
+<!-- ==================== 4. TESTE ==================== -->
+<section>
+  <h3 class="sec"><span class="num">4</span> Teste local e saída real</h3>
+
+  <p>O script foi executado localmente com quatro casos de exemplo (metade,
+  total, vazio e status com espaços nas bordas):</p>
+
+  <pre>$ python3 scripts/calculate_progress.py
+{"percentage": 50.0}
+{"percentage": 100.0}
+{"percentage": 0}
+{"percentage": 66.67}</pre>
+
+  <figure>
+    <img src="teste-saida-terminal.png" alt="Saída do terminal ao executar calculate_progress.py">
+    <figcaption>
+      <b>Figura 1 — Saída real do script no terminal.</b> Os quatro casos de teste
+      retornam <span class="mono">50.0</span>, <span class="mono">100.0</span>,
+      <span class="mono">0</span> e <span class="mono">66.67</span>. A saída foi
+      capturada no arquivo <span class="mono">saida-terminal.txt</span> e
+      reproduzida nesta figura.
+      <span class="ref">teste-saida-terminal.png</span>
+    </figcaption>
+  </figure>
+
+  <table class="t">
+    <tr><th>Caso</th><th>Entrada</th><th>Saída esperada</th><th>Saída real</th></tr>
+    <tr><td>Metade concluída</td><td class="mono">1 completed, 1 pending</td><td class="mono">50.0</td><td><span class="check">&#10003;</span> 50.0</td></tr>
+    <tr><td>Tudo concluído</td><td class="mono">2 completed</td><td class="mono">100.0</td><td><span class="check">&#10003;</span> 100.0</td></tr>
+    <tr><td>Sem tarefas</td><td class="mono">[]</td><td class="mono">0</td><td><span class="check">&#10003;</span> 0</td></tr>
+    <tr><td>Status com espaços</td><td class="mono">" completed ", pending, completed</td><td class="mono">66.67</td><td><span class="check">&#10003;</span> 66.67</td></tr>
+  </table>
+</section>
+
+<!-- ==================== 5. EVIDENCIAS ==================== -->
+<section>
+  <h3 class="sec"><span class="num">5</span> Evidências</h3>
+
+  <table class="t">
+    <tr><th>Evidência</th><th>Onde</th></tr>
+    <tr><td>Script funcional</td><td><span class="mono">scripts/calculate_progress.py</span> (PR #10 merged)</td></tr>
+    <tr><td>Change planejada e arquivada</td><td><span class="mono">openspec/changes/archive/2026-10-15-logica-calculo-progresso/</span></td></tr>
+    <tr><td>Spec mestra sincronizada</td><td><span class="mono">openspec/specs/progress-calculation/spec.md</span></td></tr>
+    <tr><td>Saída do terminal</td><td><span class="mono">docs/evidencias/tarefa12/saida-terminal.txt</span></td></tr>
+    <tr><td>Print do teste</td><td><span class="mono">docs/evidencias/tarefa12/teste-saida-terminal.png</span></td></tr>
+    <tr><td>Material de entrega</td><td><span class="mono">docs/evidencias/tarefa12/Tarefa12-entrega.html</span> / <span class="mono">.pdf</span></td></tr>
+  </table>
+
+  <div class="nota">
+    <b>Verificação de integridade.</b> <span class="mono">python3 -m py_compile
+    scripts/calculate_progress.py</span> compila sem erros e a execução reproduz
+    as quatro saídas esperadas — o mesmo resultado registrado no
+    <span class="mono">docs/tarefas/tarefa12.md</span>.
+  </div>
+</section>
+
+<!-- ==================== 6. CRITERIOS ==================== -->
+<section>
+  <h3 class="sec"><span class="num">6</span> Critérios de avaliação</h3>
+
+  <table class="t">
+    <tr><th>Critério</th><th>Status</th></tr>
+    <tr><td>Script Python funcional e sem erros de sintaxe</td><td><span class="check">&#10003;</span> <span class="mono">calculate_progress.py</span> compilado e executado</td></tr>
+    <tr><td>Uso correto do fluxo OpenSpec</td><td><span class="check">&#10003;</span> <span class="mono">logica-calculo-progresso</span> (4/4 artifacts, valid, arquivada)</td></tr>
+    <tr><td>Tratamento de erro (divisão por zero)</td><td><span class="check">&#10003;</span> retorna <span class="mono">{"percentage": 0}</span> quando não há tarefas</td></tr>
+    <tr><td>Commit na branch <span class="mono">feat/python-progress</span></td><td><span class="check">&#10003;</span> PR #10 merged na <span class="mono">main</span></td></tr>
+    <tr><td>Screenshot do teste do script</td><td><span class="check">&#10003;</span> <span class="mono">teste-saida-terminal.png</span></td></tr>
+    <tr><td>Material de entrega versionado</td><td><span class="check">&#10003;</span> HTML + PDF em <span class="mono">docs/evidencias/tarefa12/</span></td></tr>
+  </table>
+</section>
+
+<!-- ==================== 7. OBSERVACOES ==================== -->
+<section>
+  <h3 class="sec"><span class="num">7</span> Observações técnicas</h3>
+
+  <table class="t">
+    <tr><th>Tema</th><th>Decisão</th></tr>
+    <tr><td><b>Escopo</b></td><td>Somente o cálculo pedido. Sem endpoint REST (é a Tarefa 13), sem ligação às tabelas do Xano, sem tela.</td></tr>
+    <tr><td><b>Sem push pela IA</b></td><td>REGRA Nº 2 do <span class="mono">AGENTS.md</span>: a IA gera e testa os arquivos; publicar no Xano é passo manual do desenvolvedor.</td></tr>
+    <tr><td><b>Ambiente restrito</b></td><td>Custom functions do Xano rodam com <i>built-ins</i> apenas — por isso o script não usa bibliotecas externas.</td></tr>
+    <tr><td><b>Contrato de entrada</b></td><td><span class="mono">handle</span> aceita payload já desserializado ou string JSON, cobrindo os dois formatos que o Xano pode enviar.</td></tr>
+    <tr><td><b>Branch de trabalho</b></td><td><span class="mono">feat/python-progress</span>, PR #10 — merged na <span class="mono">main</span> em 15/10/2026.</td></tr>
+  </table>
+</section>
+
+<!-- ==================== 8. PROXIMO ==================== -->
+<section>
+  <h3 class="sec"><span class="num">8</span> Próximo passo</h3>
+
+  <p>Tarefa 13: expor o cálculo de progresso e os endpoints REST das tabelas
+  <span class="mono">subjects</span> e <span class="mono">user</span>, integrando
+  o frontend ao backend do Xano.</p>
+
+  <div class="box">
+    <b>Arquivos produzidos nesta tarefa.</b>
+    <span class="mono">scripts/calculate_progress.py</span> &middot;
+    <span class="mono">openspec/changes/archive/2026-10-15-logica-calculo-progresso/</span>
+    (proposal, specs/progress-calculation, design, tasks) &middot;
+    <span class="mono">openspec/specs/progress-calculation/spec.md</span> &middot;
+    <span class="mono">docs/evidencias/tarefa12/</span> (este material)
+  </div>
+</section>
+
+</body>
+</html>

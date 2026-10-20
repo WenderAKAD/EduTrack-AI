@@ -48,10 +48,12 @@ testada localmente e arquivada.
       `openspec/specs/progress-calculation/spec.md`
 - [x] Link do arquivo `calculate_progress.py` no GitHub.
       https://github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est/blob/feat/python-progress/scripts/calculate_progress.py
-- [ ] Screenshot do teste do script (terminal local ou painel do Xano).
-      `docs/evidencias/tarefa12/`
-- [ ] Material de entrega versionado.
+- [x] Screenshot do teste do script (terminal local ou painel do Xano).
+      `docs/evidencias/tarefa12/saida-terminal.txt` e
+      `docs/evidencias/tarefa12/teste-saida-terminal.png`
+- [x] Material de entrega versionado.
       `docs/evidencias/tarefa12/Tarefa12-entrega.html`, `.pdf`
+      (cópia em `DMAtividades/12Atividade/`)
 
 ---
 
