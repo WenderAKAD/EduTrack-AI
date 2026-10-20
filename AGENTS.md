@@ -253,6 +253,24 @@ XanoScript) dizendo:
 
 3. **Python:** use tratamento de erros (try/except) em lógica complexa.
 
+### Painel de Status (OBRIGATÓRIO)
+
+1. **Fonte da verdade visual:** `docs/painel-status.html` é gerado por
+   `scripts/update_status_page.py` a partir do README, do `tasks.md` da change
+   ativa, das specs e do git. **Nunca edite o HTML na mão.**
+
+2. **Depois de qualquer mudança** (status de tarefa, task marcada, spec,
+   pendência, commit relevante), execute:
+
+       python3 scripts/update_status_page.py
+
+3. **Avise o usuário** sempre que o painel for regenerado, dizendo o que mudou
+   (progresso, fase, change).
+
+4. O hook `.git/hooks/pre-commit` já regenera e versiona o painel a cada
+   commit. Após clonar o repositório, instale o hook com
+   `sh scripts/install-hooks.sh`.
+
 ### Comunicação
 
 1. Explique o que vai fazer **ANTES** de fazer.

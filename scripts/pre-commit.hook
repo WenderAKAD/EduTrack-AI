@@ -1,0 +1,12 @@
+#!/bin/sh
+# EduTrack AI - pre-commit
+# Regenera o painel de status antes de cada commit, garantindo que
+# docs/painel-status.html reflita sempre o estado atual do repositorio.
+# Reinstale apos clonar com: sh scripts/install-hooks.sh
+
+if command -v python3 >/dev/null 2>&1; then
+  if python3 scripts/update_status_page.py >/dev/null 2>&1; then
+    git add docs/painel-status.html
+  fi
+fi
+exit 0
