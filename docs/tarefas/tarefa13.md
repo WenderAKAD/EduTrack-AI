@@ -34,7 +34,7 @@ restringido ao usuário autenticado via JWT.
     mesmo desenho de posse do PATCH.
 - Os quatro arquivos passaram no parser oficial da extensão XanoScript 0.5.12
   (`xanoscriptParser`), sem erros de sintaxe.
-- Branch de trabalho: `feat/api-crud-subjects`.
+- Branch de trabalho: `feat/api-crud-subjects` (PR #11, merged no `main`).
 
 ---
 
