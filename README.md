@@ -27,7 +27,7 @@ Development).
 
 ## Tarefas
 
-Progresso: **12 de 16 tarefas** concluídas (Tarefas 01 a 12). O detalhe de cada
+Progresso: **13 de 16 tarefas** concluídas (Tarefas 01 a 13). O detalhe de cada
 tarefa — entregáveis, critérios e observações — fica em `docs/tarefas/`.
 
 | # | Tarefa | Status | PR | Detalhe |
@@ -44,6 +44,7 @@ tarefa — entregáveis, critérios e observações — fica em `docs/tarefas/`.
 | 10 | Configuração Avançada do AGENTS.md | Concluída | #8 | [tarefa10](docs/tarefas/tarefa10.md) |
 | 11 | Adicionar Tabela Tarefas via XanoScript | Concluída | #9 | [tarefa11](docs/tarefas/tarefa11.md) |
 | 12 | Integração Python Básica | Concluída | #10 | [tarefa12](docs/tarefas/tarefa12.md) |
+| 13 | APIs CRUD para Disciplinas | Concluída | — | [tarefa13](docs/tarefas/tarefa13.md) |
 
 ## Estrutura do repositório
 
@@ -67,8 +68,9 @@ tarefa — entregáveis, critérios e observações — fica em `docs/tarefas/`.
   (PR #7, merged), com os assets do Design System e prints de evidência; a fonte
   de design é o mockup, não o Figma. Aguarda confirmação do professor sobre a
   substituição de ferramenta.
-- Os **endpoints de API** de `subjects` e `user` no Xano ficam para a próxima
-  etapa do módulo.
+- **Tarefa 13** — os endpoints CRUD de `subjects` foram gerados e validados
+  localmente; o push para o Xano e o teste no Swagger ficam para o
+  desenvolvedor (REGRA Nº 2). Endpoint de `user` segue para a próxima etapa.
 
 ## Pendências Técnicas
 
