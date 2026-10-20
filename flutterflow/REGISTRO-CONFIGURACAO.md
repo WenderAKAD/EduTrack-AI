@@ -206,6 +206,30 @@ O FlutterFlow serve build de celular e preview de navegador a partir do mesmo
 projeto, então cada página é conferida nas duas larguras. Um layout que só
 funciona em uma delas não atende ao requisito.
 
+### 6.5 Implementação em Flutter local (substituto do FlutterFlow)
+
+O FlutterFlow não carrega na máquina de desenvolvimento (Intel Core `m-5Y31`,
+0,90 GHz; GPU de 2015 em blocklist do Chrome). Para não bloquear a entrega, as
+três páginas e a NavBar especificadas acima foram construídas em **Flutter
+3.29.3 local**, versionadas na raiz do repositório:
+
+| Item | Arquivo |
+|---|---|
+| Projeto / dependências | `pubspec.yaml` (flutter_svg, fontes Inter e JetBrains Mono, `assets/icons/`) |
+| Tema (tokens da seção 2) | `lib/theme/app_theme.dart` |
+| `HomePage` | `lib/pages/home_page.dart` |
+| `SubjectsPage` | `lib/pages/subjects_page.dart` |
+| `TasksPage` | `lib/pages/tasks_page.dart` |
+| NavBar inferior | `lib/widgets/app_nav_bar.dart` + `lib/pages/main_shell.dart` |
+| Conteúdo estático | `lib/models/seed_data.dart` (sem chamadas ao Xano) |
+| Teste de widget | `test/widget_test.dart` (`flutter test` passa) |
+| Evidências | `docs/evidencias/tarefa09/` (3 páginas × celular/navegador) |
+
+Nomes de página, itens da NavBar, cores por tema e ausência de binding com o
+Xano seguem exatamente o especificado em 6.1–6.4. A verificação por screenshots
+substitui a conferência no editor FlutterFlow. **Confirmar o substituto com o
+professor.**
+
 ---
 
 ## 7. Checklist dos critérios de avaliação

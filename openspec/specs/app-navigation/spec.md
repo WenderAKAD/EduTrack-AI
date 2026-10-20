@@ -1,18 +1,19 @@
 # app-navigation Specification
 
 ## Purpose
-
 Define the three pages that make up the EduTrack AI interface shell and the
 bottom navigation bar that moves between them, so that navigation is a declared
 part of the frontend rather than an arrangement discovered by clicking.
 
-## ADDED Requirements
+## Requirements
 
 ### Requirement: Three named pages
-The system SHALL create exactly three pages in the EduTrack AI FlutterFlow
-project, named `HomePage`, `SubjectsPage` and `TasksPage`. Each page SHALL carry
-its own visible title, so a user can tell which page they are on from the
-screenshot alone.
+The system SHALL create exactly three pages in the EduTrack AI frontend project,
+named `HomePage`, `SubjectsPage` and `TasksPage`. They are built locally with
+Flutter (3.29.3) as a substitute for the FlutterFlow IDE, which does not load on
+the development hardware (Intel Core `m-5Y31`; the webGL-accelerated editor does
+not render). Each page SHALL carry its own visible title, so a user can tell
+which page they are on from the screenshot alone.
 
 #### Scenario: HomePage exists
 - **WHEN** the EduTrack AI project pages are listed
@@ -35,9 +36,9 @@ The system SHALL provide a bottom navigation bar with one item per page. Every
 item SHALL have an action assigned that navigates to its own page, so no item
 is inert. Tapping an item SHALL mark that item as the active one.
 
-#### Scenario: Every item has an action
+#### Scenario: Every item is wired
 - **WHEN** each navigation bar item is inspected
-- **THEN** it has an action assigned, and that action is "Navigate to Page" pointing at its own page
+- **THEN** it has a navigation action pointing at its own page
 
 #### Scenario: Item navigates to its page
 - **WHEN** a user taps the navigation item for `SubjectsPage`
