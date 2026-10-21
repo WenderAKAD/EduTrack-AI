@@ -75,7 +75,7 @@
   <header class="hero">
     <h1>EduTrack AI — Painel de Status</h1>
     <p>Assistente educacional · Innovation Lab · Faculdade Impacta · Wender Araújo Santos</p>
-    <span class="badge">Etapa: 13 de 16 tarefas concluídas · sem changes ativas</span>
+    <span class="badge">Etapa: 13 de 16 tarefas concluídas · 1 change ativa</span>
   </header>
 
   <div class="stats">
@@ -83,7 +83,7 @@
     <div class="stat"><div class="n">81%</div><div class="l">Progresso geral</div></div>
     <div class="stat"><div class="n">7</div><div class="l">Specs permanentes</div></div>
     <div class="stat"><div class="n">8</div><div class="l">Changes arquivadas</div></div>
-    <div class="stat"><div class="n">0</div><div class="l">Change ativa</div></div>
+    <div class="stat"><div class="n">1</div><div class="l">Change ativa</div></div>
     <div class="stat"><div class="n">11</div><div class="l">Pull requests</div></div>
   </div>
 
@@ -123,7 +123,7 @@
   </table>
 
   <h2>Change OpenSpec ativa</h2>
-  <div class="nota">Nenhuma change ativa.</div>
+  <div class="fase"><div class="topo"><div class="nome">busca-avancada-inteligente</div><span class="chip parcial">0/9 tasks · 0%</span></div><div class="mini"><i style="width:0%"></i></div></div><div class="bloco"><h3>Python helper for overdue detection<span class="chip parcial">0/2</span></h3><ul><li class="aberta">1.1 Criar `scripts/search_overdue_subjects.py` com função para identificar subject_ids com tarefas atrasadas e não concluídas (lógica pura Python, sem dependências externas)</li><li class="aberta">1.2 Testar o script localmente com dados de exemplo</li></ul></div><div class="bloco"><h3>Xano endpoint for hybrid search<span class="chip parcial">0/4</span></h3><ul><li class="aberta">2.1 Criar `apis/autenticacao_edutrack_ia_est/subjects_search_GET.xs` endpoint `GET /subjects/search` com `auth = ""`</li><li class="aberta">2.2 Implementar filtro por nome (`q`) com busca parcial case-insensitive</li><li class="aberta">2.3 Implementar filtro por tarefas atrasadas (`overdue=true`) integrando com lógica Python</li><li class="aberta">2.4 Garantir filtro obrigatório por `user_id` do usuário autenticado</li></ul></div><div class="bloco"><h3>Validação e documentação<span class="chip parcial">0/3</span></h3><ul><li class="aberta">3.1 Rodar `openspec validate busca-avancada-inteligente --strict`</li><li class="aberta">3.2 Testar endpoint no Xano (Swagger/Run & Debug)</li><li class="aberta">3.3 Criar branch `feat/hybrid-search`, commitar seguindo Conventional Commits</li></ul></div>
 
   <h2>Especificações permanentes</h2>
   <div class="tags"><span class="tag">academic-tasks</span><span class="tag">app-navigation</span><span class="tag">authentication</span><span class="tag">design-assets</span><span class="tag">progress-calculation</span><span class="tag">subjects</span><span class="tag">user</span></div>
@@ -137,14 +137,14 @@
   <h2>Repositório</h2>
   <div class="bloco">
     <ul class="lista" style="border:none;background:transparent;padding:0">
-      <li><strong>Branch:</strong> main &nbsp;·&nbsp; <strong>Commits:</strong> 75</li>
-      <li><strong>Último commit:</strong> 9b88768 · 2026-10-21 · docs(tarefa13): atualiza documentacao html com prints e gera pdf</li>
+      <li><strong>Branch:</strong> feat/hybrid-search &nbsp;·&nbsp; <strong>Commits:</strong> 76</li>
+      <li><strong>Último commit:</strong> d779631 · 2026-10-21 · docs(tarefa13): remove pdf vazio</li>
       <li><strong>Documentação:</strong> 13 guias em <code>docs/tarefas/</code> · 5 pastas de evidência</li>
     </ul>
   </div>
 
   <footer>
-    Gerado automaticamente por <code>scripts/update_status_page.py</code> em 21/10/2026 19:20.<br>
+    Gerado automaticamente por <code>scripts/update_status_page.py</code> em 21/10/2026 20:05.<br>
     Este arquivo é recriado a cada commit (hook <code>pre-commit</code>) — não edite manualmente.
   </footer>
 </div>
