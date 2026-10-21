@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<title>Tarefa 13 – APIs CRUD para Disciplinas (Documentação)</title>
+<style>body{font-family:Arial,sans-serif;margin:30px;line-height:1.5}h1{color:#b71c1c}h2{margin-top:30px;border-bottom:1px solid #eee;padding-bottom:6px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ddd;padding:8px}th{background:#f7f7f7}img{margin-top:10px}</style>
+</head>
+<body>
+<h1>Tarefa 13 – APIs CRUD para Disciplinas</h1>
+<p><strong>Aluno:</strong> Wender Araújo Santos | <strong>Disciplina:</strong> Innovation Lab: Desenvolvimento Avançado No/Low Code | <strong>Turma:</strong> 2º Semestre</p>
+<h2>Objetivo</h2>
+<p>Criar endpoints CRUD para a tabela <code>subjects</code>, com autenticação JWT e filtro por usuário.</p>
+<h2>Endpoints</h2>
+<table>
+<tr><th>Método</th><th>Rota</th><th>Autenticação</th><th>Descrição</th></tr>
+<tr><td>GET</td><td>/subjects</td><td>Bearer Token</td><td>Lista disciplinas do usuário autenticado</td></tr>
+<tr><td>POST</td><td>/subjects</td><td>Bearer Token</td><td>Cria disciplina vinculada ao user_id do token</td></tr>
+<tr><td>PATCH</td><td>/subjects/{subject_id}</td><td>Bearer Token</td><td>Atualiza disciplina do próprio usuário</td></tr>
+<tr><td>DELETE</td><td>/subjects/{subject_id}</td><td>Bearer Token</td><td>Remove disciplina do próprio usuário</td></tr>
+</table>
+<h2>Grupo Xano</h2>
+<p><strong>Grupo:</strong> Autenticacao EduTrackIA Est | <strong>Base URL:</strong> https://x8ki-letl-twmt.n7.xano.io/api:JBdUmIAC | <strong>Swagger:</strong> Ativado</p>
+<h2>1) Lista de endpoints no grupo Xano</h2><img src="swagger-lista-endpoints.png" style="max-width:100%;border:1px solid #ddd"/><br/><br/>
+<h2>2) Documentação Swagger</h2><img src="swagger-documentacao.png" style="max-width:100%;border:1px solid #ddd"/><br/><br/>
+
+<h2>Arquivos</h2>
+<ul>
+<li>apis/autenticacao_edutrack_ia_est/subjects_GET.xs, subjects_POST.xs, subjects_subject_id_PATCH.xs, subjects_subject_id_DELETE.xs</li>
+<li>openspec/changes/archive/2026-10-20-api-crud-disciplinas/</li>
+<li>openspec/specs/subjects/spec.md</li>
+</ul>
+</body>
+</html>
