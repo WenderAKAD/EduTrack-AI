@@ -1,0 +1,32 @@
+{
+  "base_url": "https://x8ki-letl-twmt.n7.xano.io/api:JBdUmIAC",
+  "group": "Autenticacao EduTrackIA Est",
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/subjects",
+      "auth": true,
+      "description": "Lista disciplinas do usuario autenticado (filtradas por user_id)"
+    },
+    {
+      "method": "POST",
+      "path": "/subjects",
+      "auth": true,
+      "body": {"name": "string", "teacher": "string", "hours": "number"},
+      "description": "Cria disciplina com user_id do token"
+    },
+    {
+      "method": "PATCH",
+      "path": "/subjects/{subject_id}",
+      "auth": true,
+      "body": {"name": "string?", "teacher": "string?", "hours": "number?"},
+      "description": "Atualiza disciplina do usuario (merge parcial)"
+    },
+    {
+      "method": "DELETE",
+      "path": "/subjects/{subject_id}",
+      "auth": true,
+      "description": "Remove disciplina do usuario"
+    }
+  ]
+}

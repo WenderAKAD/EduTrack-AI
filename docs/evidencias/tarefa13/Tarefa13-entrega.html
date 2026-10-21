@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Tarefa 13 – APIs CRUD para Disciplinas</title>
+<style>body{font-family:system-ui,Arial;margin:40px;max-width:900px}h1{color:#b71c1c}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ddd;padding:8px;text-align:left}th{background:#f5f5f5}</style>
+</head>
+<body>
+<h1>Tarefa 13 – APIs CRUD para Disciplinas</h1>
+<p><strong>Aluno:</strong> Wender Araújo Santos<br/>
+<strong>Disciplina:</strong> Innovation Lab: Desenvolvimento Avançado No/Low Code<br/>
+<strong>Base URL:</strong> https://x8ki-letl-twmt.n7.xano.io/api:JBdUmIAC<br/>
+<strong>Grupo:</strong> Autenticacao EduTrackIA Est</p>
+<h2>Endpoints</h2>
+<table>
+<tr><th>Método</th><th>Rota</th><th>Auth</th><th>Descrição</th></tr>
+<tr><td>GET</td><td>/subjects</td><td>Sim</td><td>Lista disciplinas do usuario autenticado (filtradas por user_id)</td></tr>
+<tr><td>POST</td><td>/subjects</td><td>Sim</td><td>Cria disciplina com user_id do token</td></tr>
+<tr><td>PATCH</td><td>/subjects/{subject_id}</td><td>Sim</td><td>Atualiza disciplina do usuario (merge parcial)</td></tr>
+<tr><td>DELETE</td><td>/subjects/{subject_id}</td><td>Sim</td><td>Remove disciplina do usuario</td></tr>
+</table>
+<h2>Evidências</h2>
+<ul>
+<li>Swagger do Xano (grupo Autenticacao EduTrackIA Est) com os 4 endpoints</li>
+<li>Teste com dois usuários diferentes comprovando isolamento por user_id</li>
+<li>Endpoints CRUD funcionais e protegidos por JWT</li>
+</ul>
+<p><em>Arquivos .xs versionados em apis/autenticacao_edutrack_ia_est/</em></p>
+</body>
+</html>
