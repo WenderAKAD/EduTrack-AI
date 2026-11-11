@@ -27,7 +27,7 @@ Development).
 
 ## Tarefas
 
-Progresso: **13 de 16 tarefas** concluídas (Tarefas 01 a 13). O detalhe de cada
+Progresso: **14 de 16 tarefas** concluídas (Tarefas 01 a 14). O detalhe de cada
 tarefa — entregáveis, critérios e observações — fica em `docs/tarefas/`.
 
 | # | Tarefa | Status | PR | Detalhe |
@@ -45,6 +45,7 @@ tarefa — entregáveis, critérios e observações — fica em `docs/tarefas/`.
 | 11 | Adicionar Tabela Tarefas via XanoScript | Concluída | #9 | [tarefa11](docs/tarefas/tarefa11.md) |
 | 12 | Integração Python Básica | Concluída | #10 | [tarefa12](docs/tarefas/tarefa12.md) |
 | 13 | APIs CRUD para Disciplinas | Concluída | #11 | [tarefa13](docs/tarefas/tarefa13.md) |
+| 14 | Busca Avançada Híbrida (Xano + Python) | Concluída | #12 | [tarefa14](docs/tarefas/tarefa14.md) |
 
 ## Estrutura do repositório
 
