@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Tarefa 14 – Busca Avançada Híbrida (Xano + Python)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 18mm 16mm 16mm; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: Inter, -apple-system, sans-serif;
+    color: #1A1312; font-size: 11pt; line-height: 1.55;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+
+  .mono { font-family: "JetBrains Mono", monospace; }
+
+  .capa { page-break-after: always; padding-top: 20mm; }
+  .tag {
+    display: inline-block; background: #E10600; color: #fff;
+    font-size: 8.5pt; font-weight: 700; letter-spacing: 1.1px;
+    padding: 4px 11px; border-radius: 20px; text-transform: uppercase;
+  }
+  .capa h1 { font-size: 25pt; line-height: 1.2; letter-spacing: -0.7px; margin: 14px 0 6px; font-weight: 700; color: #1A1312; }
+  .capa h2 { font-size: 13.5pt; font-weight: 500; color: #7B6A67; margin-bottom: 22px; }
+  .rule { height: 3px; width: 74px; background: #E10600; border-radius: 3px; margin-bottom: 22px; }
+
+  table.meta { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+  table.meta td { padding: 6.5px 0; border-bottom: 1px solid #EADFDC; vertical-align: top; font-size: 10pt; }
+  table.meta td.k { width: 40%; color: #7B6A67; font-weight: 500; }
+
+  .box {
+    background: #F7F4F3; border: 1px solid #EADFDC;
+    border-left: 3px solid #E10600; border-radius: 8px;
+    padding: 12px 14px; margin-bottom: 18px; font-size: 10pt;
+  }
+  .box b { color: #C1121F; }
+
+  .sumario { background: #FFFFFF; border: 1px solid #EADFDC; border-radius: 10px; padding: 14px 18px; margin-top: 15px; }
+  .sumario h3 { font-size: 9.5pt; text-transform: uppercase; letter-spacing: 1px; color: #7B6A67; margin-bottom: 8px; }
+  .sumario ol { margin-left: 17px; font-size: 10pt; }
+  .sumario li { margin-bottom: 4px; }
+
+  h3.sec {
+    font-size: 12.5pt; font-weight: 700; margin: 22px 0 12px;
+    padding-bottom: 6px; border-bottom: 2px solid #E10600;
+    display: flex; align-items: center; gap: 8px;
+  }
+  h3.sec .num {
+    background: #E10600; color: #fff; font-size: 9pt; font-weight: 700;
+    width: 20px; height: 20px; border-radius: 5px;
+    display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+
+  h4 { font-size: 10.5pt; font-weight: 700; margin: 14px 0 6px; color: #C1121F; }
+
+  p { margin-bottom: 9px; font-size: 10pt; }
+  ul, ol { margin-left: 18px; margin-bottom: 10px; font-size: 10pt; }
+  li { margin-bottom: 4px; }
+
+  section { margin-bottom: 18px; }
+
+  pre {
+    background: #16181C; color: #E6E8EA; padding: 12px 14px;
+    border-radius: 8px; font-family: "JetBrains Mono", monospace;
+    font-size: 8.5pt; line-height: 1.45; overflow: hidden;
+    page-break-inside: avoid; margin-bottom: 12px;
+  }
+
+  code.inl {
+    background: #F7F4F3; border: 1px solid #EADFDC; border-radius: 4px;
+    padding: 1px 5px; font-family: "JetBrains Mono", monospace; font-size: 9pt;
+  }
+
+  table.t { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 9.5pt; }
+  table.t th {
+    background: #F7F4F3; text-align: left; padding: 7px 9px;
+    border-bottom: 2px solid #E10600; font-size: 8.5pt;
+    text-transform: uppercase; letter-spacing: 0.6px; color: #7B6A67;
+  }
+  table.t td { padding: 6.5px 9px; border-bottom: 1px solid #EADFDC; vertical-align: top; }
+  table.t tr:nth-child(even) td { background: #FDFCFC; }
+
+  .nota {
+    background: #FFF8F7; border: 1px solid #F0D5D2; border-left: 3px solid #E10600;
+    border-radius: 7px; padding: 10px 13px; font-size: 9.5pt; margin-bottom: 12px;
+    page-break-inside: avoid;
+  }
+  .nota b { color: #C1121F; }
+
+  .badge-ok {
+    display: inline-block; background: #E8F5E9; color: #2E7D32;
+    font-size: 8pt; font-weight: 700; padding: 2px 7px; border-radius: 4px;
+    border: 1px solid #C8E6C9;
+  }
+
+  .rodape {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    border-top: 1px solid #EADFDC; padding-top: 5px;
+    font-size: 8pt; color: #7B6A67;
+    display: flex; justify-content: space-between;
+  }
+
+  @media screen {
+    html { background: #EFEBEA; }
+    body {
+      width: 100%; max-width: 210mm; margin: 0 auto;
+      background: #FFFFFF; padding: 16mm 14mm 20mm;
+      box-shadow: 0 0 0 1px #EADFDC, 0 10px 44px rgba(0,0,0,.10);
+      min-height: 100vh;
+    }
+    .rodape { position: static; margin-top: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="rodape">
+  <span>EduTrack AI &middot; Innovation Lab &middot; Tarefa 14</span>
+  <span>Wender Araujo Santos &middot; RA Impacta</span>
+</div>
+
+<!-- ==================== CAPA ==================== -->
+<section class="capa">
+  <span class="tag">Entrega 14 &middot; Innovation Lab</span>
+  <h1>Busca Avançada Híbrida</h1>
+  <h2>Integração Xano (Banco Relacional) + Python (Lógica Analítica de Pendências)</h2>
+  <div class="rule"></div>
+
+  <table class="meta">
+    <tr><td class="k">Disciplina</td><td>Innovation Lab: Desenvolvimento Avançado No/Low Code</td></tr>
+    <tr><td class="k">Módulo</td><td>2 – Ciclo de Mudança com IA, Python e XanoScript</td></tr>
+    <tr><td class="k">Aluno</td><td>Wender Araújo Santos</td></tr>
+    <tr><td class="k">E-mail institucional</td><td class="mono">wender.araujo@aluno.impacta.edu.br</td></tr>
+    <tr><td class="k">Data de Conclusão</td><td>11 de novembro de 2026</td></tr>
+    <tr><td class="k">Branch Git</td><td class="mono">feat/hybrid-search</td></tr>
+    <tr><td class="k">Pull Request</td><td>#12 (Merged na main e espelhado no repositório pessoal)</td></tr>
+    <tr><td class="k">Repositório Oficial</td><td><a href="https://github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est">github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est</a></td></tr>
+    <tr><td class="k">Espelho Pessoal</td><td><a href="https://github.com/WenderAKAD/EduTrack-AI">github.com/WenderAKAD/EduTrack-AI</a></td></tr>
+  </table>
+
+  <div class="box">
+    <b>Resumo da Entrega.</b> Implementação da busca avançada híbrida combinando a capacidade de consulta relacional do backend Xano com um algoritmo em Python para detecção de pendências acadêmicas. O estudante pode consultar suas disciplinas filtrando parcialmente por nome (<span class="mono">q</span>) e/ou filtrando apenas disciplinas com tarefas atrasadas (<span class="mono">overdue=true</span>), com isolamento total por <span class="mono">user_id</span> autenticado via JWT.
+  </div>
+
+  <div class="sumario">
+    <h3>Sumário do Relatório</h3>
+    <ol>
+      <li>Objetivo e Abordagem Híbrida</li>
+      <li>Ciclo Spec-Driven Development (OpenSpec)</li>
+      <li>Função Analítica em Python (<span class="mono">search_overdue_subjects.py</span>)</li>
+      <li>Endpoint XanoScript (<span class="mono">subjects_search_GET.xs</span>)</li>
+      <li>Validação, Testes Locais e Evidências</li>
+      <li>Segurança e Isolamento por Usuário</li>
+      <li>Critérios de Avaliação Atendidos</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ==================== CONTEÚDO ==================== -->
+<section>
+  <h3 class="sec"><span class="num">1</span> Objetivo e Abordagem Híbrida</h3>
+  <p>O objetivo da Tarefa 14 é implementar uma funcionalidade de busca avançada inteligente que utilize de forma sinérgica o banco de dados no <b>Xano</b> e uma lógica analítica em <b>Python</b>.</p>
+  <p>A arquitetura adotada divide as responsabilidades com máxima eficiência:</p>
+  <ul>
+    <li><b>Lado Xano (Banco Relacional):</b> Efetua a busca por nome na tabela <code class="inl">subjects</code> utilizando o operador case-insensitive <code class="inl">ilike</code>, garantindo indexação rápida e filtro rigoroso de propriedade por <code class="inl">user_id == $auth.id</code>.</li>
+    <li><b>Lado Python (Processamento Analítico):</b> Recebe as tarefas acadêmicas vinculadas ao estudante e processa as regras de calendário e pendência (<code class="inl">due_date &lt; hoje</code> e <code class="inl">status != 'completed'</code>), identificando de forma exata quais disciplinas estão em situação de atraso.</li>
+  </ul>
+</section>
+
+<section>
+  <h3 class="sec"><span class="num">2</span> Ciclo Spec-Driven Development (OpenSpec)</h3>
+  <p>A mudança foi planejada, validada e arquivada seguindo rigorosamente a metodologia <b>OpenSpec</b>:</p>
+  <table class="t">
+    <tr>
+      <th>Artefato</th>
+      <th>Caminho</th>
+      <th>Status</th>
+    </tr>
+    <tr>
+      <td><b>Proposal</b></td>
+      <td><span class="mono">openspec/changes/archive/2026-11-11-busca-avancada-inteligente/proposal.md</span></td>
+      <td><span class="badge-ok">Aprovado</span></td>
+    </tr>
+    <tr>
+      <td><b>Specs Delta</b></td>
+      <td><span class="mono">openspec/changes/archive/2026-11-11-busca-avancada-inteligente/specs/subjects/spec.md</span></td>
+      <td><span class="badge-ok">Validado</span></td>
+    </tr>
+    <tr>
+      <td><b>Design</b></td>
+      <td><span class="mono">openspec/changes/archive/2026-11-11-busca-avancada-inteligente/design.md</span></td>
+      <td><span class="badge-ok">Arquivado</span></td>
+    </tr>
+    <tr>
+      <td><b>Tasks</b></td>
+      <td><span class="mono">openspec/changes/archive/2026-11-11-busca-avancada-inteligente/tasks.md</span></td>
+      <td><span class="badge-ok">Concluído</span></td>
+    </tr>
+  </table>
+  <p>A validação foi executada via CLI com o comando restrito <code class="inl">openspec validate busca-avancada-inteligente --strict</code> (0 erros), promovendo a spec para o catálogo permanente em <code class="inl">openspec/specs/subjects/spec.md</code>.</p>
+</section>
+
+<section>
+  <h3 class="sec"><span class="num">3</span> Função Analítica em Python</h3>
+  <p>Implementada em <code class="inl">scripts/search_overdue_subjects.py</code> sem dependências externas (Python standard library), facilitando execução local e integração como custom function ou microserviço.</p>
+  <pre><code>def is_overdue_task(task: Dict, today: date = None) -> bool:
+    """Tarefa atrasada: status != completed e due_date < hoje."""
+    if today is None:
+        today = date.today()
+    status = str(task.get("status", "")).strip().lower()
+    if status == "completed":
+        return False
+    due = task.get("due_date")
+    if not due:
+        return False
+    try:
+        due_date = date.fromisoformat(due[:10])
+        return due_date < today
+    except Exception:
+        return False
+
+def filter_overdue_subjects(subjects: List[Dict], tasks: List[Dict], today: date = None) -> List[Dict]:
+    overdue_ids = find_overdue_subject_ids(tasks, today)
+    return [s for s in subjects if s.get("id") in overdue_ids]</code></pre>
+</section>
+
+<section>
+  <h3 class="sec"><span class="num">4</span> Endpoint XanoScript</h3>
+  <p>O endpoint <code class="inl">GET /subjects/search</code> foi adicionado ao grupo de APIs <code class="inl">AutenticacaoEduTrackIAEst</code> em <code class="inl">apis/autenticacao_edutrack_ia_est/subjects_search_GET.xs</code>:</p>
+  <table class="t">
+    <tr>
+      <th>Parâmetro</th>
+      <th>Tipo</th>
+      <th>Obrigatório</th>
+      <th>Efeito</th>
+    </tr>
+    <tr>
+      <td><span class="mono">q</span></td>
+      <td>text</td>
+      <td>Não</td>
+      <td>Filtro parcial case-insensitive por nome (<code class="inl">name ilike %q%</code>)</td>
+    </tr>
+    <tr>
+      <td><span class="mono">overdue</span></td>
+      <td>text ("true")</td>
+      <td>Não</td>
+      <td>Filtra somente disciplinas com tarefas atrasadas e pendentes</td>
+    </tr>
+  </table>
+  <div class="nota">
+    <b>Combinação inteligente:</b> Se ambos os parâmetros forem informados (<code class="inl">?q=Lab&overdue=true</code>), o endpoint busca no banco apenas as disciplinas correspondentes a "Lab" do usuário autenticado e, em seguida, o filtro Python mantém apenas aquelas que possuem pendências vencidas.
+  </div>
+</section>
+
+<section>
+  <h3 class="sec"><span class="num">5</span> Teste Local e Saída Real</h3>
+  <p>Execução direta da suíte de testes embutida no script Python:</p>
+  <pre><code>$ python3 scripts/search_overdue_subjects.py
+{
+  "overdue_subject_ids": [1],
+  "subjects": [
+    {
+      "id": 1,
+      "name": "Innovation Lab",
+      "teacher": "Prof. Silva",
+      "hours": 4
+    }
+  ]
+}</code></pre>
+  <p>O teste demonstra que a disciplina com tarefa pendente vencida foi identificada, enquanto disciplinas com tarefas concluídas ou prazos futuros foram devidamente desconsideradas.</p>
+</section>
+
+<section>
+  <h3 class="sec"><span class="num">6</span> Segurança e Isolamento por Usuário</h3>
+  <ul>
+    <li><b>Autenticação JWT Obrigatória:</b> <code class="inl">auth = ""</code> no topo do endpoint XanoScript impede acesso anônimo.</li>
+    <li><b>Restrição no Banco:</b> <code class="inl">where = $db.subjects.user_id == $auth.id</code> garante que o estudante jamais visualize disciplinas de terceiros.</li>
+    <li><b>Restrição de Tarefas:</b> <code class="inl">where = $db.academic_tasks.subject_id.user_id == $auth.id</code> assegura que nenhuma tarefa alheia entre no cálculo de atraso.</li>
+  </ul>
+</section>
+
+<section>
+  <h3 class="sec"><span class="num">7</span> Critérios de Avaliação Atendidos</h3>
+  <table class="t">
+    <tr>
+      <th>Critério</th>
+      <th>Descrição</th>
+      <th>Resultado</th>
+    </tr>
+    <tr>
+      <td><b>Spec-Driven</b></td>
+      <td>OpenSpec completa com proposal, delta spec, design e tasks validadas</td>
+      <td><span class="badge-ok">&#10003; Atendido</span></td>
+    </tr>
+    <tr>
+      <td><b>Integração Híbrida</b></td>
+      <td>Busca por texto no Xano integrada com verificação analítica em Python</td>
+      <td><span class="badge-ok">&#10003; Atendido</span></td>
+    </tr>
+    <tr>
+      <td><b>Segurança</b></td>
+      <td>Escopo estrito por token JWT (<span class="mono">$auth.id</span>) sem vazamento de dados</td>
+      <td><span class="badge-ok">&#10003; Atendido</span></td>
+    </tr>
+    <tr>
+      <td><b>Versionamento Git</b></td>
+      <td>Branch, Pull Request #12 merged na main e sincronizado com repositório espelho</td>
+      <td><span class="badge-ok">&#10003; Atendido</span></td>
+    </tr>
+  </table>
+  <div class="nota">
+    <b>Aviso de Transparência (REGRA Nº 2 do AGENTS.md):</b> Conforme as diretrizes do projeto, o envio físico do arquivo <span class="mono">subjects_search_GET.xs</span> para o workspace ativo no Xano deve ser disparado manualmente pelo desenvolvedor através do comando <code class="inl">xano workspace push --branch v1 --include "apis/autenticacao_edutrack_ia_est/subjects_search_GET.xs"</code>.
+  </div>
+</section>
+
+</body>
+</html>
