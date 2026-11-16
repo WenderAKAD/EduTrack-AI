@@ -15,5 +15,5 @@
 
 ## 3. Entrega
 
-- [ ] 3.1 Publicar a mudança em uma branch `feat/python-progress` e abrir o Pull Request
-- [ ] 3.2 Anexar o screenshot do teste do script (execução local ou painel do Xano)
+- [x] 3.1 Publicar a mudança em uma branch `feat/python-progress` e abrir o Pull Request
+- [x] 3.2 Anexar o screenshot do teste do script (execução local ou painel do Xano)

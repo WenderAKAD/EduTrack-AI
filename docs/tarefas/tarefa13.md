@@ -57,11 +57,12 @@ restringido ao usuário autenticado via JWT.
       `openspec/changes/archive/` e `openspec/specs/subjects/spec.md`
 - [x] Quatro endpoints `.xs` no GitHub.
       `apis/autenticacao_edutrack_ia_est/subjects_*.xs`
-- [ ] Push dos endpoints para o Xano (passo manual, REGRA Nº 2).
+- [x] Push dos endpoints para o Xano (passo manual, REGRA Nº 2).
       `xano workspace push --branch v1 --include
       "apis/autenticacao_edutrack_ia_est/subjects*"`
-- [ ] Screenshot do Swagger do Xano com os novos endpoints.
-      `docs/evidencias/tarefa13/`
+- [x] Screenshot do Swagger do Xano com os novos endpoints.
+      `docs/evidencias/tarefa13/swagger-lista-endpoints.png` e
+      `docs/evidencias/tarefa13/swagger-documentacao.png`
 
 ---
 
@@ -70,7 +71,7 @@ restringido ao usuário autenticado via JWT.
 - [x] Fluxo OpenSpec correto (proposal, spec como delta, design, tasks,
       validate --strict, archive).
 - [x] Filtro de segurança por usuário em todos os métodos.
-- [ ] Endpoints CRUD funcionais no Xano (após o push manual).
+- [x] Endpoints CRUD funcionais no Xano (push concluído; Swagger com os 4 endpoints).
 
 ---
 
@@ -84,9 +85,11 @@ restringido ao usuário autenticado via JWT.
   leitura de uma disciplina específica é atendida pelo filtro da lista.
 - **Deletar disciplina não remove `academic_tasks` filhas.** A cascata não foi
   pedida e fica registrada em `design.md` como risco para uma change futura.
-- **Nenhum push automático pela IA (REGRA Nº 2).** Os endpoints estão gerados
-  e validados; o push para o Xano, o teste no Run & Debug/Swagger (dois
-  usuários distintos) e o screenshot são passos do desenvolvedor.
+- **Push realizado pelo desenvolvedor (REGRA Nº 2).** Os quatro endpoints estão
+  publicados no Xano e visíveis no Swagger (prints versionados). O teste de
+  isolamento com dois usuários distintos ainda não tem print registrado;
+  recomenda-se executá-lo no Run & Debug/Swagger e salvar em
+  `docs/evidencias/tarefa13/`.
 
 ---
 

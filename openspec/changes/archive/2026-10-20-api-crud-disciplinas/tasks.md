@@ -14,10 +14,10 @@
 
 ## 3. Push para o Xano (passo manual do desenvolvedor)
 
-- [ ] 3.1 Confirmar que a tabela `subjects` e a tabela de auth `user` já existem no workspace antes do push
-- [ ] 3.2 Enviar os quatro endpoints (`xano workspace push --branch v1 --include "apis/autenticacao_edutrack_ia_est/subjects*"`)
+- [x] 3.1 Confirmar que a tabela `subjects` e a tabela de auth `user` já existem no workspace antes do push
+- [x] 3.2 Enviar os quatro endpoints (`xano workspace push --branch v1 --include "apis/autenticacao_edutrack_ia_est/subjects*"`)
 - [ ] 3.3 Testar no Run & Debug / Swagger do Xano: criar, listar, alterar e deletar com dois usuários distintos, confirmando que cada um só vê as próprias disciplinas
 
 ## 4. Arquivar
 
-- [ ] 4.1 Arquivar com `openspec archive api-crud-disciplinas` e confirmar que `openspec/specs/subjects/spec.md` foi atualizado com os requirements de API
+- [x] 4.1 Arquivar com `openspec archive api-crud-disciplinas` e confirmar que `openspec/specs/subjects/spec.md` foi atualizado com os requirements de API

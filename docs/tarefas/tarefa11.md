@@ -45,9 +45,9 @@ validada, enviada ao Xano e arquivada.
       `openspec/specs/academic-tasks/spec.md`
 - [x] Link do arquivo `.xs` no GitHub.
       https://github.com/wenderaraujo-creator/EduTrack-IA-Wender-Est/blob/feat/tabela-tarefas/tables/academic_tasks.xs
-- [ ] Print do painel do Xano com a tabela criada.
+- [x] Print do painel do Xano com a tabela criada.
       `docs/evidencias/tarefa11/xano-academic-tasks.png`
-- [ ] Material de entrega versionado.
+- [x] Material de entrega versionado.
       `docs/evidencias/tarefa11/Tarefa11-entrega.html`, `.pdf`
 
 ---
