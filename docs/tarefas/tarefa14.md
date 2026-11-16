@@ -52,7 +52,7 @@ A funcionalidade de busca avançada híbrida combina a capacidade de consulta e 
       `apis/autenticacao_edutrack_ia_est/subjects_search_GET.xs`
 - [x] Pull Request e merge na branch `main` espelhado em ambos os repositórios (estudante e pessoal).
 - [x] Documento de entrega e evidências estruturados:
-      `docs/evidencias/tarefa14/Tarefa14-entrega.html` e `DMAtividades/14Atividade/Tarefa14-entrega.html`
+      `docs/evidencias/tarefa14/Tarefa14-entrega.html`, `docs/evidencias/tarefa14/Tarefa14-entrega.pdf` e `DMAtividades/14Atividade/Tarefa14-entrega.pdf`
 - [ ] Push manual do endpoint para o backend Xano (conforme REGRA Nº 2 do projeto).  
       `xano workspace push --branch v1 --include "apis/autenticacao_edutrack_ia_est/subjects_search_GET.xs"`
 - [ ] Teste no Swagger / Run & Debug do Xano com screenshots salvos em `docs/evidencias/tarefa14/`.

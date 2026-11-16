@@ -26,6 +26,13 @@
 <li>Teste com dois usuários diferentes comprovando isolamento por user_id</li>
 <li>Endpoints CRUD funcionais e protegidos por JWT</li>
 </ul>
+<h2>Critérios de avaliação</h2>
+<table>
+<tr><th style="width:52%">Critério</th><th style="width:40%">Confirmação</th><th style="width:8%">Status</th></tr>
+<tr><td>Fluxo OpenSpec correto (proposal, delta spec, design, tasks, validate --strict, archive)</td><td>Change <code>api-crud-disciplinas</code> validada e arquivada.</td><td style="color:#1c7a4a;font-weight:700">&#10003;</td></tr>
+<tr><td>Filtro de segurança por usuário em todos os métodos</td><td><code>auth = ""</code> e filtro/autorização por <code>user_id</code> em GET, POST, PATCH e DELETE.</td><td style="color:#1c7a4a;font-weight:700">&#10003;</td></tr>
+<tr><td>Endpoints CRUD funcionais no Xano</td><td>Publicados no grupo <code>Autenticacao EduTrackIA Est</code> e visíveis no Swagger.</td><td style="color:#1c7a4a;font-weight:700">&#10003;</td></tr>
+</table>
 <p><em>Arquivos .xs versionados em apis/autenticacao_edutrack_ia_est/</em></p>
 </body>
 </html>
