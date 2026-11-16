@@ -69,9 +69,13 @@ tarefa — entregáveis, critérios e observações — fica em `docs/tarefas/`.
   (PR #7, merged), com os assets do Design System e prints de evidência; a fonte
   de design é o mockup, não o Figma. Aguarda confirmação do professor sobre a
   substituição de ferramenta.
-- **Tarefa 13** — os endpoints CRUD de `subjects` foram gerados e validados
-  localmente; o push para o Xano e o teste no Swagger ficam para o
-  desenvolvedor (REGRA Nº 2). Endpoint de `user` segue para a próxima etapa.
+- **Tarefa 13** — os quatro endpoints CRUD de `subjects` estão publicados no Xano
+  e visíveis no Swagger (prints em `docs/evidencias/tarefa13/`). O teste
+  complementar de isolamento com dois usuários distintos ainda é um passo manual
+  do desenvolvedor. Endpoint de `user` segue para a próxima etapa.
+- **Tarefa 14** — o endpoint de busca híbrida (`GET /subjects/search`) e o script
+  Python foram gerados e validados localmente; o push ao Xano e o teste no
+  Swagger são passos manuais do desenvolvedor (REGRA Nº 2).
 
 ## Pendências Técnicas
 

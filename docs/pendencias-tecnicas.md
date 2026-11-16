@@ -93,6 +93,19 @@ restante é não destrutivo e a tabela está vazia.
 Para eliminar a diferença seria preciso ler o valor de "On Delete" do campo no
 dashboard e declará-lo localmente.
 
+### 6. Passos manuais pendentes no Xano (Tarefas 13 e 14)
+
+Itens que dependem do desenvolvedor por causa da REGRA Nº 2 (a IA não faz
+push/sync/deploy):
+
+- **Tarefa 13** — testar o isolamento dos endpoints CRUD com dois usuários
+  distintos no Run & Debug/Swagger e salvar o print em
+  `docs/evidencias/tarefa13/`.
+- **Tarefa 14** — enviar o endpoint de busca ao Xano com
+  `xano workspace push --branch v1 --include
+  "apis/autenticacao_edutrack_ia_est/subjects_search_GET.xs"`
+  e salvar o print do teste no Swagger em `docs/evidencias/tarefa14/`.
+
 ---
 
 Data de entrega: 6 de outubro de 2026
