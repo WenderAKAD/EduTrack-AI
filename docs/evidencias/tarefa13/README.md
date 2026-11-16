@@ -39,3 +39,7 @@ Para validação completa (isolamento por usuário), testar com dois logins dist
 ## Prints
 - [swagger-lista-endpoints.png](swagger-lista-endpoints.png) – Lista de endpoints do grupo `Autenticacao EduTrackIA Est` no Xano
 - [swagger-documentacao.png](swagger-documentacao.png) – Documentação Swagger mostrando os endpoints CRUD de `subjects`
+
+## Documento de entrega
+- [Tarefa13-documentacao.html](Tarefa13-documentacao.html) – fonte editável com objetivo, endpoints e critérios de avaliação
+- [Tarefa13-documentacao.pdf](Tarefa13-documentacao.pdf) – versão em PDF para envio no Classroom

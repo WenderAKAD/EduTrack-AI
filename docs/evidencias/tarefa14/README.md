@@ -27,6 +27,7 @@
 - `openspec/specs/subjects/spec.md` (especificação mestra atualizada)
 - `docs/tarefas/tarefa14.md`
 - `docs/evidencias/tarefa14/Tarefa14-entrega.html`
+- `docs/evidencias/tarefa14/Tarefa14-entrega.pdf`
 - `docs/evidencias/tarefa14/saida-terminal.txt`
 
 ---

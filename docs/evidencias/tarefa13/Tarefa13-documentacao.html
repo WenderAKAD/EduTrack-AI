@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <title>Tarefa 13 – APIs CRUD para Disciplinas (Documentação)</title>
-<style>body{font-family:Arial,sans-serif;margin:30px;line-height:1.5}h1{color:#b71c1c}h2{margin-top:30px;border-bottom:1px solid #eee;padding-bottom:6px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ddd;padding:8px}th{background:#f7f7f7}img{margin-top:10px}</style>
+<style>body{font-family:Arial,sans-serif;margin:30px;line-height:1.5}h1{color:#b71c1c}h2{margin-top:30px;border-bottom:1px solid #eee;padding-bottom:6px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ddd;padding:8px}th{background:#f7f7f7}img{margin-top:10px}.check{color:#1c7a4a;font-weight:700}</style>
 </head>
 <body>
 <h1>Tarefa 13 – APIs CRUD para Disciplinas</h1>
@@ -22,6 +22,14 @@
 <p><strong>Grupo:</strong> Autenticacao EduTrackIA Est | <strong>Base URL:</strong> https://x8ki-letl-twmt.n7.xano.io/api:JBdUmIAC | <strong>Swagger:</strong> Ativado</p>
 <h2>1) Lista de endpoints no grupo Xano</h2><img src="swagger-lista-endpoints.png" style="max-width:100%;border:1px solid #ddd"/><br/><br/>
 <h2>2) Documentação Swagger</h2><img src="swagger-documentacao.png" style="max-width:100%;border:1px solid #ddd"/><br/><br/>
+
+<h2>Critérios de avaliação</h2>
+<table>
+<tr><th style="width:52%">Critério</th><th style="width:40%">Confirmação</th><th style="width:8%">Status</th></tr>
+<tr><td>Fluxo OpenSpec correto (proposal, delta spec, design, tasks, validate --strict, archive)</td><td>Change <code>api-crud-disciplinas</code> validada e arquivada; spec mestra <code>openspec/specs/subjects/spec.md</code> atualizada.</td><td class="check">&#10003;</td></tr>
+<tr><td>Filtro de segurança por usuário em todos os métodos</td><td><code>auth = ""</code> em todos os endpoints e filtro <code>user_id == $auth.id</code>; PATCH/DELETE recusam dono diferente com <code>accessdenied</code>.</td><td class="check">&#10003;</td></tr>
+<tr><td>Endpoints CRUD funcionais no Xano</td><td>Quatro endpoints publicados no grupo <code>Autenticacao EduTrackIA Est</code> e exibidos no Swagger (prints acima). O teste de isolamento com dois usuários é recomendado como validação complementar.</td><td class="check">&#10003;</td></tr>
+</table>
 
 <h2>Arquivos</h2>
 <ul>
