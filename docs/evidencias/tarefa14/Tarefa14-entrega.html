@@ -152,7 +152,7 @@
     <ol>
       <li>Objetivo e Abordagem Híbrida</li>
       <li>Ciclo Spec-Driven Development (OpenSpec)</li>
-      <li>Função Analítica em Python (<span class="mono">search_overdue_subjects.py</span>)</li>
+      <li>Função Analítica em Python e custom function XanoScript (<span class="mono">functions/search_overdue_subjects.xs</span>)</li>
       <li>Endpoint XanoScript (<span class="mono">subjects_search_GET.xs</span>)</li>
       <li>Validação, Testes Locais e Evidências</li>
       <li>Segurança e Isolamento por Usuário</li>
@@ -168,7 +168,8 @@
   <p>A arquitetura adotada divide as responsabilidades com máxima eficiência:</p>
   <ul>
     <li><b>Lado Xano (Banco Relacional):</b> Efetua a busca por nome na tabela <code class="inl">subjects</code> utilizando o operador case-insensitive <code class="inl">ilike</code>, garantindo indexação rápida e filtro rigoroso de propriedade por <code class="inl">user_id == $auth.id</code>.</li>
-    <li><b>Lado Python (Processamento Analítico):</b> Recebe as tarefas acadêmicas vinculadas ao estudante e processa as regras de calendário e pendência (<code class="inl">due_date &lt; hoje</code> e <code class="inl">status != 'completed'</code>), identificando de forma exata quais disciplinas estão em situação de atraso.</li>
+    <li><b>Lado Python (Regra Analítica):</b> O script <code class="inl">scripts/search_overdue_subjects.py</code> define e valida a regra de calendário e pendência (<code class="inl">due_date &lt; hoje</code> e <code class="inl">status != 'completed'</code>), identificando quais disciplinas estão em atraso.</li>
+    <li><b>Lado XanoScript (Execução):</b> A custom function <code class="inl">functions/search_overdue_subjects.xs</code> porta a mesma regra para o backend, recebendo as tarefas e disciplinas do usuário e devolvendo apenas as disciplinas com pendência vencida.</li>
   </ul>
 </section>
 
@@ -207,7 +208,7 @@
 
 <section>
   <h3 class="sec"><span class="num">3</span> Função Analítica em Python</h3>
-  <p>Implementada em <code class="inl">scripts/search_overdue_subjects.py</code> sem dependências externas (Python standard library), facilitando execução local e integração como custom function ou microserviço.</p>
+  <p>Implementada em <code class="inl">scripts/search_overdue_subjects.py</code> sem dependências externas (Python standard library), facilitando execução local e validação da regra. A mesma lógica é portada para a custom function <code class="inl">functions/search_overdue_subjects.xs</code>, que executa a verificação no backend Xano.</p>
   <pre><code>def is_overdue_task(task: Dict, today: date = None) -> bool:
     """Tarefa atrasada: status != completed e due_date < hoje."""
     if today is None:
@@ -231,7 +232,7 @@ def filter_overdue_subjects(subjects: List[Dict], tasks: List[Dict], today: date
 
 <section>
   <h3 class="sec"><span class="num">4</span> Endpoint XanoScript</h3>
-  <p>O endpoint <code class="inl">GET /subjects/search</code> foi adicionado ao grupo de APIs <code class="inl">AutenticacaoEduTrackIAEst</code> em <code class="inl">apis/autenticacao_edutrack_ia_est/subjects_search_GET.xs</code>:</p>
+  <p>O endpoint <code class="inl">GET /subjects/search</code> foi adicionado ao grupo de APIs <code class="inl">AutenticacaoEduTrackIAEst</code> em <code class="inl">apis/autenticacao_edutrack_ia_est/subjects_search_GET.xs</code>. Quando <code class="inl">overdue=true</code>, ele chama a custom function <code class="inl">functions/search_overdue_subjects.xs</code> com as tarefas e disciplinas do usuário autenticado.</p>
   <table class="t">
     <tr>
       <th>Parâmetro</th>
@@ -253,7 +254,7 @@ def filter_overdue_subjects(subjects: List[Dict], tasks: List[Dict], today: date
     </tr>
   </table>
   <div class="nota">
-    <b>Combinação inteligente:</b> Se ambos os parâmetros forem informados (<code class="inl">?q=Lab&overdue=true</code>), o endpoint busca no banco apenas as disciplinas correspondentes a "Lab" do usuário autenticado e, em seguida, o filtro Python mantém apenas aquelas que possuem pendências vencidas.
+    <b>Combinação inteligente:</b> Se ambos os parâmetros forem informados (<code class="inl">?q=Lab&overdue=true</code>), o endpoint busca no banco apenas as disciplinas correspondentes a "Lab" do usuário autenticado e, em seguida, a custom function <code class="inl">search_overdue_subjects</code> mantém apenas aquelas que possuem pendências vencidas.
   </div>
 </section>
 
@@ -299,7 +300,7 @@ def filter_overdue_subjects(subjects: List[Dict], tasks: List[Dict], today: date
     </tr>
     <tr>
       <td><b>Integração Híbrida</b></td>
-      <td>Busca por texto no Xano integrada com verificação analítica em Python</td>
+      <td>Busca por texto no Xano integrada com verificação analítica em Python portada para custom function XanoScript</td>
       <td><span class="badge-ok">&#10003; Atendido</span></td>
     </tr>
     <tr>
@@ -314,7 +315,7 @@ def filter_overdue_subjects(subjects: List[Dict], tasks: List[Dict], today: date
     </tr>
   </table>
   <div class="nota">
-    <b>Aviso de Transparência (REGRA Nº 2 do AGENTS.md):</b> Conforme as diretrizes do projeto, o envio físico do arquivo <span class="mono">subjects_search_GET.xs</span> para o workspace ativo no Xano deve ser disparado manualmente pelo desenvolvedor através do comando <code class="inl">xano workspace push --branch v1 --include "apis/autenticacao_edutrack_ia_est/subjects_search_GET.xs"</code>.
+    <b>Aviso de Transparência (REGRA Nº 2 do AGENTS.md):</b> Conforme as diretrizes do projeto, o envio físico dos arquivos <span class="mono">functions/search_overdue_subjects.xs</span> e <span class="mono">subjects_search_GET.xs</span> para o workspace ativo no Xano deve ser disparado manualmente pelo desenvolvedor através do comando <code class="inl">xano workspace push --branch v1 --include "functions/search_overdue_subjects.xs" --include "apis/autenticacao_edutrack_ia_est/subjects_search_GET.xs"</code>.
   </div>
 </section>
 

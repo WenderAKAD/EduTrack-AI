@@ -101,10 +101,13 @@ push/sync/deploy):
 - **Tarefa 13** — testar o isolamento dos endpoints CRUD com dois usuários
   distintos no Run & Debug/Swagger e salvar o print em
   `docs/evidencias/tarefa13/`.
-- **Tarefa 14** — enviar o endpoint de busca ao Xano com
+- **Tarefa 14** — publicar primeiro a custom function e depois o endpoint:
   `xano workspace push --branch v1 --include
-  "apis/autenticacao_edutrack_ia_est/subjects_search_GET.xs"`
-  e salvar o print do teste no Swagger em `docs/evidencias/tarefa14/`.
+  "functions/search_overdue_subjects.xs"` e, em seguida,
+  `xano workspace push --branch v1 --include
+  "apis/autenticacao_edutrack_ia_est/subjects_search_GET.xs"`.
+  Testar `?q=`, `?overdue=true` e `?q=...&overdue=true` no Swagger/Run & Debug
+  e salvar os prints em `docs/evidencias/tarefa14/`.
 
 ---
 

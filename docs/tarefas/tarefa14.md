@@ -20,13 +20,18 @@ A funcionalidade de busca avançada híbrida combina a capacidade de consulta e 
 - **Validação e Arquivamento**: validada com `openspec validate busca-avancada-inteligente --strict` e arquivada em `openspec/changes/archive/2026-11-11-busca-avancada-inteligente/`, atualizando a especificação permanente `openspec/specs/subjects/spec.md`.
 - **Script Auxiliar Python (`scripts/search_overdue_subjects.py`)**:
   - Implementa lógica pura Python para detecção de tarefas atrasadas (`due_date < data_atual` e `status != completed`).
-  - Funções `get_overdue_subject_ids()`, `filter_overdue_subjects()` e `handle(data)` prontas para teste local e integração como custom function / microserviço.
+  - Funções `is_overdue_task()`, `find_overdue_subject_ids()`, `filter_overdue_subjects()` e `handle(data)` para teste local e validação da regra.
+  - A execução no backend é feita pela custom function `functions/search_overdue_subjects.xs`, que porta a mesma regra.
   - Cobertura de testes embutida (`__main__`) validando cenários de sucesso, tarefas concluídas no prazo e tarefas vencidas.
 - **Endpoint XanoScript (`apis/autenticacao_edutrack_ia_est/subjects_search_GET.xs`)**:
   - `GET /subjects/search` adicionado ao grupo de API existente `AutenticacaoEduTrackIAEst`.
   - Suporte ao parâmetro de busca parcial por nome `q` via `ilike` case-insensitive.
-  - Suporte ao parâmetro booleano `overdue=true` integrando a detecção analítica de pendências.
+  - Suporte ao parâmetro booleano `overdue=true` integrando a custom function `search_overdue_subjects`.
   - Escopo rigoroso por `$auth.id`.
+- **Custom function XanoScript (`functions/search_overdue_subjects.xs`)**:
+  - Porte da lógica analítica do Python para execução no backend Xano.
+  - Recebe `tasks` e `subjects`, aplica `status != completed` e `due_date < hoje` e devolve `{subjects: [...]}`.
+  - Mantém a regra de atraso idêntica à do script (`scripts/search_overdue_subjects.py`).
 - **Branch e Pull Request**:
   - Branch: `feat/hybrid-search`
   - Pull Request #12 no repositório de estudante (`origin`), merged na `main`.
@@ -50,11 +55,13 @@ A funcionalidade de busca avançada híbrida combina a capacidade de consulta e 
       `scripts/search_overdue_subjects.py`
 - [x] Endpoint `.xs` do endpoint de busca no repositório.  
       `apis/autenticacao_edutrack_ia_est/subjects_search_GET.xs`
+- [x] Custom function `.xs` com o porte da lógica de atraso para o backend.  
+      `functions/search_overdue_subjects.xs`
 - [x] Pull Request e merge na branch `main` espelhado em ambos os repositórios (estudante e pessoal).
 - [x] Documento de entrega e evidências estruturados:
       `docs/evidencias/tarefa14/Tarefa14-entrega.html`, `docs/evidencias/tarefa14/Tarefa14-entrega.pdf` e `DMAtividades/14Atividade/Tarefa14-entrega.pdf`
-- [ ] Push manual do endpoint para o backend Xano (conforme REGRA Nº 2 do projeto).  
-      `xano workspace push --branch v1 --include "apis/autenticacao_edutrack_ia_est/subjects_search_GET.xs"`
+- [ ] Push manual da função e do endpoint para o backend Xano (conforme REGRA Nº 2 do projeto).  
+      `xano workspace push --branch v1 --include "functions/search_overdue_subjects.xs" --include "apis/autenticacao_edutrack_ia_est/subjects_search_GET.xs"`
 - [ ] Teste no Swagger / Run & Debug do Xano com screenshots salvos em `docs/evidencias/tarefa14/`.
 
 ---
@@ -62,7 +69,7 @@ A funcionalidade de busca avançada híbrida combina a capacidade de consulta e 
 ## 4. CRITÉRIOS DE AVALIAÇÃO ATENDIDOS
 
 - [x] **Spec-Driven Development:** Mudança documentada, validada de forma estrita e integrada ao catálogo de specs permanentes.
-- [x] **Hibridismo Xano + Python:** Integração conceitual e prática entre filtros do banco de dados relacional e lógica em Python.
+- [x] **Hibridismo Xano + Python:** Regra analítica validada em Python (`scripts/search_overdue_subjects.py`) e portada para a custom function XanoScript (`functions/search_overdue_subjects.xs`), combinada com a busca relacional no Xano.
 - [x] **Segurança por Token:** Isolamento completo de dados por usuário.
 - [x] **Sincronização Dupla Git:** Espelhamento entre o repositório acadêmico institucional e o portfólio pessoal.
 
