@@ -10,14 +10,14 @@
 //
 // Seguranca (AGENTS.md): subjects e filtrado por user_id == $auth.id e
 // academic_tasks pela posse herdada via subject_id -> subjects.user_id.
-// Nenhum dado de outro usuario sai do banco. auth = "" faz o Xano validar
+// Nenhum dado de outro usuario sai do banco. auth = "user" faz o Xano validar
 // o JWT antes de o stack rodar.
 //
 // Change: openspec/changes/busca-avancada-inteligente (Tarefa 14).
 // Grupo reusado da Tarefa 07: https://x8ki-letl-twmt.n7.xano.io/api:JBdUmIAC
 query "subjects/search" verb=GET {
   api_group = "Autenticacao EduTrackIA Est"
-  auth = ""
+  auth = "user"
   description = "Busca hibrida de disciplinas por nome (Xano) e por tarefas atrasadas (Python)."
 
   input {

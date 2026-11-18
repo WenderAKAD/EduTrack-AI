@@ -279,7 +279,7 @@ def filter_overdue_subjects(subjects: List[Dict], tasks: List[Dict], today: date
 <section>
   <h3 class="sec"><span class="num">6</span> Segurança e Isolamento por Usuário</h3>
   <ul>
-    <li><b>Autenticação JWT Obrigatória:</b> <code class="inl">auth = ""</code> no topo do endpoint XanoScript impede acesso anônimo.</li>
+    <li><b>Autenticação JWT Obrigatória:</b> <code class="inl">auth = "user"</code> no topo do endpoint XanoScript impede acesso anônimo.</li>
     <li><b>Restrição no Banco:</b> <code class="inl">where = $db.subjects.user_id == $auth.id</code> garante que o estudante jamais visualize disciplinas de terceiros.</li>
     <li><b>Restrição de Tarefas:</b> <code class="inl">where = $db.academic_tasks.subject_id.user_id == $auth.id</code> assegura que nenhuma tarefa alheia entre no cálculo de atraso.</li>
   </ul>

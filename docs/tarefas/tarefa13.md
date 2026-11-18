@@ -24,7 +24,7 @@ restringido ao usuário autenticado via JWT.
   `openspec/specs/subjects/spec.md`.
 - Quatro endpoints criados em `apis/autenticacao_edutrack_ia_est/`, reusando o
   grupo de API da Tarefa 07 (mesma Base URL do FlutterFlow):
-  - `subjects_GET.xs` — `GET /subjects` com `auth = ""` e
+  - `subjects_GET.xs` — `GET /subjects` com `auth = "user"` e
     `where = $db.subjects.user_id == $auth.id`;
   - `subjects_POST.xs` — `POST /subjects` com `user_id = $auth.id` gravado no
     `db.add` (nunca vem do body);
@@ -40,7 +40,7 @@ restringido ao usuário autenticado via JWT.
 
 2. SEGURANÇA (user_id)
 
-- Todo endpoint exige JWT (`auth = ""`); requisição sem token é recusada
+- Todo endpoint exige JWT (`auth = "user"`); requisição sem token é recusada
   antes de qualquer acesso ao banco.
 - `GET` filtra por `user_id == $auth.id` — um aluno nunca lista disciplinas de
   outro.
