@@ -27,4 +27,5 @@ query "status" verb=GET {
     instance: "x8ki-letl-twmt"
     timestamp: "now"
   }
+  guid = "pg8LMehHrInCjJvlrtKVw1o6WTo"
 }

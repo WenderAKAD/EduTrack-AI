@@ -49,4 +49,5 @@ query "auth/signup" verb=POST {
   }
 
   response = {authToken: $authToken}
+  guid = "Xb8e9FHf__WhvjSAQiaWf0ie4aQ"
 }

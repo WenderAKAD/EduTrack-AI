@@ -47,4 +47,5 @@ query "auth/login" verb=POST {
   }
 
   response = {authToken: $authToken}
+  guid = "WKONs6R8DbH973t-DIUqVyD3SG8"
 }

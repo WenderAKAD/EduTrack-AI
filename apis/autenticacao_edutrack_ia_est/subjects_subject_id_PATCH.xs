@@ -10,7 +10,7 @@
 // Change: openspec/changes/api-crud-disciplinas (Tarefa 13).
 query "subjects/{subject_id}" verb=PATCH {
   api_group = "Autenticacao EduTrackIA Est"
-  auth = ""
+  auth = "user"
   description = "Atualiza uma disciplina do usuario autenticado."
 
   input {
@@ -49,4 +49,5 @@ query "subjects/{subject_id}" verb=PATCH {
   }
 
   response = $updated
+  guid = "x40nCUz4-ckDxEMYOUrhfwWovCY"
 }

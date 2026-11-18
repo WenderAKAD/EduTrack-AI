@@ -41,7 +41,7 @@ A funcionalidade de busca avançada híbrida combina a capacidade de consulta e 
 
 ## 2. SEGURANÇA E ISOLAMENTO DE DADOS (`user_id`)
 
-- **Autenticação obrigatória (`auth = ""`):** Nenhuma busca é permitida sem token JWT válido.
+- **Autenticação obrigatória (`auth = "user"`):** Nenhuma busca é permitida sem token JWT válido.
 - **Filtro de Disciplinas:** A busca só recupera disciplinas pertencentes ao usuário logado (`where = $db.subjects.user_id == $auth.id`).
 - **Filtro de Tarefas Acadêmicas:** A consulta a `academic_tasks` garante que nenhuma tarefa de outro usuário seja processada, vinculando a verificação à disciplina pertencente ao usuário autenticado (`academic_tasks.subject_id.user_id == $auth.id`).
 

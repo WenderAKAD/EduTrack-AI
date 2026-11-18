@@ -8,7 +8,7 @@
 - Change OpenSpec `api-crud-disciplinas` (proposal, design, specs delta, tasks) validada e arquivada
 - 4 endpoints CRUD criados em `apis/autenticacao_edutrack_ia_est/` e enviados ao Xano
 - Grupo API `Autenticacao EduTrackIA Est` (canonical `JBdUmIAC`) com Swagger ativado
-- Segurança por `user_id` em todos os métodos (`auth = ""` + filtro/autorização por dono)
+- Segurança por `user_id` em todos os métodos (`auth = "user"` + filtro/autorização por dono)
 - Endpoints de autenticação `auth/signup` e `auth/login` adicionados para viabilizar teste
 
 ## Endpoints criados

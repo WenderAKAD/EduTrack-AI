@@ -27,7 +27,7 @@
 <table>
 <tr><th style="width:52%">Critério</th><th style="width:40%">Confirmação</th><th style="width:8%">Status</th></tr>
 <tr><td>Fluxo OpenSpec correto (proposal, delta spec, design, tasks, validate --strict, archive)</td><td>Change <code>api-crud-disciplinas</code> validada e arquivada; spec mestra <code>openspec/specs/subjects/spec.md</code> atualizada.</td><td class="check">&#10003;</td></tr>
-<tr><td>Filtro de segurança por usuário em todos os métodos</td><td><code>auth = ""</code> em todos os endpoints e filtro <code>user_id == $auth.id</code>; PATCH/DELETE recusam dono diferente com <code>accessdenied</code>.</td><td class="check">&#10003;</td></tr>
+<tr><td>Filtro de segurança por usuário em todos os métodos</td><td><code>auth = "user"</code> em todos os endpoints e filtro <code>user_id == $auth.id</code>; PATCH/DELETE recusam dono diferente com <code>accessdenied</code>.</td><td class="check">&#10003;</td></tr>
 <tr><td>Endpoints CRUD funcionais no Xano</td><td>Quatro endpoints publicados no grupo <code>Autenticacao EduTrackIA Est</code> e exibidos no Swagger (prints acima). O teste de isolamento com dois usuários é recomendado como validação complementar.</td><td class="check">&#10003;</td></tr>
 </table>
 
