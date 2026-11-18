@@ -16,7 +16,7 @@
 // Change: openspec/changes/busca-avancada-inteligente (Tarefa 14).
 // Grupo reusado da Tarefa 07: https://x8ki-letl-twmt.n7.xano.io/api:JBdUmIAC
 query "subjects/search" verb=GET {
-  api_group = "AutenticacaoEduTrackIAEst"
+  api_group = "Autenticacao EduTrackIA Est"
   auth = ""
   description = "Busca hibrida de disciplinas por nome (Xano) e por tarefas atrasadas (Python)."
 

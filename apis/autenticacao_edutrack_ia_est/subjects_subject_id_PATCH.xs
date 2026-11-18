@@ -9,7 +9,7 @@
 //
 // Change: openspec/changes/api-crud-disciplinas (Tarefa 13).
 query "subjects/{subject_id}" verb=PATCH {
-  api_group = "AutenticacaoEduTrackIAEst"
+  api_group = "Autenticacao EduTrackIA Est"
   auth = ""
   description = "Atualiza uma disciplina do usuario autenticado."
 

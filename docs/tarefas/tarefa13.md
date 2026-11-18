@@ -77,7 +77,7 @@ restringido ao usuário autenticado via JWT.
 
 5. OBSERVAÇÕES
 
-- **Grupo de API reusado.** `AutenticacaoEduTrackIAEst` (Tarefa 07) recebe os
+- **Grupo de API reusado.** `Autenticacao EduTrackIA Est` (Tarefa 07) recebe os
   endpoints em vez de um grupo novo: evita mais um objeto no workspace já
   poluído por templates (pendência nº 1) e mantém a Base URL que o FlutterFlow
   já usa.

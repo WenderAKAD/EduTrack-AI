@@ -9,7 +9,7 @@
 //
 // Change: openspec/changes/api-crud-disciplinas (Tarefa 13).
 query "subjects/{subject_id}" verb=DELETE {
-  api_group = "AutenticacaoEduTrackIAEst"
+  api_group = "Autenticacao EduTrackIA Est"
   auth = ""
   description = "Deleta uma disciplina do usuario autenticado."
 

@@ -3,7 +3,7 @@
 //
 // canonical: segmento que forma a Base URL do grupo. Atribuído pelo Xano
 //   https://x8ki-letl-twmt.n7.xano.io/api:JBdUmIAC
-api_group AutenticacaoEduTrackIAEst {
+api_group "Autenticacao EduTrackIA Est" {
   canonical = "JBdUmIAC"
   description = "API de Autenticacao do EduTrack AI (frontend FlutterFlow / backend Xano)."
   tags = ["edutrack", "auth", "flutterflow"]

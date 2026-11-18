@@ -41,7 +41,7 @@ o cache local (ver item 2), sob risco de sobrescrever arquivos versionados.
 
 O arquivo `.xano/branches/v1/objects.json` é de **28 de setembro de 2026**,
 anterior à Tarefa 07. Consequência: o preview de push reporta
-`CREATE api_group AutenticacaoEduTrackIAEst`, mas essa API já existe no
+`CREATE api_group Autenticacao EduTrackIA Est`, mas essa API já existe no
 servidor (responde HTTP 200 em `/status`) — o cache é que está desatualizado.
 
 **Atenção:** não rodar `xano workspace pull` antes de versionar os arquivos

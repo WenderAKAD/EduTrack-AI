@@ -10,7 +10,7 @@
 
 - **Change OpenSpec:** `busca-avancada-inteligente` (proposal, design, specs delta com `## ADDED Requirements`, tasks) validada estritamente com `openspec validate busca-avancada-inteligente --strict` e arquivada em `openspec/changes/archive/2026-11-11-busca-avancada-inteligente/`.
 - **Script Analítico em Python:** `scripts/search_overdue_subjects.py` com funções puras (`find_overdue_subject_ids`, `filter_overdue_subjects`, `handle`) sem dependências externas, validando tarefas atrasadas (`due_date < hoje` e `status != completed`).
-- **Endpoint XanoScript:** `apis/autenticacao_edutrack_ia_est/subjects_search_GET.xs` adicionando `GET /subjects/search` ao grupo `AutenticacaoEduTrackIAEst` (Base URL `https://x8ki-letl-twmt.n7.xano.io/api:JBdUmIAC`).
+- **Endpoint XanoScript:** `apis/autenticacao_edutrack_ia_est/subjects_search_GET.xs` adicionando `GET /subjects/search` ao grupo `Autenticacao EduTrackIA Est` (Base URL `https://x8ki-letl-twmt.n7.xano.io/api:JBdUmIAC`).
 - **Custom function XanoScript:** `functions/search_overdue_subjects.xs` com o porte da regra de atraso do Python (`status != completed` e `due_date < hoje`), usada pelo endpoint para filtrar as disciplinas em runtime.
 - **Parâmetros suportados:**
   - `q` (busca parcial e case-insensitive por nome da disciplina via `ilike` no Xano).
