@@ -73,9 +73,10 @@ tarefa — entregáveis, critérios e observações — fica em `docs/tarefas/`.
   e visíveis no Swagger (prints em `docs/evidencias/tarefa13/`). O teste
   complementar de isolamento com dois usuários distintos ainda é um passo manual
   do desenvolvedor. Endpoint de `user` segue para a próxima etapa.
-- **Tarefa 14** — o endpoint de busca híbrida (`GET /subjects/search`) e o script
-  Python foram gerados e validados localmente; o push ao Xano e o teste no
-  Swagger são passos manuais do desenvolvedor (REGRA Nº 2).
+- **Tarefa 14** — o endpoint de busca híbrida (`GET /subjects/search`), o script
+  Python e a custom function `functions/search_overdue_subjects.xs` foram
+  gerados e validados localmente; o push ao Xano e o teste no Swagger são
+  passos manuais do desenvolvedor (REGRA Nº 2).
 
 ## Pendências Técnicas
 
