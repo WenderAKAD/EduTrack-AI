@@ -6,7 +6,7 @@
 //
 // Change: openspec/changes/api-crud-disciplinas (Tarefa 13).
 query "subjects" verb=POST {
-  api_group = "AutenticacaoEduTrackIAEst"
+  api_group = "Autenticacao EduTrackIA Est"
   auth = ""
   description = "Cria uma disciplina do usuario autenticado."
 

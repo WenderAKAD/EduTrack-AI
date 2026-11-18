@@ -8,7 +8,7 @@
 // Change: openspec/changes/api-crud-disciplinas (Tarefa 13).
 // Grupo reusado da Tarefa 07: https://x8ki-letl-twmt.n7.xano.io/api:JBdUmIAC
 query "subjects" verb=GET {
-  api_group = "AutenticacaoEduTrackIAEst"
+  api_group = "Autenticacao EduTrackIA Est"
   auth = ""
   description = "Lista as disciplinas do usuario autenticado."
 

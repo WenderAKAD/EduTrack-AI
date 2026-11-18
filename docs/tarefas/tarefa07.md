@@ -58,7 +58,7 @@ em flutterflow/REGISTRO-CONFIGURACAO.md.
 Confirmação: API Group "Xano Backend" no FlutterFlow apontando para
 https://x8ki-letl-twmt.n7.xano.io/api:JBdUmIAC. Print em
 DMAtividades/7ATIVIDADE/ApiXanoFlutterflow.png. A API foi criada no Xano como
-AutenticacaoEduTrackIAEst, com o endpoint GET /status validado em HTTP 200
+Autenticacao EduTrackIA Est, com o endpoint GET /status validado em HTTP 200
 (ver apis/autenticacao_edutrack_ia_est/).
 
 [✅] Registro do progresso realizado no README do projeto via Git.

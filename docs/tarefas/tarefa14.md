@@ -24,7 +24,7 @@ A funcionalidade de busca avançada híbrida combina a capacidade de consulta e 
   - A execução no backend é feita pela custom function `functions/search_overdue_subjects.xs`, que porta a mesma regra.
   - Cobertura de testes embutida (`__main__`) validando cenários de sucesso, tarefas concluídas no prazo e tarefas vencidas.
 - **Endpoint XanoScript (`apis/autenticacao_edutrack_ia_est/subjects_search_GET.xs`)**:
-  - `GET /subjects/search` adicionado ao grupo de API existente `AutenticacaoEduTrackIAEst`.
+  - `GET /subjects/search` adicionado ao grupo de API existente `Autenticacao EduTrackIA Est`.
   - Suporte ao parâmetro de busca parcial por nome `q` via `ilike` case-insensitive.
   - Suporte ao parâmetro booleano `overdue=true` integrando a custom function `search_overdue_subjects`.
   - Escopo rigoroso por `$auth.id`.
@@ -60,8 +60,10 @@ A funcionalidade de busca avançada híbrida combina a capacidade de consulta e 
 - [x] Pull Request e merge na branch `main` espelhado em ambos os repositórios (estudante e pessoal).
 - [x] Documento de entrega e evidências estruturados:
       `docs/evidencias/tarefa14/Tarefa14-entrega.html`, `docs/evidencias/tarefa14/Tarefa14-entrega.pdf` e `DMAtividades/14Atividade/Tarefa14-entrega.pdf`
-- [ ] Push manual da função e do endpoint para o backend Xano (conforme REGRA Nº 2 do projeto).  
-      `xano workspace push --branch v1 --include "functions/search_overdue_subjects.xs" --include "apis/autenticacao_edutrack_ia_est/subjects_search_GET.xs"`
+- [x] Push manual da custom function para o backend Xano (conforme REGRA Nº 2 do projeto).  
+      `xano workspace push --branch v1 --include "functions/search_overdue_subjects.xs"` — concluído (`CREATE function search_overdue_subjects`).
+- [ ] Push manual do endpoint para o backend Xano (conforme REGRA Nº 2 do projeto).  
+      `xano workspace push --branch v1 --include "apis/autenticacao_edutrack_ia_est/subjects_search_GET.xs"` — pendente; o primeiro push falhou por `api_group` divergente e o nome local foi corrigido para `Autenticacao EduTrackIA Est`.
 - [ ] Teste no Swagger / Run & Debug do Xano com screenshots salvos em `docs/evidencias/tarefa14/`.
 
 ---

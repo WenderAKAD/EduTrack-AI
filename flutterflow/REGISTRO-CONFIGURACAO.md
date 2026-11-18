@@ -90,7 +90,7 @@ acompanhamento acadêmico.
 | Token | Access Token **VS Code** — Metadata API & MCP Server |
 | Escopos | Database, API Groups, Functions, Content |
 
-**API group no Xano:** `AutenticacaoEduTrackIAEst` — canonical `JBdUmIAC`
+**API group no Xano:** `Autenticacao EduTrackIA Est` — canonical `JBdUmIAC`
 (atribuído pelo Xano). Pasta versionada: `apis/autenticacao_edutrack_ia_est/`.
 
 **Teste de conexão:** usar a URL completa do endpoint `status`:

@@ -11,7 +11,7 @@
 // timestamp real (epoch em ms) usar datetime_now() — ajuste previsto para a
 // Tarefa 08.
 query "status" verb=GET {
-  api_group = "AutenticacaoEduTrackIAEst"
+  api_group = "Autenticacao EduTrackIA Est"
   description = "Health check do backend do EduTrack AI."
 
   input {
