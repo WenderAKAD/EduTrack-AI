@@ -71,4 +71,5 @@ query "subjects/search" verb=GET {
   }
 
   response = $result
+  guid = "4mLxcLv3dbSBaiYTRHCzAEj5TbI"
 }

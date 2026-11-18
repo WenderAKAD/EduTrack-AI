@@ -62,8 +62,8 @@ A funcionalidade de busca avançada híbrida combina a capacidade de consulta e 
       `docs/evidencias/tarefa14/Tarefa14-entrega.html`, `docs/evidencias/tarefa14/Tarefa14-entrega.pdf` e `DMAtividades/14Atividade/Tarefa14-entrega.pdf`
 - [x] Push manual da custom function para o backend Xano (conforme REGRA Nº 2 do projeto).  
       `xano workspace push --branch v1 --include "functions/search_overdue_subjects.xs"` — concluído (`CREATE function search_overdue_subjects`).
-- [ ] Push manual do endpoint para o backend Xano (conforme REGRA Nº 2 do projeto).  
-      `xano workspace push --branch v1 --include "apis/autenticacao_edutrack_ia_est/subjects_search_GET.xs"` — pendente; o primeiro push falhou por `api_group` divergente e o nome local foi corrigido para `Autenticacao EduTrackIA Est`.
+- [x] Push manual do endpoint para o backend Xano (conforme REGRA Nº 2 do projeto).  
+      `xano workspace push --branch v1 --include "apis/autenticacao_edutrack_ia_est/subjects_search_GET.xs"` — concluído (`CREATE query subjects/search GET`); GUID `4mLxcLv3dbSBaiYTRHCzAEj5TbI` registrado no `.xs`.
 - [ ] Teste no Swagger / Run & Debug do Xano com screenshots salvos em `docs/evidencias/tarefa14/`.
 
 ---

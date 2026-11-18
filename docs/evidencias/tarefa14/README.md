@@ -12,6 +12,7 @@
 - **Script Analítico em Python:** `scripts/search_overdue_subjects.py` com funções puras (`find_overdue_subject_ids`, `filter_overdue_subjects`, `handle`) sem dependências externas, validando tarefas atrasadas (`due_date < hoje` e `status != completed`).
 - **Endpoint XanoScript:** `apis/autenticacao_edutrack_ia_est/subjects_search_GET.xs` adicionando `GET /subjects/search` ao grupo `Autenticacao EduTrackIA Est` (Base URL `https://x8ki-letl-twmt.n7.xano.io/api:JBdUmIAC`).
 - **Custom function XanoScript:** `functions/search_overdue_subjects.xs` com o porte da regra de atraso do Python (`status != completed` e `due_date < hoje`), usada pelo endpoint para filtrar as disciplinas em runtime.
+- **Push Xano:** custom function e endpoint publicados no workspace `148813` (branch `v1`); GUIDs registrados em `functions/search_overdue_subjects.xs` e `apis/autenticacao_edutrack_ia_est/subjects_search_GET.xs`.
 - **Parâmetros suportados:**
   - `q` (busca parcial e case-insensitive por nome da disciplina via `ilike` no Xano).
   - `overdue=true` (filtragem inteligente das disciplinas com tarefas acadêmicas vencidas via custom function `search_overdue_subjects`).
