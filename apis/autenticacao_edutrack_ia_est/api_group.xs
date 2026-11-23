@@ -7,4 +7,5 @@ api_group "Autenticacao EduTrackIA Est" {
   canonical = "JBdUmIAC"
   description = "API de Autenticacao do EduTrack AI (frontend FlutterFlow / backend Xano)."
   tags = ["edutrack", "auth", "flutterflow"]
+  guid = "lxARbsP1ZSoxSMN0ir-SFJa4Gys"
 }

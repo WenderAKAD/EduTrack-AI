@@ -11,3 +11,8 @@ build/
 .flutter_tool_state
 *.iml
 .idea/
+
+# Streamlit
+.venv/
+.streamlit/secrets.toml
+edutrack.db
