@@ -292,28 +292,61 @@ st.set_page_config(
     page_title="EduTrack AI", page_icon=None, layout="wide", initial_sidebar_state="expanded"
 )
 
+if "dark_mode" not in st.session_state:
+    st.session_state.dark_mode = False
+
+THEME = {
+    "bg": "#FFFFFF",
+    "surface": "#F7F4F3",
+    "border": "#EADFDC",
+    "text": "#1A1312",
+    "muted": "#7B6A67",
+    "heading": "#8B0012",
+    "primary": "#C1121F",
+    "sidebar": "#8B0012",
+    "sidebar_text": "#FFFFFF",
+    "sidebar_button_bg": "#FFFFFF",
+    "sidebar_button_text": "#8B0012",
+} if not st.session_state.dark_mode else {
+    "bg": "#0A0A0A",
+    "surface": "#16181C",
+    "border": "#2A2D33",
+    "text": "#F2F3F5",
+    "muted": "#9AA0A6",
+    "heading": "#FF1E3C",
+    "primary": "#FF1E3C",
+    "sidebar": "#101215",
+    "sidebar_text": "#F2F3F5",
+    "sidebar_button_bg": "#E10600",
+    "sidebar_button_text": "#FFFFFF",
+}
+
 st.markdown(
-    """
+    f"""
 <style>
-  [data-testid="stAppViewContainer"] { background: #FFFFFF; }
-  [data-testid="stSidebar"] { background: #8B0012; }
-  [data-testid="stSidebar"] * { color: #FFFFFF !important; }
-  [data-testid="stSidebar"] button { background-color: #FFFFFF !important; color: #8B0012 !important; }
-  h1, h2, h3, h4 { color: #8B0012 !important; }
-  label, [data-testid="stWidgetLabel"] p { color: #1A1312 !important; font-weight: 600; }
-  input, textarea, select { color: #1A1312 !important; background-color: #FFFFFF !important; border: 1px solid #8B0012 !important; border-radius: 8px !important; }
+  [data-testid="stAppViewContainer"] {{ background: {THEME["bg"]}; }}
+  [data-testid="stSidebar"] {{ background: {THEME["sidebar"]}; }}
+  [data-testid="stSidebar"] * {{ color: {THEME["sidebar_text"]} !important; }}
+  [data-testid="stSidebar"] button {{ background-color: {THEME["sidebar_button_bg"]} !important; color: {THEME["sidebar_button_text"]} !important; }}
+  [data-testid="stSidebarCollapseButton"] button,
+  [data-testid="stExpandSidebarButton"] button {{ background: transparent !important; border: none !important; font-size: 0 !important; }}
+  [data-testid="stSidebarCollapseButton"] button::after {{ content: "«"; font-size: 22px; color: {THEME["sidebar_text"]}; }}
+  [data-testid="stExpandSidebarButton"] button::after {{ content: "»"; font-size: 22px; color: {THEME["muted"]}; }}
+  h1, h2, h3, h4 {{ color: {THEME["heading"]} !important; }}
+  label, [data-testid="stWidgetLabel"] p {{ color: {THEME["text"]} !important; font-weight: 600; }}
+  input, textarea, select {{ color: {THEME["text"]} !important; background-color: {THEME["bg"]} !important; border: 1px solid {THEME["heading"]} !important; border-radius: 8px !important; }}
   [data-testid="stTextInput"] > div,
   [data-testid="stNumberInput"] > div,
   [data-testid="stDateInput"] > div,
-  [data-testid="stSelectbox"] > div { border-radius: 8px !important; }
-  input::placeholder, textarea::placeholder { color: #7B6A67 !important; }
-  [data-testid="stTabs"] [role="tab"] { color: #1A1312 !important; font-weight: 600; border-radius: 8px 8px 0 0 !important; }
-  [data-testid="stTabs"] [aria-selected="true"] { color: #8B0012 !important; border-color: #C1121F !important; }
-  div[data-testid="stMetricValue"] { color: #C1121F !important; }
+  [data-testid="stSelectbox"] > div {{ border-radius: 8px !important; }}
+  input::placeholder, textarea::placeholder {{ color: {THEME["muted"]} !important; }}
+  [data-testid="stTabs"] [role="tab"] {{ color: {THEME["text"]} !important; font-weight: 600; border-radius: 8px 8px 0 0 !important; }}
+  [data-testid="stTabs"] [aria-selected="true"] {{ color: {THEME["heading"]} !important; border-color: {THEME["primary"]} !important; }}
+  div[data-testid="stMetricValue"] {{ color: {THEME["primary"]} !important; }}
   div[data-testid="stFormSubmitButton"] button,
-  div[data-testid="stButton"] button { background-color: #C1121F !important; color: #FFFFFF !important; border: 1px solid #8B0012 !important; border-radius: 8px !important; }
-  [data-testid="stContainer"] { border-radius: 12px !important; overflow: hidden; }
-  div[data-testid="stAlert"] { color: #1A1312 !important; border-radius: 8px !important; }
+  div[data-testid="stButton"] button {{ background-color: {THEME["primary"]} !important; color: #FFFFFF !important; border: 1px solid {THEME["heading"]} !important; border-radius: 8px !important; }}
+  [data-testid="stContainer"] {{ background-color: {THEME["surface"]} !important; border: 1px solid {THEME["border"]} !important; border-radius: 12px !important; overflow: hidden; }}
+  div[data-testid="stAlert"] {{ color: {THEME["text"]} !important; border-radius: 8px !important; }}
 </style>
 """,
     unsafe_allow_html=True,
@@ -450,6 +483,7 @@ if "pending_saved_login" not in st.session_state:
 
 st.sidebar.title("EduTrack AI")
 st.sidebar.caption("Gestão acadêmica · uso local")
+st.sidebar.toggle("Modo escuro", key="dark_mode")
 
 if st.session_state.user_id is None:
     st.title("Acesso ao EduTrack AI")
@@ -564,9 +598,9 @@ if not get_welcome_seen(user_id):
     safe_username = html.escape(st.session_state.username)
     st.markdown(
         f"""
-<div style="background:#8B0012;color:#FFFFFF;padding:32px;border-radius:16px;margin-bottom:24px;">
-  <h1 style="color:#FFFFFF;margin:10px 0 8px;">Bem-vindo, {safe_username}!</h1>
-  <p style="color:#FFFFFF;margin:0;max-width:720px;">Sua conta foi criada com sucesso. A partir de agora, seus dados ficam salvos neste dispositivo e você pode começar a organizar seus estudos.</p>
+<div style="background:{THEME["sidebar"]};color:{THEME["sidebar_text"]};padding:32px;border-radius:16px;margin-bottom:24px;">
+  <h1 style="color:{THEME["sidebar_text"]};margin:10px 0 8px;">Bem-vindo, {safe_username}!</h1>
+  <p style="color:{THEME["sidebar_text"]};margin:0;max-width:720px;">Sua conta foi criada com sucesso. A partir de agora, seus dados ficam salvos neste dispositivo e você pode começar a organizar seus estudos.</p>
 </div>
 """,
         unsafe_allow_html=True,
