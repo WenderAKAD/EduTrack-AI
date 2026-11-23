@@ -348,7 +348,6 @@ if not get_welcome_seen(user_id):
     st.markdown(
         f"""
 <div style="background:#8B0012;color:#FFFFFF;padding:32px;border-radius:16px;margin-bottom:24px;">
-  <div style="font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#FF1E3C;font-weight:700;">Primeiro acesso</div>
   <h1 style="color:#FFFFFF;margin:10px 0 8px;">Bem-vindo, {safe_username}!</h1>
   <p style="color:#FFFFFF;margin:0;max-width:720px;">Sua conta foi criada com sucesso. A partir de agora, seus dados ficam salvos neste dispositivo e você pode começar a organizar seus estudos.</p>
 </div>
