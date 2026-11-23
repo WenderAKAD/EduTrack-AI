@@ -1,14 +1,15 @@
-// Gera e registra um codigo temporario de verificacao de e-mail.
+// Gera e registra um codigo temporario de verificacao de e-mail e dispara via SendGrid.
 //
 // POST /auth/send-verification-code — verifica se o e-mail ja esta em uso
-// na tabela user. Se nao estiver, gera um codigo de 6 digitos e grava na
-// tabela email_verification com validade de 15 minutos (now + 900000ms).
+// na tabela user. Se nao estiver, gera um codigo de 6 digitos, grava na
+// tabela email_verification com validade de 15 minutos (now + 900000ms) e
+// dispara o e-mail real via SendGrid quando configurado no workspace.
 //
 // Grupo: Autenticacao EduTrackIA Est
 // Change: openspec/changes/email-verification-xano.
 query "auth/send-verification-code" verb=POST {
   api_group = "Autenticacao EduTrackIA Est"
-  description = "Gera e registra um codigo temporario de verificacao de e-mail para novo usuario."
+  description = "Gera e registra um codigo temporario de verificacao de e-mail para novo usuario e dispara via SendGrid."
 
   input {
     email email? filters=lower|trim
@@ -50,11 +51,24 @@ query "auth/send-verification-code" verb=POST {
         created_at : "now"
       }
     } as $verification_entry
+
+    // Se o SendGrid estiver configurado no Xano (sendgrid_api_key), dispara o e-mail real
+    conditional {
+      if ($env.workspace.sendgrid_api_key != null && $env.workspace.sendgrid_api_key != "") {
+        function.run "sendgrid_basic_send" {
+          input = {
+            to_email : $input.email
+            subject  : "EduTrack AI - Seu codigo de verificacao: " ~ ($code|to_string)
+            body     : "Ola!\n\nSeu codigo de verificacao no EduTrack AI e: " ~ ($code|to_string) ~ "\n\nEste codigo expira em 15 minutos.\nSe voce nao solicitou este cadastro, desconsidere esta mensagem."
+          }
+        }
+      }
+    }
   }
 
   response = {
     status  : "ok"
-    message : "Codigo de verificacao gerado com sucesso."
+    message : "Codigo de verificacao enviado com sucesso."
     code    : $code|to_string
   }
 }
