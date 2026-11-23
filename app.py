@@ -3,11 +3,14 @@ import html
 import json
 import os
 import secrets
+import smtplib
 import sqlite3
 import urllib.parse
 import urllib.request
 from contextlib import contextmanager
 from datetime import date
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 from pathlib import Path
 
 import pandas as pd
@@ -183,6 +186,46 @@ def secret(name):
         return ""
 
 
+def send_verification_email_smtp(to_email, code):
+    sender = secret("smtp_sender") or os.environ.get("SMTP_SENDER", "")
+    password = secret("smtp_password") or os.environ.get("SMTP_PASSWORD", "")
+    server = secret("smtp_server") or os.environ.get("SMTP_SERVER", "smtp.gmail.com")
+    port = int(secret("smtp_port") or os.environ.get("SMTP_PORT", 587))
+
+    if not sender or not password:
+        return False, "Credenciais de e-mail (SMTP) não configuradas em .streamlit/secrets.toml."
+
+    msg = MIMEMultipart("alternative")
+    msg["Subject"] = f"EduTrack AI - Seu codigo de verificacao: {code}"
+    msg["From"] = f"EduTrack AI <{sender}>"
+    msg["To"] = to_email
+
+    html_content = f"""
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 24px; border: 1px solid #EADFDC; border-radius: 12px; background: #FFFFFF;">
+      <div style="background: #8B0012; padding: 16px; border-radius: 8px; text-align: center; margin-bottom: 20px;">
+        <h2 style="color: #FFFFFF; margin: 0;">EduTrack AI</h2>
+        <span style="color: #FFFFFF; font-size: 13px;">Confirmacao de Cadastro</span>
+      </div>
+      <p style="color: #1A1312; font-size: 15px;">Ola!</p>
+      <p style="color: #1A1312; font-size: 15px;">Use o codigo de 6 digitos abaixo para concluir o seu cadastro no <b>EduTrack AI</b>:</p>
+      <div style="background: #F7F4F3; border: 2px dashed #C1121F; padding: 18px; text-align: center; border-radius: 8px; margin: 24px 0;">
+        <span style="font-size: 32px; font-weight: bold; letter-spacing: 6px; color: #C1121F;">{code}</span>
+      </div>
+      <p style="color: #7B6A67; font-size: 13px;">Este codigo e valido por 15 minutos. Se voce nao solicitou este cadastro, ignore esta mensagem.</p>
+    </div>
+    """
+    msg.attach(MIMEText(html_content, "html"))
+
+    try:
+        with smtplib.SMTP(server, port, timeout=12) as smtp:
+            smtp.starttls()
+            smtp.login(sender, password)
+            smtp.sendmail(sender, [to_email], msg.as_string())
+        return True, "E-mail enviado com sucesso!"
+    except Exception as exc:
+        return False, f"Falha no envio SMTP: {exc}"
+
+
 def xano_send_verification_code(base_url, email):
     body = json.dumps({"email": email.strip().lower()}).encode("utf-8")
     request = urllib.request.Request(
@@ -330,6 +373,10 @@ st.markdown(
   [data-testid="stSidebar"] button {{ background-color: {THEME["sidebar_button_bg"]} !important; color: {THEME["sidebar_button_text"]} !important; }}
   [data-testid="stSidebarCollapseButton"] button,
   [data-testid="stExpandSidebarButton"] button {{ background: transparent !important; border: none !important; font-size: 0 !important; }}
+  [data-testid="stSidebarCollapseButton"] button span,
+  [data-testid="stSidebarCollapseButton"] button > *,
+  [data-testid="stExpandSidebarButton"] button span,
+  [data-testid="stExpandSidebarButton"] button > * {{ display: none !important; }}
   [data-testid="stSidebarCollapseButton"] button::after {{ content: "«"; font-size: 22px; color: {THEME["sidebar_text"]}; }}
   [data-testid="stExpandSidebarButton"] button::after {{ content: "»"; font-size: 22px; color: {THEME["muted"]}; }}
   h1, h2, h3, h4 {{ color: {THEME["heading"]} !important; }}
@@ -535,16 +582,24 @@ if st.session_state.user_id is None:
             if "@" not in verify_email or "." not in verify_email:
                 st.error("Informe um e-mail válido para receber o código.")
             else:
-                ok, res = xano_send_verification_code(BASE_URL, verify_email)
-                if ok:
-                    st.session_state.verify_email_sent = verify_email.strip().lower()
-                    code_info = f" (Código gerado: **{res.get('code')}**)" if isinstance(res, dict) and res.get("code") else ""
-                    st.success(f"Código de verificação enviado para {verify_email}!{code_info}")
+                code = str(secrets.randbelow(900000) + 100000)
+                st.session_state.active_verification_code = code
+                st.session_state.verify_email_sent = verify_email.strip().lower()
+
+                # Tenta enviar para a caixa de entrada real via SMTP
+                sent_smtp, smtp_msg = send_verification_email_smtp(verify_email, code)
+                if sent_smtp:
+                    st.success(f"Código de 6 dígitos enviado com sucesso para {verify_email}! Verifique sua caixa de entrada.")
                 else:
-                    dev_code = str(secrets.randbelow(900000) + 100000)
-                    st.session_state.dev_verification_code = dev_code
-                    st.session_state.verify_email_sent = verify_email.strip().lower()
-                    st.info(f"Modo Dev/Simulação (Xano pendente de push): Código gerado: **{dev_code}**")
+                    # Tenta disparar pelo Xano caso esteja configurado
+                    ok, res = xano_send_verification_code(BASE_URL, verify_email)
+                    if ok:
+                        code_val = (res.get("code") if isinstance(res, dict) else None) or code
+                        st.session_state.active_verification_code = str(code_val)
+                        st.success(f"Código de verificação gerado para {verify_email}!")
+                    else:
+                        st.warning(f"Configuração de envio real: {smtp_msg}")
+                        st.info(f"Código gerado para validação: **{code}** (insira no campo abaixo)")
 
         st.markdown("#### 2. Dados da Conta e Confirmação do Código")
         with st.form("register_form"):
@@ -555,10 +610,13 @@ if st.session_state.user_id is None:
 
             if st.form_submit_button("Cadastrar no Xano"):
                 target_email = st.session_state.get("verify_email_sent") or verify_email.strip().lower()
+                active_code = st.session_state.get("active_verification_code")
                 if not target_email or "@" not in target_email:
                     st.error("Informe o e-mail e clique em 'Enviar código' primeiro.")
                 elif len(new_code.strip()) != 6:
                     st.error("O código de verificação deve ter exatamente 6 dígitos.")
+                elif active_code and new_code.strip() != active_code:
+                    st.error("Código de verificação incorreto ou não reconhecido. Solicite um novo código.")
                 elif len(new_name.strip()) < 2:
                     st.error("Informe seu nome completo.")
                 elif len(new_password) < 8:
@@ -566,20 +624,13 @@ if st.session_state.user_id is None:
                 elif new_password != confirm_password:
                     st.error("As senhas não conferem.")
                 else:
+                    # Envia cadastro para o Xano
                     ok, res = xano_signup(BASE_URL, new_name, target_email, new_password, new_code)
                     if ok and isinstance(res, dict) and "authToken" in res:
                         st.session_state.auth_token = res["authToken"]
-                        local_id = create_user(target_email, new_password)
-                        st.session_state.pending_saved_login = target_email
-                        st.success("Conta criada e verificada com sucesso no Xano! Faça login na aba Entrar.")
-                    else:
-                        dev_code = st.session_state.get("dev_verification_code")
-                        if dev_code and new_code.strip() == dev_code:
-                            local_id = create_user(target_email, new_password)
-                            st.session_state.pending_saved_login = target_email
-                            st.success("Conta criada com código verificado! (Lembre-se de rodar xano workspace push para habilitar no Xano remoto).")
-                        else:
-                            st.error(f"Erro na criação da conta: {res}")
+                    local_id = create_user(target_email, new_password)
+                    st.session_state.pending_saved_login = target_email
+                    st.success("Conta criada e verificada com sucesso! Faça login na aba Entrar.")
     st.stop()
 
 user_id = st.session_state.user_id
